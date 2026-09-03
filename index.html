@@ -15,46 +15,67 @@
 </head>
 <body>
 
-  <!-- ========== HEADER / NAVIGATION ========== -->
+  <!-- ========== HEADER / NAVIGATION ==========
+       Two-tier navy header (mockup-inspired):
+       1) topbar — dispatch phone / bookings email / fleet status / quote button
+          NOTE: phone + email below are PLACEHOLDERS pending Lasha's real
+          dispatch line and inbox — swap before launch.
+       2) main row — logo + nav (Fleet/Track/Company are placeholders for
+          pages that don't exist yet, marked nav-disabled so they don't
+          look broken). -->
   <header class="site-header">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <div class="topbar-info">
+          <span class="topbar-item"><strong>Dispatch &mdash; 24/7</strong> <a href="tel:+995555040608">+995 555 040 608</a></span>
+          <span class="topbar-item">Bookings <a href="mailto:cargo@on-time.ge">cargo@on-time.ge</a></span>
+        </div>
+        <div class="topbar-actions">
+          <span class="fleet-status"><span class="status-dot" aria-hidden="true"></span>30 units on the road</span>
+          <a class="btn btn-outline-gold btn-small" href="https://wa.me/995555040608" target="_blank" rel="noopener">
+            Request a Quote
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="container header-inner">
       <a href="#" class="logo">
-        <img src="images/logo-trimmed.png" alt="On-Time Logistics Company" class="logo-img" />
+        <img src="images/logo-white.png" alt="On-Time Logistics Company" class="logo-img" />
       </a>
 
       <nav class="main-nav" aria-label="Primary">
         <a href="#services">Services</a>
-        <a href="#routes">Routes</a>
-        <a href="#contact">Contact</a>
+        <a href="#" class="nav-disabled" title="მალე დაემატება">Fleet</a>
+        <a href="#" class="nav-disabled" title="მალე დაემატება">Track</a>
+        <a href="#" class="nav-disabled" title="მალე დაემატება">Company</a>
       </nav>
-
-      <a class="btn btn-primary btn-small" href="https://wa.me/995555040608" target="_blank" rel="noopener">
-        Contact Us
-      </a>
     </div>
   </header>
 
   <main>
 
     <!-- ========== HERO ==========
-         Full-bleed style (Landstar-inspired): background photo + dark
-         overlay, headline and CTA on top. hero-truck.jpg is a temporary
-         image — swap it out in css/style.css (.hero background-image)
-         once a final fleet photo is ready. -->
+         Mockup-matched: full-bleed truck photo + solid navy panel on the
+         left for the text. hero-truck.jpg is still the temporary/trial
+         photo — swap it in css/style.css (.hero background-image) once
+         Lasha's own branded truck photo (like the mockup) is ready.
+         "Track a Shipment" has no real destination yet (no tracking
+         system built) — points to "#" until that feature exists. -->
     <section class="hero">
       <div class="container hero-copy">
-        <p class="eyebrow eyebrow-light">Refrigerated Logistics · Europe — Georgia — Central Asia</p>
-        <h1>Your Trusted Partner in International Refrigerated Logistics</h1>
+        <p class="eyebrow eyebrow-light">Full-Load Freight · Europe — Georgia — Central Asia</p>
+        <h1>Your Cargo,<br />Our Commitment</h1>
         <p class="hero-subtext">
-          With a fleet of 30 reefer trucks, we move temperature-sensitive cargo
-          safely and on time — between Europe, Georgia, and Central Asia, in
-          both directions.
+          Full-load refrigerated freight across Europe, Georgia, and Central
+          Asia — moved by our own fleet and tracked door to door. On time,
+          every time.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-accent" href="https://wa.me/995555040608" target="_blank" rel="noopener">
-            Contact Us on WhatsApp
+          <a class="btn btn-primary" href="https://wa.me/995555040608" target="_blank" rel="noopener">
+            Get a Rate
           </a>
-          <a class="btn btn-link btn-link-light" href="#routes">See our routes &rarr;</a>
+          <a class="btn btn-link btn-link-light" href="#" title="მალე დაემატება">Track a Shipment &rarr;</a>
         </div>
       </div>
     </section>
