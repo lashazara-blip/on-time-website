@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On-Time Logistics Company | Refrigerated Transport — Europe, Georgia, Central Asia</title>
+  <meta name="description" content="On-Time Logistics Company operates a fleet of 30 reefer trucks, providing temperature-controlled cargo transportation between Europe, Georgia, and Central Asia, in both directions." />
+
+  <!-- Google Fonts: Space Grotesk (headings) + Work Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ========== HEADER / NAVIGATION ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <img src="images/logo-trimmed.png" alt="On-Time Logistics Company" class="logo-img" />
+      </a>
+
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#routes">Routes</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="btn btn-primary btn-small" href="https://wa.me/995555040608" target="_blank" rel="noopener">
+        Contact Us
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ==========
+         Full-bleed style (Landstar-inspired): background photo + dark
+         overlay, headline and CTA on top. hero-truck.jpg is a temporary
+         image — swap it out in css/style.css (.hero background-image)
+         once a final fleet photo is ready. -->
+    <section class="hero">
+      <div class="container hero-copy">
+        <p class="eyebrow eyebrow-light">Refrigerated Logistics · Europe — Georgia — Central Asia</p>
+        <h1>Your Trusted Partner in International Refrigerated Logistics</h1>
+        <p class="hero-subtext">
+          With a fleet of 30 reefer trucks, we move temperature-sensitive cargo
+          safely and on time — between Europe, Georgia, and Central Asia, in
+          both directions.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-accent" href="https://wa.me/995555040608" target="_blank" rel="noopener">
+            Contact Us on WhatsApp
+          </a>
+          <a class="btn btn-link btn-link-light" href="#routes">See our routes &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STATS STRIP ========== -->
+    <section class="stats">
+      <div class="container stats-grid">
+        <div class="stat">
+          <span class="stat-number">30</span>
+          <span class="stat-label">Reefer trucks in fleet</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Regions connected</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">2-way</span>
+          <span class="stat-label">Transport, both directions</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Temperature-controlled</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SERVICES ==========
+         NOTE: only the verified service (refrigerated transport) is listed
+         for now. Once Lasha sends the full service list, add one
+         <article class="service-card"> per service, following the same
+         markup pattern below. -->
+    <section class="services" id="services">
+      <div class="container">
+        <p class="eyebrow">What We Do</p>
+        <h2>Built for cargo that can't wait — or warm up</h2>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2v20M4.9 4.9l14.2 14.2M19.1 4.9 4.9 19.1M2 12h20M6 6l3 1-1 3M18 6l-3 1 1 3M6 18l3-1-1-3M18 18l-3-1 1-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Refrigerated Transport</h3>
+            <p>Purpose-built reefer trucks hold temperature-sensitive goods within range from pickup to delivery.</p>
+          </article>
+
+          <!-- More service cards will be added here once details are confirmed. -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ROUTES ========== -->
+    <section class="routes" id="routes">
+      <div class="container">
+        <p class="eyebrow">Coverage</p>
+        <h2>One lane, both directions</h2>
+        <p class="section-subtext">
+          Our reefer fleet runs the same corridor both ways — no empty legs,
+          no delays waiting for a return load.
+        </p>
+
+        <div class="route-diagram">
+          <svg class="route-line" viewBox="0 0 900 90" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="40" y1="45" x2="860" y2="45" class="route-line-bg" />
+            <line x1="40" y1="45" x2="860" y2="45" class="route-line-fg" />
+            <circle cx="40" cy="45" r="9" class="route-dot" />
+            <circle cx="450" cy="45" r="9" class="route-dot route-dot-accent" />
+            <circle cx="860" cy="45" r="9" class="route-dot" />
+          </svg>
+          <div class="route-labels">
+            <div class="route-label">
+              <span class="route-city">Europe</span>
+              <span class="route-desc">Origin / destination</span>
+            </div>
+            <div class="route-label route-label-center">
+              <span class="route-city">Georgia</span>
+              <span class="route-desc">Transit hub</span>
+            </div>
+            <div class="route-label route-label-right">
+              <span class="route-city">Central Asia</span>
+              <span class="route-desc">Origin / destination</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT / CTA ========== -->
+    <section class="contact" id="contact">
+      <div class="container contact-box">
+        <div class="contact-copy">
+          <h2>Ready to move your cargo?</h2>
+          <p>Message us on WhatsApp for a quote — we'll confirm your route, timing, and temperature requirements.</p>
+          <a class="btn btn-light" href="https://wa.me/995555040608" target="_blank" rel="noopener">
+            +995 555 040 608
+          </a>
+        </div>
+        <div class="contact-address">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 22s7-7.58 7-12.5A7 7 0 0 0 5 9.5C5 14.42 12 22 12 22z" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <span>p. Kavtaradze 20d<br />Georgia</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo-trimmed.png" alt="" class="logo-img logo-img-small" aria-hidden="true" />
+        <span>&copy; <span id="year"></span> On-Time Logistics Company</span>
+      </div>
+      <span class="footer-domain">on-time.ge</span>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

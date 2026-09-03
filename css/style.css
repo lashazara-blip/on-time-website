@@ -1,0 +1,677 @@
+/* =========================================================
+   On-Time Logistics Company — main stylesheet
+   Colors: corporate blue + white, per brand direction.
+   Fonts: Space Grotesk (headings), Work Sans (body).
+   ========================================================= */
+
+:root {
+  --blue: oklch(52% 0.19 258);
+  --blue-dark: oklch(38% 0.16 258);
+  --cyan: oklch(58% 0.14 210);
+  --gold: oklch(80% 0.15 85);
+  --gold-dark: oklch(72% 0.15 78);
+  --navy: oklch(24% 0.07 258);
+  --navy-light: oklch(32% 0.08 258);
+  --ink: oklch(22% 0.03 260);
+  --muted: oklch(46% 0.02 260);
+  --bg: oklch(98.5% 0.004 90);
+  --card: oklch(96.5% 0.012 260);
+  --line: oklch(90% 0.012 260);
+  --white: oklch(100% 0 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+h1, h2, h3 {
+  font-family: 'Space Grotesk', 'Work Sans', system-ui, sans-serif;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--blue-dark);
+}
+
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 14px 26px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+  color: var(--white);
+}
+
+.btn-small {
+  padding: 11px 20px;
+  font-size: 14px;
+}
+
+.btn-light {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.btn-accent {
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.btn-accent:hover {
+  background: var(--gold-dark);
+  color: var(--ink);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.btn-outline-gold:hover {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.btn-link {
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 4px;
+  border-bottom: 2px solid var(--line);
+  border-radius: 0;
+}
+
+.btn-link:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* ---------- Header ----------
+   Two-tier navy header (Landstar/mockup-inspired): a slim dispatch/
+   contact utility bar on top, logo + nav below. Both sit on --navy,
+   so the header reads as one dark panel that continues into the hero. */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  background: var(--navy);
+  z-index: 10;
+}
+
+.topbar {
+  background: oklch(18% 0.06 258);
+  border-bottom: 1px solid oklch(35% 0.06 258);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  font-size: 12.5px;
+  color: oklch(78% 0.02 260);
+}
+
+.topbar-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.topbar-item strong {
+  color: var(--white);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.topbar-item a {
+  color: inherit;
+}
+
+.topbar-item a:hover {
+  color: var(--white);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.fleet-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: oklch(72% 0.19 145);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, var(--blue), var(--cyan) 40%, var(--blue) 100%);
+}
+
+.logo-mark-small {
+  width: 20px;
+  height: 20px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.logo-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.logo-subtitle {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.logo-img {
+  display: block;
+  height: 48px;
+  width: auto;
+}
+
+.logo-img-small {
+  height: 22px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.main-nav a {
+  color: oklch(88% 0.02 260);
+}
+
+.main-nav a:hover {
+  color: var(--white);
+}
+
+.main-nav a.nav-disabled {
+  color: oklch(55% 0.03 260);
+  cursor: default;
+}
+
+.main-nav a.nav-disabled:hover {
+  color: oklch(55% 0.03 260);
+}
+
+/* ---------- Hero ----------
+   Full-bleed background photo + dark overlay (Landstar-inspired).
+   hero-truck.jpg is a temporary/placeholder image — swap the
+   background-image below once a final fleet photo is ready. */
+
+.hero {
+  position: relative;
+  min-height: 660px;
+  display: flex;
+  align-items: center;
+  padding-top: 56px;
+  padding-bottom: 56px;
+  /* Mockup-style split: solid navy panel on the left for the text,
+     fading out so the truck photo reads clearly on the right. */
+  background-image:
+    linear-gradient(100deg, oklch(18% 0.06 258 / 0.94) 0%, oklch(18% 0.06 258 / 0.86) 32%, oklch(18% 0.06 258 / 0.4) 60%, oklch(18% 0.06 258 / 0.08) 100%),
+    url("../images/hero-truck.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-copy {
+  position: relative;
+  max-width: 720px;
+}
+
+.hero-copy .eyebrow-light::before {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--cyan);
+  margin-bottom: 14px;
+}
+
+.eyebrow-light {
+  color: oklch(85% 0.05 210);
+}
+
+.hero-subtext {
+  font-size: 18px;
+  line-height: 1.6;
+  color: oklch(92% 0.01 260);
+  margin-top: 22px;
+  max-width: 52ch;
+}
+
+.hero h1 {
+  font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  margin-top: 18px;
+  color: var(--white);
+  text-shadow: 0 2px 24px oklch(15% 0.05 258 / 0.35);
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 34px;
+  flex-wrap: wrap;
+}
+
+.btn-link-light {
+  color: var(--white);
+  border-bottom-color: oklch(100% 0 0 / 0.4);
+}
+
+.btn-link-light:hover {
+  color: var(--white);
+  border-bottom-color: var(--white);
+}
+
+/* Generic placeholder box — used wherever a real photo is still pending
+   (e.g. inside the services/routes sections later on). */
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  background:
+    repeating-linear-gradient(45deg, var(--line) 0, var(--line) 1px, transparent 1px, transparent 14px);
+  border: 1px dashed var(--line);
+  border-radius: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ---------- Stats strip ---------- */
+
+.stats {
+  background: var(--ink);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: oklch(30% 0.03 260);
+}
+
+.stat {
+  background: var(--ink);
+  padding: 30px 24px;
+}
+
+.stat-number {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.stat-label {
+  display: block;
+  font-size: 13px;
+  color: oklch(75% 0.02 260);
+  margin-top: 4px;
+}
+
+/* ---------- Services ---------- */
+
+.services {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+.services h2 {
+  font-size: 32px;
+  margin-top: 14px;
+  max-width: 56ch;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 44px;
+}
+
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.service-icon {
+  color: var(--blue);
+}
+
+.service-card h3 {
+  font-size: 19px;
+  margin-top: 18px;
+}
+
+.service-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* ---------- Routes ---------- */
+
+.routes {
+  background: var(--card);
+  padding: 88px 0;
+}
+
+.routes h2 {
+  font-size: 32px;
+  margin-top: 14px;
+  max-width: 40ch;
+}
+
+.section-subtext {
+  font-size: 16px;
+  color: var(--muted);
+  margin-top: 12px;
+  max-width: 52ch;
+}
+
+.route-diagram {
+  margin-top: 56px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 48px 40px;
+}
+
+.route-line {
+  width: 100%;
+  height: 90px;
+  display: block;
+}
+
+.route-line-bg {
+  stroke: var(--line);
+  stroke-width: 3;
+}
+
+.route-line-fg {
+  stroke: var(--blue);
+  stroke-width: 3;
+  stroke-dasharray: 10 8;
+}
+
+.route-dot {
+  fill: var(--blue);
+}
+
+.route-dot-accent {
+  fill: var(--cyan);
+}
+
+.route-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.route-label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.route-label-center {
+  text-align: center;
+}
+
+.route-label-right {
+  text-align: right;
+}
+
+.route-city {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.route-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ---------- Contact ---------- */
+
+.contact {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+.contact-box {
+  background: var(--ink);
+  border-radius: 24px;
+  padding: 56px 48px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.contact-copy h2 {
+  font-size: 30px;
+  color: var(--white);
+}
+
+.contact-copy p {
+  font-size: 16px;
+  color: oklch(78% 0.02 260);
+  margin-top: 12px;
+  max-width: 46ch;
+  line-height: 1.6;
+}
+
+.contact-copy .btn {
+  margin-top: 26px;
+}
+
+.contact-address {
+  border-left: 1px solid oklch(35% 0.03 260);
+  padding-left: 40px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: oklch(78% 0.02 260);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.contact-address svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 32px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer-domain {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 860px) {
+  .topbar-info {
+    display: none;
+  }
+
+  .fleet-status {
+    display: none;
+  }
+
+  .hero {
+    min-height: 560px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+    line-height: 1.12;
+  }
+
+  .contact-box {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-address {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid oklch(35% 0.03 260);
+    padding-top: 24px;
+    margin-top: 8px;
+  }
+}

@@ -1,0 +1,3 @@
+- `logo.jpg` — original logo file as sent
+- `logo-trimmed.png` — auto-cropped version (whitespace trimmed), used in the header and footer
+- `hero-truck.jpg` — homepage hero background photo (temporary/trial, per Lasha — swap out once a final photo is chosen)
