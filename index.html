@@ -105,25 +105,6 @@
       </div>
     </section>
 
-    <!-- ========== INFO BAR (temporary) ==========
-         Dispatch/booking info + fleet status + quote button, relocated
-         here from the header per Lasha's request. Phone + email are
-         still PLACEHOLDERS pending his real dispatch line/inbox. -->
-    <div class="topbar info-bar">
-      <div class="container topbar-inner">
-        <div class="topbar-info">
-          <span class="topbar-item"><strong>Dispatch &mdash; 24/7</strong> <a href="tel:+995555040608">+995 555 040 608</a></span>
-          <span class="topbar-item">Bookings <a href="mailto:cargo@on-time.ge">cargo@on-time.ge</a></span>
-        </div>
-        <div class="topbar-actions">
-          <span class="fleet-status"><span class="status-dot" aria-hidden="true"></span>30 units on the road</span>
-          <a class="btn btn-outline-gold btn-small" href="https://wa.me/995555040608" target="_blank" rel="noopener">
-            Request a Quote
-          </a>
-        </div>
-      </div>
-    </div>
-
     <!-- ========== SERVICES ==========
          NOTE: only the verified service (refrigerated transport) is listed
          for now. Once Lasha sends the full service list, add one
@@ -218,6 +199,30 @@
       <span class="footer-domain">on-time.ge</span>
     </div>
   </footer>
+
+  <!-- ========== FLOATING CONTACT BOX ==========
+       Dispatch/booking info + fleet status + quote button — was a
+       full-width strip under the hero, now a floating box (bottom-right)
+       that stays visible while scrolling, per Lasha's request. All 4
+       items show on desktop; on mobile only the phone + quote button
+       show, to avoid covering a big chunk of a small screen (see
+       .float-contact-bookings/.float-contact-fleet in the CSS). Phone +
+       email are still PLACEHOLDERS pending Lasha's real dispatch
+       line/inbox. -->
+  <div class="float-contact">
+    <div class="float-contact-row float-contact-dispatch">
+      <span class="topbar-item"><strong>Dispatch &mdash; 24/7</strong> <a href="tel:+995555040608">+995 555 040 608</a></span>
+    </div>
+    <div class="float-contact-row float-contact-bookings">
+      <span class="topbar-item">Bookings <a href="mailto:cargo@on-time.ge">cargo@on-time.ge</a></span>
+    </div>
+    <div class="float-contact-row float-contact-fleet">
+      <span class="fleet-status"><span class="status-dot" aria-hidden="true"></span>30 units on the road</span>
+    </div>
+    <a class="btn btn-outline-gold btn-small float-contact-btn" href="https://wa.me/995555040608" target="_blank" rel="noopener">
+      Request a Quote
+    </a>
+  </div>
 
   <script src="js/script.js"></script>
 </body>

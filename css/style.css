@@ -140,42 +140,16 @@ a:hover {
 }
 
 /* ---------- Header ----------
-   Just the logo + nav row now — the dispatch/booking strip (.topbar)
-   used to sit above this inside .site-header; it's been relocated below
-   the hero photo (see .info-bar) per Lasha's request. */
+   Just the logo + nav row — the dispatch/booking strip used to sit
+   above this inside .site-header, then moved to a full-width strip
+   below the hero, and is now the floating box at the bottom of the
+   page (see .float-contact further down). */
 
 .site-header {
   position: sticky;
   top: 0;
   background: var(--navy);
   z-index: 10;
-}
-
-.topbar {
-  background: oklch(18% 0.06 258);
-}
-
-/* .info-bar = the .topbar markup relocated below the hero photo
-   (temporary, per Lasha's request). Border moves from bottom to top
-   since this bar now sits under the photo instead of above the main
-   nav row. */
-.info-bar {
-  border-top: 1px solid oklch(35% 0.06 258);
-}
-
-.topbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 40px;
-  font-size: 12.5px;
-  color: oklch(78% 0.02 260);
-}
-
-.topbar-info {
-  display: flex;
-  align-items: center;
-  gap: 24px;
 }
 
 .topbar-item strong {
@@ -190,12 +164,6 @@ a:hover {
 
 .topbar-item a:hover {
   color: var(--white);
-}
-
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
 }
 
 .fleet-status {
@@ -723,17 +691,64 @@ a:hover {
   color: var(--muted);
 }
 
+/* ---------- Floating contact box ----------
+   Dispatch/booking/fleet info + quote button, now a fixed floating
+   panel (bottom-right) that stays visible while scrolling instead of a
+   full-width strip. All 4 rows show on desktop; on mobile only the
+   phone + quote button stay (bookings + fleet status hidden), so it
+   doesn't cover too much of a small screen — see the media query below. */
+.float-contact {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 230px;
+  background: oklch(15% 0.05 258 / 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid oklch(35% 0.06 258);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 12px 32px oklch(0% 0 0 / 0.35);
+  font-size: 12.5px;
+}
+
+.float-contact-btn {
+  margin-top: 4px;
+  justify-content: center;
+}
+
 /* =========================================================
    Responsive
    ========================================================= */
 
 @media (max-width: 860px) {
-  .topbar-info {
+  .fleet-status {
     display: none;
   }
 
-  .fleet-status {
+  /* Floating box collapses to a compact horizontal pill: just the
+     phone number + quote button, so it doesn't sit over a big chunk of
+     a small screen. Bookings row hidden here; fleet-status row is
+     already hidden by the rule above (same class, reused). */
+  .float-contact {
+    right: 16px;
+    bottom: 16px;
+    min-width: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .float-contact-bookings {
     display: none;
+  }
+
+  .float-contact-btn {
+    margin-top: 0;
   }
 
   .hero {
