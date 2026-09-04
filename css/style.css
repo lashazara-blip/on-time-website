@@ -24,11 +24,25 @@
   box-sizing: border-box;
 }
 
+html {
+  /* One-page site now (per Lasha) — nav links are #anchors, so this
+     makes clicking About Us/Services/Contact glide down instead of
+     jumping instantly. */
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Work Sans', system-ui, sans-serif;
   background: var(--bg);
   color: var(--ink);
+}
+
+/* Sticky header is 76px tall — without this, jumping to an #anchor lands
+   the section right under it, with its top few pixels hidden behind the
+   header. Applies to every anchor-able section (About/Services/Contact). */
+main section[id] {
+  scroll-margin-top: 92px;
 }
 
 h1, h2, h3 {
@@ -244,15 +258,6 @@ a:hover {
 
 .main-nav a.nav-disabled:hover {
   color: oklch(55% 0.03 260);
-}
-
-/* Marks the current page's nav item — used on about.html for "About Us".
-   Homepage doesn't mark any item active (no single section "is" the
-   homepage). */
-.main-nav a.active {
-  color: var(--white);
-  border-bottom: 2px solid var(--gold);
-  padding-bottom: 4px;
 }
 
 /* ---------- Header utility: search box + GE/EN ----------
@@ -652,11 +657,13 @@ a:hover {
   color: var(--muted);
 }
 
-/* ---------- About page (about.html) ----------
-   A simple photo hero, vertically centered (not bottom-anchored like the
-   homepage hero — there are no stats/buttons competing for space here,
-   just the eyebrow + heading + paragraph). Same gradient-over-photo
-   legibility trick as the homepage hero. */
+/* ---------- About section ----------
+   Used to be a separate about.html page; now it's just another section
+   on the one-page site, between Hero and Services (per Lasha). A simple
+   photo hero, vertically centered (not bottom-anchored like the main
+   Hero — there are no stats/buttons competing for space here, just the
+   eyebrow + heading + paragraph). Same gradient-over-photo legibility
+   trick as the main Hero. */
 .about-hero {
   position: relative;
   min-height: 420px;

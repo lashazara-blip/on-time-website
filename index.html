@@ -21,9 +21,11 @@
        language switch. NOTE: per Lasha, Search and GE/EN are VISUAL
        ONLY for now (a "for show" mockup, not wired up) — the site is
        English-only and there's no search backend yet.
-       "Services" and "Contact" link to the real sections that already
-       exist on this page; "About Us" now links to the real about.html
-       page (added per Lasha). -->
+       One-page site now (per Lasha) — About Us / Services / Contact are
+       all sections on THIS page, so all three nav links are #anchors
+       that scroll down to them, in the same order they appear below.
+       (The separate about.html page from before is no longer used —
+       delete that file.) -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="#" class="logo">
@@ -32,7 +34,7 @@
 
       <div class="header-right">
         <nav class="main-nav" aria-label="Primary">
-          <a href="about.html">About Us</a>
+          <a href="#about">About Us</a>
           <a href="#services">Services</a>
           <!-- Contacts will live here / in #contact below once the
                site's contact flow is finalized (per Lasha). -->
@@ -99,6 +101,26 @@
             <span class="hero-stat-label">Temperature<br />Controlled</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ==========
+         Moved here from the old standalone about.html per Lasha — it's a
+         one-page site now, so this section just sits between Hero and
+         Services (same order as the nav: About Us / Services / Contact).
+         Same photo (about-fleet.jpg) and copy as before; "Who We Are" +
+         the eyebrow line are still a first-pass suggestion, easy to
+         change or drop. -->
+    <section class="about-hero" id="about">
+      <div class="about-copy">
+        <p class="eyebrow eyebrow-light">About On-Time Logistics Company</p>
+        <h1>Who We Are</h1>
+        <p>
+          On-Time Logistics Company operates a fleet of 30 refrigerated
+          trucks, providing fast, secure, and temperature-controlled cargo
+          transportation between Europe, Georgia, and Central Asia — in
+          both directions.
+        </p>
       </div>
     </section>
 
