@@ -140,9 +140,9 @@ a:hover {
 }
 
 /* ---------- Header ----------
-   Two-tier navy header (Landstar/mockup-inspired): a slim dispatch/
-   contact utility bar on top, logo + nav below. Both sit on --navy,
-   so the header reads as one dark panel that continues into the hero. */
+   Just the logo + nav row now — the dispatch/booking strip (.topbar)
+   used to sit above this inside .site-header; it's been relocated below
+   the hero photo (see .info-bar) per Lasha's request. */
 
 .site-header {
   position: sticky;
@@ -153,7 +153,14 @@ a:hover {
 
 .topbar {
   background: oklch(18% 0.06 258);
-  border-bottom: 1px solid oklch(35% 0.06 258);
+}
+
+/* .info-bar = the .topbar markup relocated below the hero photo
+   (temporary, per Lasha's request). Border moves from bottom to top
+   since this bar now sits under the photo instead of above the main
+   nav row. */
+.info-bar {
+  border-top: 1px solid oklch(35% 0.06 258);
 }
 
 .topbar-inner {
@@ -307,9 +314,12 @@ a:hover {
   position: relative;
   min-height: 560px;
   display: flex;
-  align-items: center;
+  /* Bottom-left anchored per Lasha's markup: copy + stats now sit in the
+     bottom-left corner of the open (tree/road) area instead of the
+     vertical middle. */
+  align-items: flex-end;
   padding-top: 32px;
-  padding-bottom: 32px;
+  padding-bottom: 56px;
   /* Fixed left inset (not the shared centered .container) so the text
      always hugs the true left edge, on any screen width. */
   padding-left: clamp(24px, 4vw, 80px);
@@ -385,19 +395,16 @@ a:hover {
 }
 
 /* ---------- Hero stat strip ----------
-   Mockup-matched: vertical stats embedded in the hero photo itself
-   (bottom-right), instead of a separate section below. Real numbers only
-   (30 trucks, 100% temp-controlled — already used elsewhere on the site;
-   24/7 matches the dispatch line in the topbar). */
+   Moved from bottom-right-of-photo (absolute) to the same left column as
+   the headline, right under the CTA buttons — per Lasha's markup. It's a
+   normal block now (no more position:absolute), so it just stacks under
+   .hero-actions in document order. */
 .hero-stats {
-  position: absolute;
-  right: 32px;
-  bottom: 32px;
-  z-index: 2;
   display: flex;
   gap: 24px;
+  margin-top: 30px;
   /* Solid-ish backdrop so the numbers stay legible no matter what part of
-     the photo (or the truck's own decal text) ends up behind them. */
+     the photo ends up behind them. */
   background: oklch(15% 0.05 258 / 0.6);
   backdrop-filter: blur(6px);
   padding: 14px 22px;
@@ -461,3 +468,248 @@ a:hover {
 }
 
 .services h2 {
+  font-size: 32px;
+  margin-top: 14px;
+  max-width: 56ch;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 44px;
+}
+
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.service-icon {
+  color: var(--blue);
+}
+
+.service-card h3 {
+  font-size: 19px;
+  margin-top: 18px;
+}
+
+.service-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* ---------- Routes ---------- */
+
+.routes {
+  background: var(--card);
+  padding: 88px 0;
+}
+
+.routes h2 {
+  font-size: 32px;
+  margin-top: 14px;
+  max-width: 40ch;
+}
+
+.section-subtext {
+  font-size: 16px;
+  color: var(--muted);
+  margin-top: 12px;
+  max-width: 52ch;
+}
+
+.route-diagram {
+  margin-top: 56px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 48px 40px;
+}
+
+.route-line {
+  width: 100%;
+  height: 90px;
+  display: block;
+}
+
+.route-line-bg {
+  stroke: var(--line);
+  stroke-width: 3;
+}
+
+.route-line-fg {
+  stroke: var(--blue);
+  stroke-width: 3;
+  stroke-dasharray: 10 8;
+}
+
+.route-dot {
+  fill: var(--blue);
+}
+
+.route-dot-accent {
+  fill: var(--cyan);
+}
+
+.route-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.route-label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.route-label-center {
+  text-align: center;
+}
+
+.route-label-right {
+  text-align: right;
+}
+
+.route-city {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.route-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ---------- Contact ---------- */
+
+.contact {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+.contact-box {
+  background: var(--ink);
+  border-radius: 24px;
+  padding: 56px 48px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.contact-copy h2 {
+  font-size: 30px;
+  color: var(--white);
+}
+
+.contact-copy p {
+  font-size: 16px;
+  color: oklch(78% 0.02 260);
+  margin-top: 12px;
+  max-width: 46ch;
+  line-height: 1.6;
+}
+
+.contact-copy .btn {
+  margin-top: 26px;
+}
+
+.contact-address {
+  border-left: 1px solid oklch(35% 0.03 260);
+  padding-left: 40px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: oklch(78% 0.02 260);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.contact-address svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 32px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer-domain {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 860px) {
+  .topbar-info {
+    display: none;
+  }
+
+  .fleet-status {
+    display: none;
+  }
+
+  .hero {
+    min-height: 560px;
+  }
+
+  .hero-stats {
+    display: none;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+    line-height: 1.12;
+  }
+
+  .contact-box {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-address {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid oklch(35% 0.03 260);
+    padding-top: 24px;
+    margin-top: 8px;
+  }
+}

@@ -16,29 +16,10 @@
 <body>
 
   <!-- ========== HEADER / NAVIGATION ==========
-       Two-tier navy header (mockup-inspired):
-       1) topbar — dispatch phone / bookings email / fleet status / quote button
-          NOTE: phone + email below are PLACEHOLDERS pending Lasha's real
-          dispatch line and inbox — swap before launch.
-       2) main row — logo + nav (Fleet/Track/Company are placeholders for
-          pages that don't exist yet, marked nav-disabled so they don't
-          look broken). -->
+       Just logo + nav now — the dispatch/booking/quote strip that used to
+       sit above this has been moved below the hero photo (see
+       .info-bar further down), per Lasha's request. -->
   <header class="site-header">
-    <div class="topbar">
-      <div class="container topbar-inner">
-        <div class="topbar-info">
-          <span class="topbar-item"><strong>Dispatch &mdash; 24/7</strong> <a href="tel:+995555040608">+995 555 040 608</a></span>
-          <span class="topbar-item">Bookings <a href="mailto:cargo@on-time.ge">cargo@on-time.ge</a></span>
-        </div>
-        <div class="topbar-actions">
-          <span class="fleet-status"><span class="status-dot" aria-hidden="true"></span>30 units on the road</span>
-          <a class="btn btn-outline-gold btn-small" href="https://wa.me/995555040608" target="_blank" rel="noopener">
-            Request a Quote
-          </a>
-        </div>
-      </div>
-    </div>
-
     <div class="container header-inner">
       <a href="#" class="logo">
         <img src="images/logo-white.png" alt="On-Time Logistics Company" class="logo-img" />
@@ -56,10 +37,10 @@
   <main>
 
     <!-- ========== HERO ==========
-         Mockup-matched: full-bleed truck photo + solid navy panel on the
-         left for the text. hero-truck.jpg is still the temporary/trial
-         photo — swap it in css/style.css (.hero background-image) once
-         Lasha's own branded truck photo (like the mockup) is ready.
+         hero-truck.jpg: open road/trees on the left third of the frame,
+         truck fills the rest — copy + stats now anchor to the
+         bottom-left corner of that open area (align-items: flex-end on
+         .hero), per Lasha's screenshot markup.
          "Track a Shipment" has no real destination yet (no tracking
          system built) — points to "#" until that feature exists. -->
     <section class="hero">
@@ -80,25 +61,44 @@
           </a>
           <a class="btn btn-link btn-link-light" href="#" title="მალე დაემატება">Track a Shipment &rarr;</a>
         </div>
-      </div>
 
-      <!-- Mockup-matched: stats embedded in the hero photo (bottom-right)
-           instead of a separate section. Real numbers only. -->
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-number">30</span>
-          <span class="hero-stat-label">Reefer Trucks<br />in Fleet</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-number">24/7</span>
-          <span class="hero-stat-label">Dispatch<br />&amp; Tracking</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-number">100%</span>
-          <span class="hero-stat-label">Temperature<br />Controlled</span>
+        <!-- Stats moved here (under the CTA buttons, same left column)
+             from their old spot at bottom-right of the photo. -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-number">30</span>
+            <span class="hero-stat-label">Reefer Trucks<br />in Fleet</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-number">24/7</span>
+            <span class="hero-stat-label">Dispatch<br />&amp; Tracking</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-number">100%</span>
+            <span class="hero-stat-label">Temperature<br />Controlled</span>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ========== INFO BAR (temporary) ==========
+         Dispatch/booking info + fleet status + quote button, relocated
+         here from the header per Lasha's request. Phone + email are
+         still PLACEHOLDERS pending his real dispatch line/inbox. -->
+    <div class="topbar info-bar">
+      <div class="container topbar-inner">
+        <div class="topbar-info">
+          <span class="topbar-item"><strong>Dispatch &mdash; 24/7</strong> <a href="tel:+995555040608">+995 555 040 608</a></span>
+          <span class="topbar-item">Bookings <a href="mailto:cargo@on-time.ge">cargo@on-time.ge</a></span>
+        </div>
+        <div class="topbar-actions">
+          <span class="fleet-status"><span class="status-dot" aria-hidden="true"></span>30 units on the road</span>
+          <a class="btn btn-outline-gold btn-small" href="https://wa.me/995555040608" target="_blank" rel="noopener">
+            Request a Quote
+          </a>
+        </div>
+      </div>
+    </div>
 
     <!-- ========== SERVICES ==========
          NOTE: only the verified service (refrigerated transport) is listed
