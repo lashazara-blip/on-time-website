@@ -31,11 +31,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Corporate-navy grid pattern, used as the page's base canvas everywhere
+   nothing else covers it (behind Services/Routes/Contact, the header,
+   and the gap between Hero and About). Two thin repeating lines (one
+   vertical, one horizontal) at low opacity on the navy base — subtle
+   graph-paper texture rather than a loud pattern. Per Lasha's request:
+   this replaces the old light --bg color and the heavy blur hack that
+   used to sit between Hero and About (see .hero/.about-hero/
+   .section-divider below for how the photos now fade into this canvas
+   instead). */
 body {
   margin: 0;
   font-family: 'Work Sans', system-ui, sans-serif;
-  background: var(--bg);
   color: var(--ink);
+  background-color: var(--navy);
+  background-image:
+    linear-gradient(oklch(48% 0.07 258 / 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(48% 0.07 258 / 0.35) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 /* Sticky header is 76px tall — without this, jumping to an #anchor lands
@@ -335,6 +348,14 @@ a:hover {
     url("../images/hero-truck.jpg");
   background-size: cover;
   background-position: center center;
+  /* Feathers the photo to transparent over its last 56px, letting the
+     grid-pattern body background show through instead of ending on a
+     hard edge — this is the "gentle transition" into .section-divider
+     and .about-hero below. 56px sits inside .hero's own padding-bottom
+     (56px), which is empty space below .hero-stats, so the fade never
+     touches the headline/stats content itself. */
+  mask-image: linear-gradient(to bottom, black calc(100% - 56px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 56px), transparent 100%);
 }
 
 .hero-copy {
@@ -461,6 +482,10 @@ a:hover {
   font-size: 32px;
   margin-top: 14px;
   max-width: 56ch;
+  /* Section no longer has a light background (dark grid canvas now sits
+     behind it per Lasha's request), so the heading needs an explicit
+     light color instead of inheriting var(--ink). */
+  color: var(--white);
 }
 
 .services-grid {
@@ -475,6 +500,9 @@ a:hover {
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 30px;
+  /* Card-depth polish now that this floats on the dark grid canvas
+     instead of a plain light section background. */
+  box-shadow: 0 16px 36px oklch(10% 0.06 258 / 0.28);
 }
 
 .service-icon {
@@ -496,7 +524,9 @@ a:hover {
 /* ---------- Routes ---------- */
 
 .routes {
-  background: var(--card);
+  /* Own light background removed per Lasha — the dark grid canvas (set
+     on body) now shows through here too, same as Services. Only the
+     .route-diagram card underneath stays white. */
   padding: 88px 0;
 }
 
@@ -504,11 +534,14 @@ a:hover {
   font-size: 32px;
   margin-top: 14px;
   max-width: 40ch;
+  color: var(--white);
 }
 
 .section-subtext {
   font-size: 16px;
-  color: var(--muted);
+  /* Was var(--muted), a dark gray meant for a light background — lightened
+     for legibility on the new dark grid canvas. */
+  color: oklch(78% 0.02 260);
   margin-top: 12px;
   max-width: 52ch;
 }
@@ -519,6 +552,7 @@ a:hover {
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 48px 40px;
+  box-shadow: 0 16px 36px oklch(10% 0.06 258 / 0.28);
 }
 
 .route-line {
@@ -587,7 +621,13 @@ a:hover {
 }
 
 .contact-box {
-  background: var(--ink);
+  /* Was var(--ink) — almost indistinguishable from the new page background
+     var(--navy), so the card used to visually disappear into the grid
+     canvas. var(--navy-light) plus a soft border/shadow gives it its own
+     card presence again. */
+  background: var(--navy-light);
+  border: 1px solid oklch(45% 0.08 258 / 0.5);
+  box-shadow: 0 24px 56px oklch(10% 0.06 258 / 0.4);
   border-radius: 24px;
   padding: 56px 48px;
   display: grid;
@@ -632,7 +672,10 @@ a:hover {
 /* ---------- Footer ---------- */
 
 .site-footer {
-  border-top: 1px solid var(--line);
+  /* Was var(--line), a light gray divider meant for a light page — reads
+     as a stark bright line on the new dark canvas, so switched to a
+     translucent navy-tinted divider instead. */
+  border-top: 1px solid oklch(45% 0.06 258 / 0.5);
 }
 
 .footer-inner {
@@ -649,40 +692,31 @@ a:hover {
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  color: var(--muted);
+  /* Was var(--muted) — too dark to read on the new dark canvas. */
+  color: oklch(68% 0.02 260);
 }
 
 .footer-domain {
   font-size: 13px;
-  color: var(--muted);
+  color: oklch(68% 0.02 260);
 }
 
-/* Divider between the two stacked photo sections (Hero + About). Per
-   Lasha's latest request, this is now an actual blur — not a visible
-   navy bar — so the seam between the two photos softens instead of
-   showing a distinct stripe. The element itself takes no space (height:
-   0) in the page flow; ::after is what does the work, positioned to
-   straddle the boundary (50px into the bottom of Hero, 50px into the
-   top of About) with backdrop-filter: blur() picking up and blurring
-   whatever photo content is directly behind it, plus a light navy wash
-   so the blurred band still reads as "on-brand" rather than neutral. */
+/* Divider between the two stacked photo sections (Hero + About).
+   Rejected three times now (gold bar, navy bar + shadow, backdrop-filter
+   blur) for looking too heavy/rough. This is the replacement approach,
+   per Lasha's most recent request: no visible bar/stripe element at all.
+   Instead:
+     1. The grid-pattern canvas (see body, above) runs underneath the
+        entire page, including this gap.
+     2. .hero and .about-hero each get a mask-image that fades their own
+        photo to transparent right at the edge that touches this gap
+        (see below), so the grid canvas shows through and the photos
+        feather into it instead of ending on a hard line.
+   This element is now just a plain spacer that reveals a strip of that
+   grid canvas between the two feathered photos — no bar, no blur, no
+   box-shadow. */
 .section-divider {
-  position: relative;
-  height: 0;
-  z-index: 5;
-}
-
-.section-divider::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -50px;
-  height: 100px;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  background: oklch(24% 0.07 258 / 0.25);
-  pointer-events: none;
+  height: 56px;
 }
 
 /* ---------- About section ----------
@@ -703,6 +737,13 @@ a:hover {
     url("../images/about-fleet.jpg");
   background-size: cover;
   background-position: center center;
+  /* Mirrors .hero's fade above: feathers in from transparent over the
+     first 56px so this photo picks up from the grid canvas instead of
+     starting on a hard edge. .about-hero is vertically centered with
+     48px top/bottom padding, so this stays within that empty padding
+     band and never touches .about-copy's text. */
+  mask-image: linear-gradient(to bottom, transparent 0, black 56px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 56px);
 }
 
 .about-copy {
@@ -762,6 +803,10 @@ a:hover {
   .about-hero {
     min-height: 320px;
     padding: 32px 24px;
+    /* Padding shrank to 32px on mobile — match the fade band to it so it
+       stays inside the empty padding and doesn't reach into the text. */
+    mask-image: linear-gradient(to bottom, transparent 0, black 32px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 32px);
   }
 
   .about-hero h1 {

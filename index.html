@@ -104,9 +104,12 @@
       </div>
     </section>
 
-    <!-- Blurs the seam between Hero and About instead of showing a
-         visible bar — per Lasha's feedback ("light blur, not a stripe").
-         See .section-divider in style.css for how. -->
+    <!-- No visible bar/blur here anymore (three earlier attempts — gold
+         bar, navy bar, backdrop-filter blur — were all too heavy/rough
+         per Lasha). Hero and About now each fade their own photo to
+         transparent at this edge (mask-image, see style.css), so this
+         gap just reveals a strip of the site-wide grid-pattern canvas
+         between them — a soft, natural transition instead of a stripe. -->
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ========== ABOUT ==========
@@ -136,7 +139,7 @@
          markup pattern below. -->
     <section class="services" id="services">
       <div class="container">
-        <p class="eyebrow">What We Do</p>
+        <p class="eyebrow eyebrow-light">What We Do</p>
         <h2>Built for cargo that can't wait — or warm up</h2>
 
         <div class="services-grid">
@@ -158,7 +161,7 @@
     <!-- ========== ROUTES ========== -->
     <section class="routes" id="routes">
       <div class="container">
-        <p class="eyebrow">Coverage</p>
+        <p class="eyebrow eyebrow-light">Coverage</p>
         <h2>One lane, both directions</h2>
         <p class="section-subtext">
           Our reefer fleet runs the same corridor both ways — no empty legs,
