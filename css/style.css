@@ -657,21 +657,32 @@ a:hover {
   color: var(--muted);
 }
 
-/* Divider bar between the two stacked photo sections (Hero + About) so
-   they read as separate sections instead of one blended photo. Per
-   Lasha: solid navy, same color as the header (not the gold gradient
-   version) — always visible in this fixed spot (not scroll-triggered),
-   purely visual, no text. The soft shadows top/bottom stand in for a
-   "blur" — a gentle blend into the photos rather than a hard line. */
+/* Divider between the two stacked photo sections (Hero + About). Per
+   Lasha's latest request, this is now an actual blur — not a visible
+   navy bar — so the seam between the two photos softens instead of
+   showing a distinct stripe. The element itself takes no space (height:
+   0) in the page flow; ::after is what does the work, positioned to
+   straddle the boundary (50px into the bottom of Hero, 50px into the
+   top of About) with backdrop-filter: blur() picking up and blurring
+   whatever photo content is directly behind it, plus a light navy wash
+   so the blurred band still reads as "on-brand" rather than neutral. */
 .section-divider {
-  height: 48px;
-  background: var(--navy);
-  /* Shadow (not inset) bleeds navy up into the Hero photo's bottom edge
-     and down into About's top edge, so the bar reads as a soft blended
-     transition rather than a hard-edged stripe. */
-  box-shadow:
-    0 -24px 28px -14px oklch(24% 0.07 258 / 0.6),
-    0 24px 28px -14px oklch(24% 0.07 258 / 0.6);
+  position: relative;
+  height: 0;
+  z-index: 5;
+}
+
+.section-divider::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -50px;
+  height: 100px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: oklch(24% 0.07 258 / 0.25);
+  pointer-events: none;
 }
 
 /* ---------- About section ----------
