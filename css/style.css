@@ -142,8 +142,8 @@ a:hover {
 /* ---------- Header ----------
    Just the logo + nav row — the dispatch/booking strip used to sit
    above this inside .site-header, then moved to a full-width strip
-   below the hero, and is now the floating box at the bottom of the
-   page (see .float-contact further down). */
+   below the hero, and is now a floating box near the top-right (see
+   .float-contact further down). */
 
 .site-header {
   position: sticky;
@@ -160,6 +160,7 @@ a:hover {
 
 .topbar-item a {
   color: inherit;
+  transition: color 0.15s ease;
 }
 
 .topbar-item a:hover {
@@ -692,27 +693,34 @@ a:hover {
 }
 
 /* ---------- Floating contact box ----------
-   Dispatch/booking/fleet info + quote button, now a fixed floating
-   panel (bottom-right) that stays visible while scrolling instead of a
-   full-width strip. All 4 rows show on desktop; on mobile only the
-   phone + quote button stay (bookings + fleet status hidden), so it
-   doesn't cover too much of a small screen — see the media query below. */
+   Dispatch/booking/fleet info + quote button — a fixed floating panel
+   that stays visible while scrolling. Anchored near the TOP-right,
+   just under the header (not the bottom corner), per Lasha's screenshot
+   markup. All 4 rows show on desktop; on mobile only the phone + quote
+   button stay (bookings + fleet status hidden), so it doesn't cover too
+   much of a small screen — see the media query below.
+   BUGFIX: this previously had no text color of its own, so
+   .topbar-item/.fleet-status text (which don't set their own color)
+   inherited the page's dark --ink color and were nearly invisible on
+   this dark navy background — only the white <strong> label showed.
+   Setting a light base color here fixes that for every child at once. */
 .float-contact {
   position: fixed;
   right: 24px;
-  bottom: 24px;
+  top: 100px;
   z-index: 50;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  min-width: 230px;
+  gap: 8px;
+  min-width: 210px;
   background: oklch(15% 0.05 258 / 0.85);
   backdrop-filter: blur(8px);
   border: 1px solid oklch(35% 0.06 258);
   border-radius: 14px;
-  padding: 18px 20px;
+  padding: 15px 18px;
   box-shadow: 0 12px 32px oklch(0% 0 0 / 0.35);
-  font-size: 12.5px;
+  font-size: 11.5px;
+  color: oklch(82% 0.02 260);
 }
 
 .float-contact-btn {
@@ -734,13 +742,13 @@ a:hover {
      a small screen. Bookings row hidden here; fleet-status row is
      already hidden by the rule above (same class, reused). */
   .float-contact {
-    right: 16px;
-    bottom: 16px;
+    right: 12px;
+    top: 84px;
     min-width: 0;
     flex-direction: row;
     align-items: center;
     gap: 12px;
-    padding: 12px 16px;
+    padding: 10px 14px;
   }
 
   .float-contact-bookings {
