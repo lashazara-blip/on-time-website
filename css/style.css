@@ -293,24 +293,28 @@ a:hover {
 }
 
 /* ---------- Hero ----------
-   Full-bleed background photo + dark overlay (Landstar-inspired).
-   hero-truck.jpg is a temporary/placeholder image — swap the
-   background-image below once a final fleet photo is ready. */
+   New hero-truck.jpg (highway/trees shot) has the truck sitting in the
+   right ~65% of the frame, with genuinely open trees/sky/road on the
+   left third — that's where the copy lives now. background-size:cover
+   never crops horizontally here (the photo is wider than tall relative
+   to the hero), so that left-empty-third holds regardless of screen
+   width; only the top/bottom get cropped as the hero gets taller or
+   shorter. The gradient runs left-to-right (not top-to-bottom like the
+   old photo) so it darkens the open trees/road for text legibility but
+   fades out well before the truck itself, leaving the truck untouched. */
 
 .hero {
   position: relative;
   min-height: 560px;
   display: flex;
-  align-items: flex-start;
-  padding-top: 64px;
-  padding-bottom: 48px;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
   /* Fixed left inset (not the shared centered .container) so the text
      always hugs the true left edge, on any screen width. */
   padding-left: clamp(24px, 4vw, 80px);
-  /* Landstar-style: text sits top-left over the sky, gradient fades out
-     by mid-height so the truck itself shows fully, un-obscured, below. */
   background-image:
-    linear-gradient(180deg, oklch(15% 0.06 258 / 0.8) 0%, oklch(15% 0.06 258 / 0.55) 22%, oklch(15% 0.06 258 / 0.15) 45%, transparent 62%),
+    linear-gradient(90deg, oklch(15% 0.06 258 / 0.72) 0%, oklch(15% 0.06 258 / 0.4) 22%, transparent 34%),
     url("../images/hero-truck.jpg");
   background-size: cover;
   background-position: center center;
@@ -318,7 +322,12 @@ a:hover {
 
 .hero-copy {
   position: relative;
-  max-width: 720px;
+  /* Kept narrow on purpose: the open (tree/sky) strip in the photo is
+     only about a third of the frame's width, and that fraction doesn't
+     change with window width since the photo isn't cropped horizontally.
+     A wider block would start running into the truck's cab on ordinary
+     laptop screens (not just Lasha's ultra-wide monitor). */
+  max-width: 420px;
 }
 
 .hero-copy .eyebrow-light::before {
@@ -335,23 +344,26 @@ a:hover {
 }
 
 .hero-subtext {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.6;
   color: oklch(92% 0.01 260);
-  margin-top: 22px;
-  max-width: 52ch;
+  margin-top: 20px;
+  max-width: 38ch;
 }
 
 .hero h1 {
   font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 64px;
-  line-height: 1.05;
+  /* Sized to fit the ~420px-wide open strip in the new photo without
+     wrapping mid-word on ordinary (non-ultra-wide) screens — see the
+     .hero-copy comment for why the column itself stays narrow. */
+  font-size: 46px;
+  line-height: 1.12;
   letter-spacing: 0.005em;
-  margin-top: 18px;
+  margin-top: 0;
   color: var(--white);
-  text-shadow: 0 2px 24px oklch(15% 0.05 258 / 0.35);
+  text-shadow: 0 2px 20px oklch(15% 0.05 258 / 0.45);
 }
 
 .hero-actions {
@@ -449,248 +461,3 @@ a:hover {
 }
 
 .services h2 {
-  font-size: 32px;
-  margin-top: 14px;
-  max-width: 56ch;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 44px;
-}
-
-.service-card {
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 30px;
-}
-
-.service-icon {
-  color: var(--blue);
-}
-
-.service-card h3 {
-  font-size: 19px;
-  margin-top: 18px;
-}
-
-.service-card p {
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--muted);
-  margin-top: 10px;
-}
-
-/* ---------- Routes ---------- */
-
-.routes {
-  background: var(--card);
-  padding: 88px 0;
-}
-
-.routes h2 {
-  font-size: 32px;
-  margin-top: 14px;
-  max-width: 40ch;
-}
-
-.section-subtext {
-  font-size: 16px;
-  color: var(--muted);
-  margin-top: 12px;
-  max-width: 52ch;
-}
-
-.route-diagram {
-  margin-top: 56px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 48px 40px;
-}
-
-.route-line {
-  width: 100%;
-  height: 90px;
-  display: block;
-}
-
-.route-line-bg {
-  stroke: var(--line);
-  stroke-width: 3;
-}
-
-.route-line-fg {
-  stroke: var(--blue);
-  stroke-width: 3;
-  stroke-dasharray: 10 8;
-}
-
-.route-dot {
-  fill: var(--blue);
-}
-
-.route-dot-accent {
-  fill: var(--cyan);
-}
-
-.route-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4px;
-}
-
-.route-label {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.route-label-center {
-  text-align: center;
-}
-
-.route-label-right {
-  text-align: right;
-}
-
-.route-city {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-  color: var(--ink);
-}
-
-.route-desc {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-/* ---------- Contact ---------- */
-
-.contact {
-  padding-top: 88px;
-  padding-bottom: 88px;
-}
-
-.contact-box {
-  background: var(--ink);
-  border-radius: 24px;
-  padding: 56px 48px;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.contact-copy h2 {
-  font-size: 30px;
-  color: var(--white);
-}
-
-.contact-copy p {
-  font-size: 16px;
-  color: oklch(78% 0.02 260);
-  margin-top: 12px;
-  max-width: 46ch;
-  line-height: 1.6;
-}
-
-.contact-copy .btn {
-  margin-top: 26px;
-}
-
-.contact-address {
-  border-left: 1px solid oklch(35% 0.03 260);
-  padding-left: 40px;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  color: oklch(78% 0.02 260);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.contact-address svg {
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-/* ---------- Footer ---------- */
-
-.site-footer {
-  border-top: 1px solid var(--line);
-}
-
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 26px 32px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.footer-domain {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-/* =========================================================
-   Responsive
-   ========================================================= */
-
-@media (max-width: 860px) {
-  .topbar-info {
-    display: none;
-  }
-
-  .fleet-status {
-    display: none;
-  }
-
-  .hero {
-    min-height: 560px;
-  }
-
-  .hero-stats {
-    display: none;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .main-nav {
-    display: none;
-  }
-
-  .hero h1 {
-    font-size: 38px;
-    line-height: 1.12;
-  }
-
-  .contact-box {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-address {
-    border-left: none;
-    padding-left: 0;
-    border-top: 1px solid oklch(35% 0.03 260);
-    padding-top: 24px;
-    margin-top: 8px;
-  }
-}
