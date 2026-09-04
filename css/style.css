@@ -51,7 +51,7 @@ a:hover {
 }
 
 .container {
-  max-width: 1160px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 32px;
 }
@@ -299,21 +299,23 @@ a:hover {
 
 .hero {
   position: relative;
-  min-height: 660px;
+  min-height: 540px;
   display: flex;
   align-items: center;
-  padding-top: 56px;
-  padding-bottom: 56px;
+  padding-top: 48px;
+  padding-bottom: 48px;
   /* Mockup-style split: solid navy panel on the left for the text,
-     fading out so the truck photo reads clearly on the right. */
+     fading out so the truck photo reads clearly on the right.
+     Stronger/wider navy zone than before so the headline never sits
+     directly on top of busy photo detail (that was the bug last time). */
   background-image:
-    linear-gradient(100deg, oklch(18% 0.06 258 / 0.94) 0%, oklch(18% 0.06 258 / 0.86) 32%, oklch(18% 0.06 258 / 0.4) 60%, oklch(18% 0.06 258 / 0.08) 100%),
+    linear-gradient(100deg, oklch(18% 0.06 258 / 0.97) 0%, oklch(18% 0.06 258 / 0.94) 42%, oklch(18% 0.06 258 / 0.55) 68%, oklch(18% 0.06 258 / 0.15) 100%),
     url("../images/hero-truck.jpg");
   background-size: cover;
-  /* Shifted right + up so the trailer's logo/branding sits in the visible
-     (non-overlaid) area, closer to the mockup's framing — tune further
-     once you see it live, exact position depends on your screen width. */
-  background-position: 68% 35%;
+  /* Back to a safe, centered crop — the source photo is only 1600x515,
+     so a shorter hero (540px vs the old 660px) needs less upscaling and
+     looks noticeably less soft/"stretched". */
+  background-position: center center;
 }
 
 .hero-copy {
@@ -380,15 +382,26 @@ a:hover {
 .hero-stats {
   position: absolute;
   right: 32px;
-  bottom: 40px;
+  bottom: 32px;
   z-index: 2;
   display: flex;
-  gap: 28px;
+  gap: 24px;
+  /* Solid-ish backdrop so the numbers stay legible no matter what part of
+     the photo (or the truck's own decal text) ends up behind them. */
+  background: oklch(15% 0.05 258 / 0.6);
+  backdrop-filter: blur(6px);
+  padding: 14px 22px;
+  border-radius: 12px;
 }
 
 .hero-stat {
   padding-left: 18px;
   border-left: 1px solid oklch(100% 0 0 / 0.3);
+}
+
+.hero-stat:first-child {
+  padding-left: 0;
+  border-left: none;
 }
 
 .hero-stat-number {
