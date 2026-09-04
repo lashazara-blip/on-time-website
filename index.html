@@ -201,21 +201,21 @@
   </footer>
 
   <!-- ========== FLOATING CONTACT BOX ==========
-       Dispatch/booking info + fleet status + quote button — was a
-       full-width strip under the hero, now a floating box (bottom-right)
-       that stays visible while scrolling, per Lasha's request. All 4
-       items show on desktop; on mobile only the phone + quote button
-       show, to avoid covering a big chunk of a small screen (see
-       .float-contact-bookings/.float-contact-fleet in the CSS). Phone +
-       email are still PLACEHOLDERS pending Lasha's real dispatch
-       line/inbox. -->
+       Dispatch/booking info + fleet status + quote button — floating
+       box that stays visible while scrolling. Re-worded per Lasha's
+       last message: "Whatsapp:" / "E-mail address:" labels instead of
+       "Dispatch —"/"Bookings", and every line in the same plain (non-
+       bold) weight so it all reads uniformly. The WhatsApp number now
+       opens the WhatsApp chat (wa.me) instead of a phone dialer, to
+       match its new label.
+       On desktop all 4 rows show; on mobile only the WhatsApp row +
+       quote button stay (dispatch label / email / fleet status hidden),
+       so it doesn't cover too much of a small screen. Phone + email are
+       still PLACEHOLDERS pending Lasha's real dispatch line/inbox. -->
   <div class="float-contact">
-    <div class="float-contact-row float-contact-dispatch">
-      <span class="topbar-item"><strong>Dispatch &mdash; 24/7</strong> <a href="tel:+995555040608">+995 555 040 608</a></span>
-    </div>
-    <div class="float-contact-row float-contact-bookings">
-      <span class="topbar-item">Bookings <a href="mailto:cargo@on-time.ge">cargo@on-time.ge</a></span>
-    </div>
+    <div class="float-contact-row float-contact-dispatch">Dispatch &mdash; 24/7</div>
+    <div class="float-contact-row float-contact-phone">Whatsapp: <a href="https://wa.me/995555040608" target="_blank" rel="noopener">+995 555 040 608</a></div>
+    <div class="float-contact-row float-contact-email">E-mail address: <a href="mailto:cargo@on-time.ge">cargo@on-time.ge</a></div>
     <div class="float-contact-row float-contact-fleet">
       <span class="fleet-status"><span class="status-dot" aria-hidden="true"></span>30 units on the road</span>
     </div>

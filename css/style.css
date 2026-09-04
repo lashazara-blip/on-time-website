@@ -152,21 +152,6 @@ a:hover {
   z-index: 10;
 }
 
-.topbar-item strong {
-  color: var(--white);
-  font-weight: 600;
-  margin-right: 4px;
-}
-
-.topbar-item a {
-  color: inherit;
-  transition: color 0.15s ease;
-}
-
-.topbar-item a:hover {
-  color: var(--white);
-}
-
 .fleet-status {
   display: flex;
   align-items: center;
@@ -694,16 +679,13 @@ a:hover {
 
 /* ---------- Floating contact box ----------
    Dispatch/booking/fleet info + quote button — a fixed floating panel
-   that stays visible while scrolling. Anchored near the TOP-right,
-   just under the header (not the bottom corner), per Lasha's screenshot
-   markup. All 4 rows show on desktop; on mobile only the phone + quote
-   button stay (bookings + fleet status hidden), so it doesn't cover too
-   much of a small screen — see the media query below.
-   BUGFIX: this previously had no text color of its own, so
-   .topbar-item/.fleet-status text (which don't set their own color)
-   inherited the page's dark --ink color and were nearly invisible on
-   this dark navy background — only the white <strong> label showed.
-   Setting a light base color here fixes that for every child at once. */
+   that stays visible while scrolling, anchored near the top-right, just
+   under the header. Text color lives on .float-contact itself (not on
+   individual rows) so every row inherits the same light color at the
+   same weight — no bold anywhere, "Dispatch —", "Whatsapp:" and
+   "E-mail address:" all read identically, per Lasha's request. All 4
+   rows show on desktop; on mobile only the WhatsApp row + quote button
+   stay — see the media query below. */
 .float-contact {
   position: fixed;
   right: 24px;
@@ -720,7 +702,21 @@ a:hover {
   padding: 15px 18px;
   box-shadow: 0 12px 32px oklch(0% 0 0 / 0.35);
   font-size: 11.5px;
+  font-weight: 400;
   color: oklch(82% 0.02 260);
+}
+
+.float-contact-row {
+  line-height: 1.5;
+}
+
+.float-contact-row a {
+  color: inherit;
+  transition: color 0.15s ease;
+}
+
+.float-contact-row a:hover {
+  color: var(--white);
 }
 
 .float-contact-btn {
@@ -738,9 +734,10 @@ a:hover {
   }
 
   /* Floating box collapses to a compact horizontal pill: just the
-     phone number + quote button, so it doesn't sit over a big chunk of
-     a small screen. Bookings row hidden here; fleet-status row is
-     already hidden by the rule above (same class, reused). */
+     WhatsApp number + quote button, so it doesn't sit over a big chunk
+     of a small screen. Dispatch label + email rows hidden here;
+     fleet-status row is already hidden by the rule above (same class,
+     reused). */
   .float-contact {
     right: 12px;
     top: 84px;
@@ -751,7 +748,8 @@ a:hover {
     padding: 10px 14px;
   }
 
-  .float-contact-bookings {
+  .float-contact-dispatch,
+  .float-contact-email {
     display: none;
   }
 
