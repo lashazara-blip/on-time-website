@@ -133,14 +133,16 @@
     </section>
 
     <!-- ========== SERVICES ==========
-         NOTE: only the verified service (refrigerated transport) is listed
-         for now. Once Lasha sends the full service list, add one
-         <article class="service-card"> per service, following the same
-         markup pattern below. -->
+         All 7 services Lasha sent, one card each, same box style
+         (icon + h3 + one-sentence description) throughout — per his
+         screenshot markup. The old small "What We Do" eyebrow + separate
+         "Built for cargo..." h2 were replaced with a single h2 (this
+         reuses the existing .services h2 style, so it's automatically
+         the same size/weight as the site's other section headings, e.g.
+         Routes' "One lane, both directions" — no new CSS class needed). -->
     <section class="services" id="services">
       <div class="container">
-        <p class="eyebrow eyebrow-light">What We Do</p>
-        <h2>Built for cargo that can't wait — or warm up</h2>
+        <h2>What We Do</h2>
 
         <div class="services-grid">
           <article class="service-card">
@@ -153,7 +155,67 @@
             <p>Purpose-built reefer trucks hold temperature-sensitive goods within range from pickup to delivery.</p>
           </article>
 
-          <!-- More service cards will be added here once details are confirmed. -->
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3 21 7.5 12 12 3 7.5 12 3Z M3 7.5v9L12 21l9-4.5v-9 M12 12v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Full Container Load (FCL)</h3>
+            <p>Full container shipments in every standard and special configuration — including refrigerated, open top, flat rack, and tank containers.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                <path d="M4 4h6.5v6.5H4zM13.5 4H20v6.5h-6.5zM4 13.5h6.5V20H4zM13.5 13.5H20V20h-6.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Less than Container Load (LCL)</h3>
+            <p>Weekly cargo consolidation and warehousing from anywhere in the world into the Caucasus, with departures from Hong Kong, Shanghai, Qingdao, and the US.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                <path d="M2.5 16V7.5a1 1 0 0 1 1-1h9v9.5h-10Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12.5 9.5h4.3L20.5 13v3h-2M4.8 18.3a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM15.7 18.3a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Full Truckload (FTL)</h3>
+            <p>Dedicated full-truckload transport with a single truck per shipment — direct routes from Europe, China, and across Georgia.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                <path d="M2.5 16V7.5a1 1 0 0 1 1-1h9v9.5h-10Z" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12.5 9.5h4.3L20.5 13v3h-2M4.8 18.3a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM15.7 18.3a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Less than Truckload (LTL)</h3>
+            <p>Consolidated groupage shipments from Europe, China, and within Georgia — sharing truck space to keep costs down.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                <path d="M12 4a2 2 0 1 0-0.01 0M12 6v15M7 11H4M17 11h3M7 11a5 5 0 0 0 10 0M9 8h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Container Transport from Poti &amp; Batumi</h3>
+            <p>Full container delivery from Georgia's Black Sea ports, on to destinations across Georgia, Armenia, and Azerbaijan.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                <path d="M4 9V5a1 1 0 0 1 1-1h4M4 9v10a1 1 0 0 0 1 1h4M4 9h6M20 4l-8 8M20 4h-5M20 4v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Export Services</h3>
+            <p>Full export support by sea and by land — moving cargo out of Georgia through ports or border crossings.</p>
+          </article>
         </div>
       </div>
     </section>
