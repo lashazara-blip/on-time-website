@@ -657,6 +657,16 @@ a:hover {
   color: var(--muted);
 }
 
+/* Thin divider bar between the two stacked photo sections (Hero + About)
+   so they read as separate sections instead of one blended photo. Navy →
+   gold → navy, matching the header's navy and the gold accent already
+   used on buttons/eyebrow text. */
+.section-divider {
+  height: 6px;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%);
+  box-shadow: 0 2px 10px oklch(0% 0 0 / 0.3);
+}
+
 /* ---------- About section ----------
    Used to be a separate about.html page; now it's just another section
    on the one-page site, between Hero and Services (per Lasha). A simple
