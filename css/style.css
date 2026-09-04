@@ -310,7 +310,10 @@ a:hover {
     linear-gradient(100deg, oklch(18% 0.06 258 / 0.94) 0%, oklch(18% 0.06 258 / 0.86) 32%, oklch(18% 0.06 258 / 0.4) 60%, oklch(18% 0.06 258 / 0.08) 100%),
     url("../images/hero-truck.jpg");
   background-size: cover;
-  background-position: center;
+  /* Shifted right + up so the trailer's logo/branding sits in the visible
+     (non-overlaid) area, closer to the mockup's framing — tune further
+     once you see it live, exact position depends on your screen width. */
+  background-position: 68% 35%;
 }
 
 .hero-copy {
@@ -369,6 +372,44 @@ a:hover {
   border-bottom-color: var(--white);
 }
 
+/* ---------- Hero stat strip ----------
+   Mockup-matched: vertical stats embedded in the hero photo itself
+   (bottom-right), instead of a separate section below. Real numbers only
+   (30 trucks, 100% temp-controlled — already used elsewhere on the site;
+   24/7 matches the dispatch line in the topbar). */
+.hero-stats {
+  position: absolute;
+  right: 32px;
+  bottom: 40px;
+  z-index: 2;
+  display: flex;
+  gap: 28px;
+}
+
+.hero-stat {
+  padding-left: 18px;
+  border-left: 1px solid oklch(100% 0 0 / 0.3);
+}
+
+.hero-stat-number {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--white);
+}
+
+.hero-stat-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: oklch(80% 0.02 260);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
 /* Generic placeholder box — used wherever a real photo is still pending
    (e.g. inside the services/routes sections later on). */
 .image-placeholder {
@@ -387,39 +428,6 @@ a:hover {
   color: var(--muted);
   font-size: 14px;
   font-weight: 500;
-}
-
-/* ---------- Stats strip ---------- */
-
-.stats {
-  background: var(--ink);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: oklch(30% 0.03 260);
-}
-
-.stat {
-  background: var(--ink);
-  padding: 30px 24px;
-}
-
-.stat-number {
-  display: block;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  color: var(--white);
-}
-
-.stat-label {
-  display: block;
-  font-size: 13px;
-  color: oklch(75% 0.02 260);
-  margin-top: 4px;
 }
 
 /* ---------- Services ---------- */
@@ -646,8 +654,8 @@ a:hover {
     min-height: 560px;
   }
 
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-stats {
+    display: none;
   }
 
   .services-grid {
