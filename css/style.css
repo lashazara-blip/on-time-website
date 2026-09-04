@@ -479,6 +479,9 @@ a:hover {
 }
 
 .services h2 {
+  font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
   font-size: 32px;
   /* No eyebrow above it anymore ("What We Do" IS the heading now, per
      Lasha) — was 14px to clear the eyebrow line above; 0 now that it's
