@@ -16,21 +16,48 @@
 <body>
 
   <!-- ========== HEADER / NAVIGATION ==========
-       Just logo + nav now — the dispatch/booking/quote strip that used to
-       sit above this has been moved below the hero photo (see
-       .info-bar further down), per Lasha's request. -->
+       Nav relabeled to match the CTE.ge-style menu Lasha wants
+       (About Us / Service / Useful Links / Career / Contact), plus a
+       Search box and GE/EN language switch. NOTE: per Lasha, Search and
+       GE/EN are VISUAL ONLY for now (a "for show" mockup, not wired up)
+       — the site is English-only and there's no search backend yet.
+       "Service" and "Contact" link to the real sections that already
+       exist on this page; "About Us" / "Useful Links" / "Career" are
+       nav-disabled placeholders (no pages built yet), same pattern as
+       Fleet/Track/Company before. -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="#" class="logo">
         <img src="images/logo-white.png" alt="On-Time Logistics Company" class="logo-img" />
       </a>
 
-      <nav class="main-nav" aria-label="Primary">
-        <a href="#services">Services</a>
-        <a href="#" class="nav-disabled" title="მალე დაემატება">Fleet</a>
-        <a href="#" class="nav-disabled" title="მალე დაემატება">Track</a>
-        <a href="#" class="nav-disabled" title="მალე დაემატება">Company</a>
-      </nav>
+      <div class="header-right">
+        <nav class="main-nav" aria-label="Primary">
+          <a href="#" class="nav-disabled" title="მალე დაემატება">About Us</a>
+          <a href="#services">Service</a>
+          <a href="#" class="nav-disabled" title="მალე დაემატება">Useful Links</a>
+          <a href="#" class="nav-disabled" title="მალე დაემატება">Career</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="header-utility">
+          <!-- Visual only for now (per Lasha) — no search backend yet. -->
+          <div class="nav-search" title="მალე დაემატება">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
+              <line x1="21" y1="21" x2="16.2" y2="16.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>Search...</span>
+          </div>
+          <!-- Visual only for now (per Lasha) — site is English-only, no
+               Georgian version built yet. -->
+          <div class="lang-switch" title="მალე დაემატება">
+            <span class="lang-current">GE</span>
+            <span class="lang-divider" aria-hidden="true">|</span>
+            <span class="lang-current">EN</span>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
