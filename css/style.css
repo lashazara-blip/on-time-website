@@ -304,6 +304,8 @@ a:hover {
   align-items: center;
   padding-top: 48px;
   padding-bottom: 48px;
+  padding-left: clamp(24px, 4vw, 80px);
+  /* ... დანარჩენი უცვლელია ... */;
   /* Mockup-style split: solid navy panel on the left for the text,
      fading out so the truck photo reads clearly on the right.
      Stronger/wider navy zone than before so the headline never sits
