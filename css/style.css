@@ -657,14 +657,21 @@ a:hover {
   color: var(--muted);
 }
 
-/* Thin divider bar between the two stacked photo sections (Hero + About)
-   so they read as separate sections instead of one blended photo. Navy →
-   gold → navy, matching the header's navy and the gold accent already
-   used on buttons/eyebrow text. */
+/* Divider bar between the two stacked photo sections (Hero + About) so
+   they read as separate sections instead of one blended photo. Per
+   Lasha: solid navy, same color as the header (not the gold gradient
+   version) — always visible in this fixed spot (not scroll-triggered),
+   purely visual, no text. The soft shadows top/bottom stand in for a
+   "blur" — a gentle blend into the photos rather than a hard line. */
 .section-divider {
-  height: 6px;
-  background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--navy) 100%);
-  box-shadow: 0 2px 10px oklch(0% 0 0 / 0.3);
+  height: 48px;
+  background: var(--navy);
+  /* Shadow (not inset) bleeds navy up into the Hero photo's bottom edge
+     and down into About's top edge, so the bar reads as a soft blended
+     transition rather than a hard-edged stripe. */
+  box-shadow:
+    0 -24px 28px -14px oklch(24% 0.07 258 / 0.6),
+    0 24px 28px -14px oklch(24% 0.07 258 / 0.6);
 }
 
 /* ---------- About section ----------
