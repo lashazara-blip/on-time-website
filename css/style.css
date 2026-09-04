@@ -714,9 +714,11 @@ a:hover {
         feather into it instead of ending on a hard line.
    This element is now just a plain spacer that reveals a strip of that
    grid canvas between the two feathered photos — no bar, no blur, no
-   box-shadow. */
+   box-shadow. Kept short (20px, was 56px) per Lasha — the fades on
+   .hero/.about-hero already do the visual blending, so this only needs
+   to be a thin seam, not a wide gap. */
 .section-divider {
-  height: 56px;
+  height: 20px;
 }
 
 /* ---------- About section ----------
@@ -737,13 +739,15 @@ a:hover {
     url("../images/about-fleet.jpg");
   background-size: cover;
   background-position: center center;
-  /* Mirrors .hero's fade above: feathers in from transparent over the
-     first 56px so this photo picks up from the grid canvas instead of
-     starting on a hard edge. .about-hero is vertically centered with
-     48px top/bottom padding, so this stays within that empty padding
-     band and never touches .about-copy's text. */
-  mask-image: linear-gradient(to bottom, transparent 0, black 56px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 56px);
+  /* Two-sided fade now, per Lasha: feathers in from transparent over the
+     first 56px (picking up from the Hero/About gap above, mirroring
+     .hero's fade), AND fades out to transparent over the last 56px, so
+     the bottom edge blends into the grid canvas the same way before
+     Services starts, instead of ending on a hard line. .about-hero is
+     vertically centered with 48px top/bottom padding, so both fades stay
+     within that empty padding and never touch .about-copy's text. */
+  mask-image: linear-gradient(to bottom, transparent 0, black 56px, black calc(100% - 56px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 56px, black calc(100% - 56px), transparent 100%);
 }
 
 .about-copy {
@@ -803,10 +807,10 @@ a:hover {
   .about-hero {
     min-height: 320px;
     padding: 32px 24px;
-    /* Padding shrank to 32px on mobile — match the fade band to it so it
-       stays inside the empty padding and doesn't reach into the text. */
-    mask-image: linear-gradient(to bottom, transparent 0, black 32px);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 32px);
+    /* Padding shrank to 32px on mobile — match both fade bands to it so
+       they stay inside the empty padding and don't reach into the text. */
+    mask-image: linear-gradient(to bottom, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
   }
 
   .about-hero h1 {
