@@ -220,7 +220,7 @@ a:hover {
 .main-nav {
   display: flex;
   align-items: center;
-  /* Back to a roomier gap now that it's just 3 items (About Us/Service/
+  /* Back to a roomier gap now that it's just 3 items (About Us/Services/
      Contact) instead of 5. */
   gap: 36px;
   font-size: 13.5px;
@@ -244,6 +244,15 @@ a:hover {
 
 .main-nav a.nav-disabled:hover {
   color: oklch(55% 0.03 260);
+}
+
+/* Marks the current page's nav item — used on about.html for "About Us".
+   Homepage doesn't mark any item active (no single section "is" the
+   homepage). */
+.main-nav a.active {
+  color: var(--white);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 4px;
 }
 
 /* ---------- Header utility: search box + GE/EN ----------
@@ -333,7 +342,8 @@ a:hover {
   max-width: 420px;
 }
 
-.hero-copy .eyebrow-light::before {
+.hero-copy .eyebrow-light::before,
+.about-copy .eyebrow-light::before {
   content: "";
   display: block;
   width: 56px;
@@ -642,6 +652,48 @@ a:hover {
   color: var(--muted);
 }
 
+/* ---------- About page (about.html) ----------
+   A simple photo hero, vertically centered (not bottom-anchored like the
+   homepage hero — there are no stats/buttons competing for space here,
+   just the eyebrow + heading + paragraph). Same gradient-over-photo
+   legibility trick as the homepage hero. */
+.about-hero {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  padding: 48px 64px;
+  background-image:
+    linear-gradient(100deg, oklch(15% 0.06 258 / 0.82) 8%, oklch(15% 0.06 258 / 0.55) 40%, oklch(15% 0.06 258 / 0.18) 72%),
+    url("../images/about-fleet.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.about-copy {
+  position: relative;
+  max-width: 640px;
+}
+
+.about-hero h1 {
+  font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 42px;
+  line-height: 1.1;
+  color: var(--white);
+  margin-top: 0;
+  text-shadow: 0 2px 20px oklch(15% 0.05 258 / 0.45);
+}
+
+.about-hero p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: oklch(94% 0.01 260);
+  margin-top: 22px;
+  max-width: 56ch;
+}
+
 /* =========================================================
    Responsive
    ========================================================= */
@@ -670,6 +722,15 @@ a:hover {
   .hero h1 {
     font-size: 38px;
     line-height: 1.12;
+  }
+
+  .about-hero {
+    min-height: 320px;
+    padding: 32px 24px;
+  }
+
+  .about-hero h1 {
+    font-size: 32px;
   }
 
   .contact-box {
