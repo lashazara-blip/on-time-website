@@ -140,33 +140,16 @@ a:hover {
 }
 
 /* ---------- Header ----------
-   Just the logo + nav row — the dispatch/booking strip used to sit
-   above this inside .site-header, then moved to a full-width strip
-   below the hero, and is now a floating box near the top-right (see
-   .float-contact further down). */
+   Just the logo + nav row. (The old dispatch/booking strip and, later,
+   the floating contact box have both been removed per Lasha — contact
+   info will live in #contact, linked from the "Contact" nav item, once
+   that flow is finalized.) */
 
 .site-header {
   position: sticky;
   top: 0;
   background: var(--navy);
   z-index: 10;
-}
-
-.fleet-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: oklch(72% 0.19 145);
-  display: inline-block;
-  flex-shrink: 0;
 }
 
 .header-inner {
@@ -386,29 +369,11 @@ a:hover {
   text-shadow: 0 2px 20px oklch(15% 0.05 258 / 0.45);
 }
 
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  margin-top: 34px;
-  flex-wrap: wrap;
-}
-
-.btn-link-light {
-  color: var(--white);
-  border-bottom-color: oklch(100% 0 0 / 0.4);
-}
-
-.btn-link-light:hover {
-  color: var(--white);
-  border-bottom-color: var(--white);
-}
-
 /* ---------- Hero stat strip ----------
    Moved from bottom-right-of-photo (absolute) to the same left column as
-   the headline, right under the CTA buttons — per Lasha's markup. It's a
+   the headline, right under the subtext — per Lasha's markup. It's a
    normal block now (no more position:absolute), so it just stacks under
-   .hero-actions in document order. */
+   .hero-subtext in document order. */
 .hero-stats {
   display: flex;
   gap: 24px;
@@ -677,86 +642,11 @@ a:hover {
   color: var(--muted);
 }
 
-/* ---------- Floating contact box ----------
-   Dispatch/booking/fleet info + quote button — a fixed floating panel
-   that stays visible while scrolling, anchored near the top-right, just
-   under the header. Text color lives on .float-contact itself (not on
-   individual rows) so every row inherits the same light color at the
-   same weight — no bold anywhere, "Dispatch —", "Whatsapp:" and
-   "E-mail address:" all read identically, per Lasha's request. All 4
-   rows show on desktop; on mobile only the WhatsApp row + quote button
-   stay — see the media query below. */
-.float-contact {
-  position: fixed;
-  right: 24px;
-  top: 100px;
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 210px;
-  background: oklch(15% 0.05 258 / 0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid oklch(35% 0.06 258);
-  border-radius: 14px;
-  padding: 15px 18px;
-  box-shadow: 0 12px 32px oklch(0% 0 0 / 0.35);
-  font-size: 11.5px;
-  font-weight: 400;
-  color: oklch(82% 0.02 260);
-}
-
-.float-contact-row {
-  line-height: 1.5;
-}
-
-.float-contact-row a {
-  color: inherit;
-  transition: color 0.15s ease;
-}
-
-.float-contact-row a:hover {
-  color: var(--white);
-}
-
-.float-contact-btn {
-  margin-top: 4px;
-  justify-content: center;
-}
-
 /* =========================================================
    Responsive
    ========================================================= */
 
 @media (max-width: 860px) {
-  .fleet-status {
-    display: none;
-  }
-
-  /* Floating box collapses to a compact horizontal pill: just the
-     WhatsApp number + quote button, so it doesn't sit over a big chunk
-     of a small screen. Dispatch label + email rows hidden here;
-     fleet-status row is already hidden by the rule above (same class,
-     reused). */
-  .float-contact {
-    right: 12px;
-    top: 84px;
-    min-width: 0;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-  }
-
-  .float-contact-dispatch,
-  .float-contact-email {
-    display: none;
-  }
-
-  .float-contact-btn {
-    margin-top: 0;
-  }
-
   .hero {
     min-height: 560px;
   }

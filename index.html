@@ -34,6 +34,8 @@
         <nav class="main-nav" aria-label="Primary">
           <a href="#" class="nav-disabled" title="მალე დაემატება">About Us</a>
           <a href="#services">Service</a>
+          <!-- Contacts will live here / in #contact below once the
+               site's contact flow is finalized (per Lasha). -->
           <a href="#contact">Contact</a>
         </nav>
 
@@ -64,9 +66,7 @@
          hero-truck.jpg: open road/trees on the left third of the frame,
          truck fills the rest — copy + stats now anchor to the
          bottom-left corner of that open area (align-items: flex-end on
-         .hero), per Lasha's screenshot markup.
-         "Track a Shipment" has no real destination yet (no tracking
-         system built) — points to "#" until that feature exists. -->
+         .hero), per Lasha's screenshot markup. -->
     <section class="hero">
       <div class="hero-copy">
         <!-- Eyebrow line temporarily removed per Lasha's request (new,
@@ -79,15 +79,12 @@
           Asia — moved by our own fleet and tracked door to door. On time,
           every time.
         </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://wa.me/995555040608" target="_blank" rel="noopener">
-            Get a Rate
-          </a>
-          <a class="btn btn-link btn-link-light" href="#" title="მალე დაემატება">Track a Shipment &rarr;</a>
-        </div>
-
-        <!-- Stats moved here (under the CTA buttons, same left column)
-             from their old spot at bottom-right of the photo. -->
+        <!-- Stats moved here (under the headline, same left column) from
+             their old spot at bottom-right of the photo. The "Get a Rate /
+             Track a Shipment" button row and the floating contact box were
+             both removed per Lasha — contact info will live in the
+             existing #contact section (linked from the "Contact" nav item)
+             once the site's contact flow is finalized. -->
         <div class="hero-stats">
           <div class="hero-stat">
             <span class="hero-stat-number">30</span>
@@ -199,30 +196,6 @@
       <span class="footer-domain">on-time.ge</span>
     </div>
   </footer>
-
-  <!-- ========== FLOATING CONTACT BOX ==========
-       Dispatch/booking info + fleet status + quote button — floating
-       box that stays visible while scrolling. Re-worded per Lasha's
-       last message: "Whatsapp:" / "E-mail address:" labels instead of
-       "Dispatch —"/"Bookings", and every line in the same plain (non-
-       bold) weight so it all reads uniformly. The WhatsApp number now
-       opens the WhatsApp chat (wa.me) instead of a phone dialer, to
-       match its new label.
-       On desktop all 4 rows show; on mobile only the WhatsApp row +
-       quote button stay (dispatch label / email / fleet status hidden),
-       so it doesn't cover too much of a small screen. Phone + email are
-       still PLACEHOLDERS pending Lasha's real dispatch line/inbox. -->
-  <div class="float-contact">
-    <div class="float-contact-row float-contact-dispatch">Dispatch &mdash; 24/7</div>
-    <div class="float-contact-row float-contact-phone">Whatsapp: <a href="https://wa.me/995555040608" target="_blank" rel="noopener">+995 555 040 608</a></div>
-    <div class="float-contact-row float-contact-email">E-mail address: <a href="mailto:cargo@on-time.ge">cargo@on-time.ge</a></div>
-    <div class="float-contact-row float-contact-fleet">
-      <span class="fleet-status"><span class="status-dot" aria-hidden="true"></span>30 units on the road</span>
-    </div>
-    <a class="btn btn-outline-gold btn-small float-contact-btn" href="https://wa.me/995555040608" target="_blank" rel="noopener">
-      Request a Quote
-    </a>
-  </div>
 
   <script src="js/script.js"></script>
 </body>
