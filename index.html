@@ -66,11 +66,29 @@
   <main>
 
     <!-- ========== HERO ==========
-         hero-truck.jpg: open road/trees on the left third of the frame,
-         truck fills the rest — copy + stats now anchor to the
-         bottom-left corner of that open area (align-items: flex-end on
-         .hero), per Lasha's screenshot markup. -->
+         Per Lasha (screenshot + weforward.ge reference): the single
+         truck photo is now an auto-advancing slideshow — slides change
+         right to left on their own, with one white dot per slide at the
+         bottom. .hero-media holds the actual photo layers (.hero-slide,
+         one per photo, JS-driven — see js/script.js) plus the constant
+         darkening gradient (.hero-gradient) on top of all of them for
+         text legibility; .hero-copy and .hero-dots float above that.
+         hero-slide-1.jpg IS the original hero-truck.jpg (open road/trees
+         on the left third, truck filling the rest). hero-slide-2.jpg and
+         hero-slide-3.jpg are TEMPORARY placeholders — literal copies of
+         hero-slide-1.jpg — just so the carousel mechanism is visibly
+         working right now. Swap those two filenames for Lasha's chosen
+         ship/warehouse stock photos (same ~1568x672 / 2.33:1 crop) and
+         nothing else needs to change; add a 4th slide + dot the same way
+         if he ends up wanting one more. -->
     <section class="hero">
+      <div class="hero-media" aria-hidden="true">
+        <div class="hero-slide is-active" style="background-image:url('images/hero-slide-1.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/hero-slide-2.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('images/hero-slide-3.jpg')"></div>
+        <div class="hero-gradient"></div>
+      </div>
+
       <div class="hero-copy">
         <!-- Eyebrow line temporarily removed per Lasha's request (new,
              narrower hero column doesn't have room for it alongside the
@@ -106,6 +124,12 @@
             <span class="hero-stat-label">Temperature<br />Controlled</span>
           </div>
         </div>
+      </div>
+
+      <div class="hero-dots" aria-label="Hero photo slides">
+        <button type="button" class="hero-dot is-active" aria-label="Go to slide 1" aria-current="true"></button>
+        <button type="button" class="hero-dot" aria-label="Go to slide 2" aria-current="false"></button>
+        <button type="button" class="hero-dot" aria-label="Go to slide 3" aria-current="false"></button>
       </div>
     </section>
 

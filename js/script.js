@@ -38,6 +38,104 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   });
 }
 
+// ---------- Hero photo carousel ----------
+// Per Lasha, inspired by weforward.ge's hero: the truck photo is now an
+// auto-advancing slideshow, sliding right to left, with one white dot
+// per slide at the bottom (see .hero-media/.hero-slide/.hero-dots in
+// style.css). Only ever one slide is mid-transition: the incoming slide
+// starts stacked off-screen to the right and animates to center, while
+// the slide it replaces animates off to the left. Every other slide
+// just sits off-screen to the right, reset there WITHOUT a transition
+// (see the `instant` flag below) so it never visibly sweeps across the
+// screen on its way back into the waiting position. Advances every 6s,
+// pauses while the mouse is over the hero, and — like the partners
+// marquee — doesn't autoplay at all under prefers-reduced-motion (dots
+// stay clickable either way).
+(function () {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  const slides = Array.from(hero.querySelectorAll('.hero-slide'));
+  const dots = Array.from(hero.querySelectorAll('.hero-dot'));
+  if (slides.length < 2) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ADVANCE_MS = 6000;
+
+  let current = Math.max(slides.findIndex((slide) => slide.classList.contains('is-active')), 0);
+  let timer = null;
+
+  function place(slide, percent, instant) {
+    if (instant) {
+      slide.style.transition = 'none';
+      slide.style.transform = `translateX(${percent}%)`;
+      // Force layout so the 'none' transition actually applies before
+      // we hand control back to the CSS transition below.
+      void slide.offsetWidth;
+      slide.style.transition = '';
+    } else {
+      slide.style.transition = '';
+      slide.style.transform = `translateX(${percent}%)`;
+    }
+  }
+
+  function goTo(index, instant) {
+    const previous = current;
+    current = index;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-active', i === current);
+      if (i === current) {
+        place(slide, 0, instant);
+        slide.style.zIndex = 2;
+      } else if (i === previous) {
+        place(slide, -100, instant);
+        slide.style.zIndex = 1;
+      } else {
+        place(slide, 100, true);
+        slide.style.zIndex = 0;
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      const isActive = i === current;
+      dot.classList.toggle('is-active', isActive);
+      dot.setAttribute('aria-current', String(isActive));
+    });
+  }
+
+  function next() {
+    goTo((current + 1) % slides.length, false);
+  }
+
+  function start() {
+    if (prefersReducedMotion) return;
+    stop();
+    timer = setInterval(next, ADVANCE_MS);
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  // Sync everything to its correct starting position with no animation.
+  goTo(current, true);
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      if (i === current) return;
+      goTo(i, prefersReducedMotion);
+      start();
+    });
+  });
+
+  hero.addEventListener('mouseenter', stop);
+  hero.addEventListener('mouseleave', start);
+
+  start();
+})();
+
 // ---------- Hero stat count-up ----------
 // Per Lasha, inspired by weforward.ge's animated stats: the two numeric
 // hero stats ("30" and "100%") count up from 0 the first time they
