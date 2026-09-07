@@ -428,6 +428,43 @@ a:hover {
      A wider block would start running into the truck's cab on ordinary
      laptop screens (not just Lasha's ultra-wide monitor). */
   max-width: 420px;
+  /* Per Lasha: headline + subtext + stats now live together in one
+     translucent "card" (same frosted recipe .hero-stats used to carry on
+     its own — see below) instead of just the stats having a backdrop.
+     The card sits outside .hero-media, so it stays put in the same spot
+     while the photo behind it keeps auto-advancing — only the picture
+     moves, never this box. */
+  background: oklch(15% 0.05 258 / 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid oklch(100% 0 0 / 0.1);
+  border-radius: 18px;
+  padding: 28px 32px;
+  box-shadow: 0 18px 40px oklch(10% 0.05 258 / 0.35);
+  transition: transform 0.5s ease;
+}
+
+/* Subtle "breathing" pulse on hover, per Lasha — a gentle cue that the
+   card is interactive/alive, not a static caption. Runs only while the
+   cursor is actually over the card, and only in one place (never moves
+   position), so it never fights the carousel underneath it. */
+@keyframes hero-copy-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.018);
+  }
+}
+
+.hero-copy:hover {
+  animation: hero-copy-pulse 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy:hover {
+    animation: none;
+  }
 }
 
 .hero-copy .eyebrow-light::before,
@@ -475,13 +512,11 @@ a:hover {
 .hero-stats {
   display: flex;
   gap: 24px;
-  margin-top: 30px;
-  /* Solid-ish backdrop so the numbers stay legible no matter what part of
-     the photo ends up behind them. */
-  background: oklch(15% 0.05 258 / 0.6);
-  backdrop-filter: blur(6px);
-  padding: 14px 22px;
-  border-radius: 12px;
+  margin-top: 26px;
+  /* Own backdrop removed — it now lives one level up on .hero-copy, which
+     wraps the headline + subtext + this stat row into a single card (per
+     Lasha). Kept as its own block so the divider lines between stats
+     still work exactly as before. */
 }
 
 .hero-stat {
@@ -784,15 +819,14 @@ a:hover {
 }
 
 /* Revealed by js/script.js after the form is submitted (hidden by
-   default via the HTML [hidden] attribute). */
+   default via the HTML [hidden] attribute). Right-aligned per Lasha
+   (matches .calc-actions above it). */
 .calculator-results {
   margin-top: 32px;
-  padding-top: 32px;
-  border-top: 1px solid oklch(45% 0.08 258 / 0.4);
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 32px;
+  gap: 28px;
 }
 
 .calc-result {
@@ -1258,6 +1292,11 @@ a:hover {
 @media (max-width: 860px) {
   .hero {
     min-height: 560px;
+  }
+
+  .hero-copy {
+    padding: 22px 22px;
+    border-radius: 14px;
   }
 
   .hero-stats {
