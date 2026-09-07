@@ -254,6 +254,9 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   const resultTotalVolume = document.getElementById('resultTotalVolume');
   const resultTotalWeight = document.getElementById('resultTotalWeight');
   const resetBtn = document.getElementById('calcResetBtn');
+  // Placeholder copy in the summary card — shown until the first Calculate,
+  // swapped for the numbers, and brought back on Reset.
+  const placeholder = document.getElementById('calculatorPlaceholder');
 
   packingTypeSelect.addEventListener('change', () => {
     const selected = packingTypeSelect.selectedOptions[0];
@@ -282,10 +285,12 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     resultTotalWeight.textContent = totalWeight.toFixed(1);
 
     resultsBox.hidden = false;
+    if (placeholder) placeholder.hidden = true;
   });
 
   resetBtn.addEventListener('click', () => {
     form.reset();
     resultsBox.hidden = true;
+    if (placeholder) placeholder.hidden = false;
   });
 })();

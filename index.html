@@ -296,61 +296,123 @@
         </p>
 
         <div class="calculator-card">
-          <form class="calculator-form" id="cargoCalculatorForm">
-            <div class="calc-field">
-              <label for="calcPackingType">Packing Type</label>
-              <select id="calcPackingType">
-                <option value="custom">Custom</option>
-                <option value="mini-pallet" data-length="80" data-width="60">Mini Pallet (80 &times; 60 cm)</option>
-                <option value="euro-pallet" data-length="120" data-width="80">Euro Pallet (120 &times; 80 cm)</option>
-                <option value="block-pallet" data-length="120" data-width="100">Block Pallet (120 &times; 100 cm)</option>
-              </select>
-            </div>
+          <div class="calculator-grid">
+            <form class="calculator-form" id="cargoCalculatorForm">
+              <div class="calc-field calc-field--wide">
+                <label for="calcPackingType">Packing Type</label>
+                <select id="calcPackingType">
+                  <option value="custom">Custom</option>
+                  <option value="mini-pallet" data-length="80" data-width="60">Mini Pallet (80 &times; 60 cm)</option>
+                  <option value="euro-pallet" data-length="120" data-width="80">Euro Pallet (120 &times; 80 cm)</option>
+                  <option value="block-pallet" data-length="120" data-width="100">Block Pallet (120 &times; 100 cm)</option>
+                </select>
+              </div>
 
-            <div class="calc-field">
-              <label for="calcQuantity">Quantity</label>
-              <input type="number" id="calcQuantity" min="1" step="1" value="1" inputmode="numeric" />
-            </div>
+              <div class="calc-field calc-field--wide">
+                <label for="calcQuantity">Quantity</label>
+                <input type="number" id="calcQuantity" min="1" step="1" value="1" inputmode="numeric" />
+              </div>
 
-            <div class="calc-field">
-              <label for="calcLength">Length (cm)</label>
-              <input type="number" id="calcLength" min="0" step="0.1" inputmode="decimal" required />
-            </div>
+              <div class="calc-field">
+                <label for="calcLength">Length (cm)</label>
+                <input type="number" id="calcLength" min="0" step="0.1" inputmode="decimal" required />
+              </div>
 
-            <div class="calc-field">
-              <label for="calcWidth">Width (cm)</label>
-              <input type="number" id="calcWidth" min="0" step="0.1" inputmode="decimal" required />
-            </div>
+              <div class="calc-field">
+                <label for="calcWidth">Width (cm)</label>
+                <input type="number" id="calcWidth" min="0" step="0.1" inputmode="decimal" required />
+              </div>
 
-            <div class="calc-field">
-              <label for="calcHeight">Height (cm)</label>
-              <input type="number" id="calcHeight" min="0" step="0.1" inputmode="decimal" required />
-            </div>
+              <div class="calc-field">
+                <label for="calcHeight">Height (cm)</label>
+                <input type="number" id="calcHeight" min="0" step="0.1" inputmode="decimal" required />
+              </div>
 
-            <div class="calc-field">
-              <label for="calcWeight">Weight per Unit (kg)</label>
-              <input type="number" id="calcWeight" min="0" step="0.1" inputmode="decimal" required />
-            </div>
+              <div class="calc-field">
+                <label for="calcWeight">Weight per Unit (kg)</label>
+                <input type="number" id="calcWeight" min="0" step="0.1" inputmode="decimal" required />
+              </div>
 
-            <div class="calc-actions">
-              <button type="submit" class="btn btn-primary">Calculate</button>
-              <button type="button" class="btn btn-outline-gold" id="calcResetBtn">Reset</button>
-            </div>
-          </form>
+              <div class="calc-actions">
+                <button type="submit" class="btn btn-primary">
+                  Calculate
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <button type="button" class="btn-text-reset" id="calcResetBtn">Reset</button>
+              </div>
+            </form>
 
-          <div class="calculator-results" id="calculatorResults" hidden>
-            <div class="calc-result">
-              <span class="calc-result-value" id="resultUnitVolume">—</span>
-              <span class="calc-result-label">Volume per Unit (m&sup3;)</span>
-            </div>
-            <div class="calc-result">
-              <span class="calc-result-value" id="resultTotalVolume">—</span>
-              <span class="calc-result-label">Total Volume (m&sup3;)</span>
-            </div>
-            <div class="calc-result">
-              <span class="calc-result-value" id="resultTotalWeight">—</span>
-              <span class="calc-result-label">Total Weight (kg)</span>
-            </div>
+            <!-- Always-visible "quote summary" card, per Lasha's request for a
+                 more polished calculator: instead of a few thin lines that only
+                 appear after Calculate, the numbers now land in a dedicated
+                 card that's part of the layout from the start (placeholder
+                 copy until Calculate is pressed — see js/script.js), same
+                 visual language as the rest of the site (frosted card,
+                 hand-drawn line icons like the pin/social icons elsewhere). -->
+            <aside class="calculator-summary" aria-live="polite">
+              <div class="calculator-summary-head">
+                <span class="calculator-summary-badge" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 9.5 12 5l8 4.5v6L12 20l-8-4.5v-6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                    <path d="M4 9.5 12 14l8-4.5M12 14v6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <div>
+                  <p class="calculator-summary-eyebrow">Estimated</p>
+                  <h3>Shipment Summary</h3>
+                </div>
+              </div>
+
+              <p class="calculator-summary-placeholder" id="calculatorPlaceholder">
+                Fill in the dimensions and press <strong>Calculate</strong> &mdash;
+                your cargo's volume and weight will appear here.
+              </p>
+
+              <div class="calculator-results" id="calculatorResults" hidden>
+                <div class="calc-result">
+                  <span class="calc-result-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 10v9a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M3 7.5 12 4l9 3.5-9 3.5-9-3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                  <span class="calc-result-text">
+                    <span class="calc-result-value" id="resultUnitVolume">—</span>
+                    <span class="calc-result-label">Volume per Unit (m&sup3;)</span>
+                  </span>
+                </div>
+                <div class="calc-result">
+                  <span class="calc-result-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="9" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6" />
+                      <rect x="9.5" y="5.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none" />
+                    </svg>
+                  </span>
+                  <span class="calc-result-text">
+                    <span class="calc-result-value" id="resultTotalVolume">—</span>
+                    <span class="calc-result-label">Total Volume (m&sup3;)</span>
+                  </span>
+                </div>
+                <div class="calc-result">
+                  <span class="calc-result-icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6" />
+                      <circle cx="12" cy="12" r="2.75" stroke="currentColor" stroke-width="1.6" />
+                    </svg>
+                  </span>
+                  <span class="calc-result-text">
+                    <span class="calc-result-value" id="resultTotalWeight">—</span>
+                    <span class="calc-result-label">Total Weight (kg)</span>
+                  </span>
+                </div>
+              </div>
+
+              <p class="calculator-summary-note">
+                Ready to move it? <a href="#contact">Get your exact rate on WhatsApp &rarr;</a>
+              </p>
+            </aside>
           </div>
         </div>
       </div>
