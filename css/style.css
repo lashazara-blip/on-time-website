@@ -1405,8 +1405,19 @@ a:hover {
   position: relative;
   min-height: 420px;
   display: flex;
-  align-items: center;
-  padding: 48px 64px;
+  /* Bottom-anchored with the same left inset as .hero-copy above, per
+     Lasha — the two boxes now line up on the same left edge instead of
+     each section using its own padding. padding-top can't go as low as
+     Hero's (20px) though: unlike Hero (where .hero-copy is a sibling of
+     the masked photo layer), .about-copy is a direct child of this
+     section, so the top/bottom mask-image fade below would fade the box
+     itself if it started inside that 56px zone — padding-top stays at
+     least that tall to keep the card fully outside the fade. */
+  align-items: flex-end;
+  padding-top: 56px;
+  padding-bottom: 100px;
+  padding-left: clamp(20px, 2.5vw, 56px);
+  padding-right: 64px;
   background-image:
     linear-gradient(100deg, oklch(15% 0.06 258 / 0.82) 8%, oklch(15% 0.06 258 / 0.55) 40%, oklch(15% 0.06 258 / 0.18) 72%),
     url("../images/about-fleet.jpg");
@@ -1416,9 +1427,9 @@ a:hover {
      first 56px (picking up from the Hero/About gap above, mirroring
      .hero's fade), AND fades out to transparent over the last 56px, so
      the bottom edge blends into the grid canvas the same way before
-     Services starts, instead of ending on a hard line. .about-hero is
-     vertically centered with 48px top/bottom padding, so both fades stay
-     within that empty padding and never touch .about-copy's text. */
+     Services starts, instead of ending on a hard line. Bottom-anchored
+     with 56px/100px top/bottom padding (see above) — both fades stay
+     within that padding and never touch the .about-copy card. */
   mask-image: linear-gradient(to bottom, transparent 0, black 56px, black calc(100% - 56px), transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 56px, black calc(100% - 56px), transparent 100%);
 }
@@ -1426,6 +1437,28 @@ a:hover {
 .about-copy {
   position: relative;
   max-width: 640px;
+  /* Same translucent-card treatment as .hero-copy on the Hero above, per
+     Lasha — the eyebrow + heading + paragraph now sit in their own
+     frosted box over the photo instead of bare text, and get the same
+     gentle hover pulse. */
+  background: oklch(15% 0.05 258 / 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid oklch(100% 0 0 / 0.1);
+  border-radius: 18px;
+  padding: 28px 32px;
+  box-shadow: 0 18px 40px oklch(10% 0.05 258 / 0.35);
+  transition: transform 0.5s ease;
+}
+
+.about-copy:hover {
+  animation: hero-copy-pulse 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-copy:hover {
+    animation: none;
+  }
 }
 
 .about-hero h1 {
