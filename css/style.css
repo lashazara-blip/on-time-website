@@ -417,7 +417,24 @@ a:hover {
      text-legibility darkening is constant no matter which photo is
      showing. */
   z-index: 5;
-  background-image: linear-gradient(90deg, oklch(15% 0.06 258 / 0.72) 0%, oklch(15% 0.06 258 / 0.4) 22%, transparent 34%);
+  /* Per Lasha: once the page-wide grid was flattened elsewhere (see body,
+     above), the photo itself read as flat/plain right under the still-
+     gridded header — "less picturesque". Brought the grid back here as
+     an overlay on the photo, same recipe as the header's so the two line
+     up in tone, but crisp only near the top and fading out with scroll
+     depth via the second (vertical) gradient layer below — capped at 85%
+     rather than 100% opaque, per Lasha ("don't erase it completely"), so
+     a faint trace of the grid is still visible all the way to the bottom
+     of the photo instead of hard-cutting to nothing partway down. Layers,
+     back to front: left-to-right darkening (unchanged, for text
+     legibility) → the fade veil → the grid's horizontal + vertical
+     hairlines. */
+  background-image:
+    linear-gradient(90deg, oklch(15% 0.06 258 / 0.72) 0%, oklch(15% 0.06 258 / 0.4) 22%, transparent 34%),
+    linear-gradient(to bottom, transparent 0%, oklch(15% 0.06 258 / 0.85) 100%),
+    linear-gradient(oklch(48% 0.07 258 / 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(48% 0.07 258 / 0.35) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
   pointer-events: none;
 }
 
