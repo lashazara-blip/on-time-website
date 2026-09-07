@@ -38,6 +38,51 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   });
 }
 
+// ---------- Quick-nav dock active-section highlight ----------
+// Per Lasha: the floating bottom-center dock should light up whichever
+// section is currently on screen, not just react to clicks. Watches
+// #about/#services/#calculator/#contact with an IntersectionObserver and
+// toggles .is-active on the matching dock icon; falls back to the "home"
+// icon near the very top of the page, before #about comes into view.
+(function () {
+  const links = Array.from(document.querySelectorAll('.quick-nav-link'));
+  if (!links.length) return;
+
+  const sectionIds = ['about', 'services', 'calculator', 'contact'];
+  const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
+  if (!sections.length) return;
+
+  function setActive(id) {
+    links.forEach((link) => {
+      link.classList.toggle('is-active', link.dataset.section === id);
+    });
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const mostVisible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (mostVisible) {
+        setActive(mostVisible.target.id);
+      } else if (window.scrollY < sections[0].offsetTop - 200) {
+        setActive('home');
+      }
+    },
+    { rootMargin: '-40% 0px -40% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (window.scrollY < 80) setActive('home');
+    },
+    { passive: true }
+  );
+})();
+
 // ---------- Hero photo carousel ----------
 // Per Lasha, inspired by weforward.ge's hero: the truck photo is now an
 // auto-advancing slideshow, sliding right to left, with one white dot

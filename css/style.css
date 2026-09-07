@@ -1023,6 +1023,12 @@ a:hover {
      as a stark bright line on the new dark canvas, so switched to a
      translucent navy-tinted divider instead. */
   border-top: 1px solid oklch(45% 0.06 258 / 0.5);
+  /* .quick-nav floats fixed over the bottom-center of the viewport, so
+     at maximum scroll it would otherwise sit directly on top of the
+     footer's social icons, making them unclickable. This reserves
+     enough clear space below the footer's real content that the dock
+     never overlaps it, even at the very bottom of the page. */
+  padding-bottom: 96px;
 }
 
 .footer-inner {
@@ -1046,6 +1052,73 @@ a:hover {
 .footer-domain {
   font-size: 13px;
   color: oklch(68% 0.02 260);
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-social-link {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid oklch(45% 0.06 258 / 0.5);
+  color: oklch(78% 0.02 260);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+  color: var(--white);
+  border-color: var(--cyan);
+  transform: translateY(-2px);
+}
+
+/* ---------- Floating quick-nav dock ----------
+   Pill-shaped icon nav fixed to the bottom-center of the viewport (see
+   index.html for why — per Lasha's weforward.ge reference). Centered,
+   not right-aligned, so it never competes with .floating-contacts in
+   the bottom-right corner. .is-active (toggled by js/script.js as the
+   visitor scrolls) highlights whichever section is currently in view. */
+.quick-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--navy-light);
+  border: 1px solid oklch(45% 0.08 258 / 0.5);
+  border-radius: 999px;
+  padding: 8px;
+  box-shadow: 0 14px 32px oklch(10% 0.06 258 / 0.4);
+}
+
+.quick-nav-link {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: oklch(78% 0.02 260);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.quick-nav-link:hover {
+  color: var(--white);
+}
+
+.quick-nav-link.is-active {
+  background: var(--cyan);
+  color: var(--white);
 }
 
 /* ---------- Floating contact buttons ----------
@@ -1194,6 +1267,26 @@ a:hover {
   .floating-contact-btn {
     width: 48px;
     height: 48px;
+  }
+
+  .quick-nav {
+    bottom: 14px;
+    gap: 2px;
+    padding: 6px;
+  }
+
+  .quick-nav-link {
+    width: 38px;
+    height: 38px;
+  }
+
+  .quick-nav-link svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .site-footer {
+    padding-bottom: 84px;
   }
 
   /* Smaller boxes + a shorter loop distance so the animation's speed
