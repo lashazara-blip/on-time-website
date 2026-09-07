@@ -458,6 +458,38 @@
     </div>
   </footer>
 
+  <!-- ========== FLOATING CONTACT BUTTONS ==========
+       Per Lasha: WhatsApp + email shortcuts that stay fixed in the
+       bottom-right corner while scrolling, from anywhere on the page.
+       Icons keep their real brand colors (WhatsApp green, Outlook blue)
+       per Lasha, rather than the site's own navy/gold palette — these
+       need to be instantly recognizable, not on-brand. WhatsApp opens a
+       chat with a pre-filled starter message (same number as the
+       Contact section's button); email opens the visitor's own mail
+       app addressed to sale@on-time.ge. Both icons are hand-drawn SVG
+       (this environment can't download the official logo files) — close
+       likenesses, not pixel-perfect logos; send over the real PNG/SVG
+       files if you want an exact match and I'll swap them in. -->
+  <div class="floating-contacts">
+    <a
+      class="floating-contact-btn floating-whatsapp"
+      href="https://wa.me/995555040608?text=Hello%2C%20I%27d%20like%20a%20shipping%20quote"
+      target="_blank"
+      rel="noopener"
+      aria-label="Message us on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="#fff" aria-hidden="true">
+        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.05 2zm5.8 14.02c-.24.68-1.4 1.32-1.94 1.36-.5.04-1.02.24-3.43-.72-2.9-1.15-4.79-4.06-4.94-4.25-.15-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2.01.9 2.16.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2 1.11.99 2.05 1.3 2.34 1.45.29.15.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.64.77 1.92.91.28.14.47.21.54.33.07.12.07.68-.17 1.36z" />
+      </svg>
+    </a>
+    <a class="floating-contact-btn floating-email" href="mailto:sale@on-time.ge" aria-label="Email us at sale@on-time.ge">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+        <path d="m3 6.5 9 6.5 9-6.5" />
+      </svg>
+    </a>
+  </div>
+
   <script src="js/script.js"></script>
 </body>
 </html>

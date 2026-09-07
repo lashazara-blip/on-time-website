@@ -1004,6 +1004,49 @@ a:hover {
   color: oklch(68% 0.02 260);
 }
 
+/* ---------- Floating contact buttons ----------
+   WhatsApp + email, fixed to the bottom-right corner of the viewport so
+   they follow the visitor down the page (see index.html for why — per
+   Lasha). z-index: 50 comfortably clears the sticky header (10) and
+   everything under it. Brand colors on purpose here (WhatsApp green,
+   Outlook blue) — the one place on the site that isn't navy/gold,
+   because instant recognizability matters more than palette consistency
+   for a click-to-contact button. */
+.floating-contacts {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.floating-contact-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px oklch(15% 0.05 258 / 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-contact-btn:hover,
+.floating-contact-btn:focus-visible {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 12px 26px oklch(15% 0.05 258 / 0.45);
+}
+
+.floating-whatsapp {
+  background: #25d366;
+}
+
+.floating-email {
+  background: #0078d4;
+}
+
 /* Divider between the two stacked photo sections (Hero + About).
    Rejected three times now (gold bar, navy bar + shadow, backdrop-filter
    blur) for looking too heavy/rough. This is the replacement approach,
@@ -1096,6 +1139,17 @@ a:hover {
 
   .calculator-card {
     padding: 28px 24px;
+  }
+
+  .floating-contacts {
+    right: 14px;
+    bottom: 14px;
+    gap: 10px;
+  }
+
+  .floating-contact-btn {
+    width: 48px;
+    height: 48px;
   }
 
   /* Smaller boxes + a shorter loop distance so the animation's speed
