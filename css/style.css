@@ -778,6 +778,7 @@ a:hover {
   grid-column: 1 / -1;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 16px;
   margin-top: 8px;
 }
@@ -790,6 +791,7 @@ a:hover {
   border-top: 1px solid oklch(45% 0.08 258 / 0.4);
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 32px;
 }
 
