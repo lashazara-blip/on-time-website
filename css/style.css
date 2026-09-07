@@ -1032,6 +1032,7 @@ a:hover {
 }
 
 .footer-inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1054,7 +1055,18 @@ a:hover {
   color: oklch(68% 0.02 260);
 }
 
+/* Absolutely centered (left: 50% + translateX(-50%)) rather than just
+   "the middle item in a space-between row" — that would drift off-center
+   depending on how wide .footer-brand/.footer-domain happen to be next
+   to it (exactly what happened before: it sat visibly to the right of
+   .quick-nav below it, per Lasha). This centering math is identical to
+   .quick-nav's (also left: 50% + translateX(-50%), just fixed instead of
+   absolute), so the two rows land on the same vertical line. */
 .footer-social {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1287,6 +1299,24 @@ a:hover {
 
   .site-footer {
     padding-bottom: 84px;
+  }
+
+  /* .footer-social's absolute centering (see the rule itself) works
+     against .footer-inner's flex row on desktop, but on a narrow screen
+     .footer-brand's text is wide enough to collide with it (it doesn't
+     participate in flex spacing once it's taken out of flow). Simplest
+     fix: stack all three rows and let the social icons sit in normal
+     document flow between them, centered by the column layout instead
+     of by absolute positioning. */
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-social {
+    position: static;
+    transform: none;
   }
 
   /* Smaller boxes + a shorter loop distance so the animation's speed
