@@ -333,7 +333,7 @@
          moving carousel of separate boxes (not one static row), and logos
          shown in full color from the start (no grayscale/hover-to-color
          step like the first version). Pure CSS marquee: .partners-track
-         holds the 10 logo boxes TWICE back to back (same list repeated),
+         holds all 12 logo boxes TWICE back to back (same list repeated),
          then scrolls left forever via @keyframes partners-scroll — since
          the two halves are identical, the instant it finishes scrolling
          past the first half it's showing the exact same thing again, so
@@ -341,12 +341,18 @@
          fades both edges to transparent (mask-image) so boxes don't pop
          in/out abruptly at the sides, and pauses the animation on
          hover/focus so a visitor can actually read a logo they stop on.
-         NOTE: only 10 of the 12 companies Lasha listed are here — MAN and
-         Hapag-Lloyd are pending better-quality source logos (the files
-         Lasha originally sent for those two turned out to be low-quality
-         clipart-site rips); once those two PNGs are ready, add them to
-         BOTH copies of the list below (same position in each) so the loop
-         stays seamless. -->
+         All 12 of Lasha's companies are here now — MAN and Hapag-Lloyd
+         were flattened onto a plain white background (not kept
+         transparent) since that's an exact match for .partner-logo's own
+         white card background anyway, and it also sidesteps the
+         clipart-site checkerboard artifact both source files had. Their
+         source images still carry a very faint "cleanpng" watermark
+         ghost at full resolution (visible if you open images/partners/
+         man.png or hapag-lloyd.png directly and zoom in), but it's not
+         noticeable at the ~40px display height used here — if Lasha ever
+         gets cleaner official/Wikipedia source files for these two (see
+         chat), just swap these two PNGs for better ones at the same
+         filenames. -->
     <section class="partners" id="partners">
       <div class="container">
         <p class="eyebrow eyebrow-light">Global Network</p>
@@ -369,7 +375,9 @@
           <div class="partner-logo"><img src="images/partners/one.png" alt="Ocean Network Express" /></div>
           <div class="partner-logo"><img src="images/partners/zim.png" alt="ZIM" /></div>
           <div class="partner-logo"><img src="images/partners/schmitz.png" alt="Schmitz Cargobull" /></div>
-          <!-- Same 10, repeated — this second copy is what makes the loop
+          <div class="partner-logo"><img src="images/partners/man.png" alt="MAN" /></div>
+          <div class="partner-logo"><img src="images/partners/hapag-lloyd.png" alt="Hapag-Lloyd" /></div>
+          <!-- Same 12, repeated — this second copy is what makes the loop
                seamless (see comment above the section). Marked
                aria-hidden + no alt text since it's a visual duplicate,
                not new content, for screen readers. -->
@@ -383,6 +391,8 @@
           <div class="partner-logo" aria-hidden="true"><img src="images/partners/one.png" alt="" /></div>
           <div class="partner-logo" aria-hidden="true"><img src="images/partners/zim.png" alt="" /></div>
           <div class="partner-logo" aria-hidden="true"><img src="images/partners/schmitz.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/man.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/hapag-lloyd.png" alt="" /></div>
         </div>
       </div>
     </section>

@@ -761,7 +761,7 @@ a:hover {
   -webkit-mask-image: linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
 }
 
-/* Holds the 10 logo boxes twice (see the HTML comment on the Partners
+/* Holds the 12 logo boxes twice (see the HTML comment on the Partners
    section for why) laid out in one long row via width: max-content, then
    scrolled left by exactly half its own width — since both halves are
    identical, that's the point where it's showing the same thing it
@@ -770,7 +770,10 @@ a:hover {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: partners-scroll 34s linear infinite;
+  /* 34s → 40s now that there are 12 logos instead of 10, so each box
+     still gets roughly the same time on screen (speed stays consistent
+     rather than the whole loop feeling rushed). */
+  animation: partners-scroll 40s linear infinite;
 }
 
 /* Pausing on hover/focus lets a visitor actually read a logo they stop
@@ -1005,7 +1008,7 @@ a:hover {
   }
 
   /* Smaller boxes + a shorter loop distance so the animation's speed
-     (still 34s per lap) doesn't feel sluggish on a narrower strip. */
+     (still 40s per lap) doesn't feel sluggish on a narrower strip. */
   .partner-logo {
     width: 130px;
     height: 76px;
