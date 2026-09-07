@@ -32,13 +32,14 @@ html {
 }
 
 /* Corporate-navy grid pattern, used as the page's base canvas everywhere
-   nothing else covers it (behind Services/Contact, the header, and the
-   gap between Hero and About). Two thin repeating lines (one vertical,
-   one horizontal) at low opacity on the navy base — subtle graph-paper
-   texture rather than a loud pattern. Per Lasha's request: this replaces
-   the old light --bg color and the heavy blur hack that used to sit
-   between Hero and About (see .hero/.about-hero/.section-divider below
-   for how the photos now fade into this canvas instead). */
+   nothing else covers it (behind Services/Calculator/Contact, the
+   header, and the gap between Hero and About). Two thin repeating lines
+   (one vertical, one horizontal) at low opacity on the navy base —
+   subtle graph-paper texture rather than a loud pattern. Per Lasha's request:
+   this replaces the old light --bg color and the heavy blur hack that
+   used to sit between Hero and About (see .hero/.about-hero/
+   .section-divider below for how the photos now fade into this canvas
+   instead). */
 body {
   margin: 0;
   font-family: 'Work Sans', system-ui, sans-serif;
@@ -600,9 +601,129 @@ a:hover {
   line-height: 1.6;
   /* Was var(--muted), a dark gray meant for the old white card — lightened
      to match the same muted-light tone used elsewhere on dark backgrounds
-     (.contact-copy p). */
+     (.section-subtext, .contact-copy p). */
   color: oklch(78% 0.02 260);
   margin-top: 16px;
+}
+
+/* ---------- Cargo Calculator ----------
+   Per Lasha, inspired by weforward.ge — same navy-glass card language as
+   .service-card (semi-transparent + fine grid texture + blur), but built
+   as a form instead of a static card. Deliberately volume/weight only,
+   no price output (see the HTML comment on the section for why). */
+
+.calculator {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+.calculator h2 {
+  font-size: 32px;
+  margin-top: 14px;
+  max-width: 44ch;
+  color: var(--white);
+}
+
+/* Reusable light, muted intro paragraph under a section heading — was
+   introduced for the (now-removed) Routes section; kept generic and
+   reused here under the Calculator heading. */
+.section-subtext {
+  font-size: 16px;
+  color: oklch(78% 0.02 260);
+  margin-top: 12px;
+  max-width: 52ch;
+}
+
+.calculator-card {
+  margin-top: 44px;
+  background-color: oklch(30% 0.07 258 / 0.55);
+  background-image:
+    linear-gradient(oklch(70% 0.05 210 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(70% 0.05 210 / 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid oklch(55% 0.08 258 / 0.35);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 16px 36px oklch(10% 0.06 258 / 0.28);
+}
+
+.calculator-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.calc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calc-field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: oklch(78% 0.02 260);
+}
+
+.calc-field select,
+.calc-field input {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 15px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid oklch(55% 0.08 258 / 0.4);
+  background-color: oklch(24% 0.07 258 / 0.6);
+  color: var(--white);
+}
+
+.calc-field select:focus,
+.calc-field input:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+
+.calc-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+/* Revealed by js/script.js after the form is submitted (hidden by
+   default via the HTML [hidden] attribute). */
+.calculator-results {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid oklch(45% 0.08 258 / 0.4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.calc-result {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.calc-result-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--white);
+}
+
+.calc-result-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: oklch(78% 0.02 260);
 }
 
 /* ---------- Contact ---------- */
@@ -781,6 +902,10 @@ a:hover {
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .calculator-card {
+    padding: 28px 24px;
   }
 
   .main-nav {
