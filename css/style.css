@@ -175,8 +175,17 @@ a:hover {
 .site-header {
   position: sticky;
   top: 0;
-  background: var(--navy);
   z-index: 10;
+  /* Per Lasha: header now carries the same grid-pattern canvas as the
+     rest of the page (was solid navy) — both start their pattern at the
+     very top of the document (y:0), so the tiling lines up seamlessly
+     with the grid revealed through .hero's new top fade just below it,
+     instead of a hard-edged solid bar sitting on top of the photo. */
+  background-color: var(--navy);
+  background-image:
+    linear-gradient(oklch(48% 0.07 258 / 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(48% 0.07 258 / 0.35) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 .header-inner {
@@ -348,14 +357,19 @@ a:hover {
     url("../images/hero-truck.jpg");
   background-size: cover;
   background-position: center center;
-  /* Feathers the photo to transparent over its last 56px, letting the
+  /* Two-sided fade now, per Lasha: feathers in from transparent over the
+     first 48px (right under the sticky header, which now shares this
+     same grid pattern — see .site-header — so the photo emerges out of
+     the header's canvas instead of starting on a hard line under it),
+     AND feathers to transparent over the last 56px, letting the
      grid-pattern body background show through instead of ending on a
      hard edge — this is the "gentle transition" into .section-divider
-     and .about-hero below. 56px sits inside .hero's own padding-bottom
-     (56px), which is empty space below .hero-stats, so the fade never
-     touches the headline/stats content itself. */
-  mask-image: linear-gradient(to bottom, black calc(100% - 56px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 56px), transparent 100%);
+     and .about-hero below. The bottom 56px sits inside .hero's own
+     padding-bottom, which is empty space below .hero-stats, so neither
+     fade touches the headline/stats content itself (that's anchored to
+     the bottom via align-items: flex-end). */
+  mask-image: linear-gradient(to bottom, transparent 0, black 48px, black calc(100% - 56px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 48px, black calc(100% - 56px), transparent 100%);
 }
 
 .hero-copy {
