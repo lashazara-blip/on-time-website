@@ -329,16 +329,24 @@
     </section>
 
     <!-- ========== PARTNERS ==========
-         Per Lasha, inspired by weforward.ge's partner-logo strip. Logos
-         sit on white cards (most of these brand marks are designed for a
-         white background and would lose contrast directly on the navy
-         grid canvas) and show in grayscale + slightly dimmed by default,
-         turning to full color on hover — a small, common "trusted by"
-         touch. NOTE: only 10 of the 12 companies Lasha listed are here —
-         MAN and Hapag-Lloyd are pending better-quality source logos (the
-         files Lasha originally sent for those two turned out to be
-         low-quality clipart-site rips); add two more `.partner-logo`
-         entries (same markup pattern) once those two PNGs are ready. -->
+         Per Lasha, inspired by weforward.ge's partner strip — but as a
+         moving carousel of separate boxes (not one static row), and logos
+         shown in full color from the start (no grayscale/hover-to-color
+         step like the first version). Pure CSS marquee: .partners-track
+         holds the 10 logo boxes TWICE back to back (same list repeated),
+         then scrolls left forever via @keyframes partners-scroll — since
+         the two halves are identical, the instant it finishes scrolling
+         past the first half it's showing the exact same thing again, so
+         the loop point is invisible. .partners-marquee (the outer clip)
+         fades both edges to transparent (mask-image) so boxes don't pop
+         in/out abruptly at the sides, and pauses the animation on
+         hover/focus so a visitor can actually read a logo they stop on.
+         NOTE: only 10 of the 12 companies Lasha listed are here — MAN and
+         Hapag-Lloyd are pending better-quality source logos (the files
+         Lasha originally sent for those two turned out to be low-quality
+         clipart-site rips); once those two PNGs are ready, add them to
+         BOTH copies of the list below (same position in each) so the loop
+         stays seamless. -->
     <section class="partners" id="partners">
       <div class="container">
         <p class="eyebrow eyebrow-light">Global Network</p>
@@ -347,18 +355,34 @@
           We work daily alongside the world's largest shipping lines and
           equipment manufacturers to keep cargo moving on schedule.
         </p>
+      </div>
 
-        <div class="partners-grid">
-          <div class="partner-logo"><img src="images/partners/maersk.png" alt="Maersk" loading="lazy" /></div>
-          <div class="partner-logo"><img src="images/partners/msc.png" alt="MSC" loading="lazy" /></div>
-          <div class="partner-logo"><img src="images/partners/cma-cgm.png" alt="CMA CGM" loading="lazy" /></div>
-          <div class="partner-logo"><img src="images/partners/cosco.png" alt="COSCO Shipping" loading="lazy" /></div>
-          <div class="partner-logo"><img src="images/partners/evergreen.png" alt="Evergreen" loading="lazy" /></div>
-          <div class="partner-logo"><img src="images/partners/yang-ming.png" alt="Yang Ming" loading="lazy" /></div>
-          <div class="partner-logo"><img src="images/partners/arkas.png" alt="Arkas" loading="lazy" /></div>
-          <div class="partner-logo"><img src="images/partners/one.png" alt="Ocean Network Express" loading="lazy" /></div>
-          <div class="partner-logo"><img src="images/partners/zim.png" alt="ZIM" loading="lazy" /></div>
-          <div class="partner-logo"><img src="images/partners/schmitz.png" alt="Schmitz Cargobull" loading="lazy" /></div>
+      <div class="partners-marquee">
+        <div class="partners-track">
+          <div class="partner-logo"><img src="images/partners/maersk.png" alt="Maersk" /></div>
+          <div class="partner-logo"><img src="images/partners/msc.png" alt="MSC" /></div>
+          <div class="partner-logo"><img src="images/partners/cma-cgm.png" alt="CMA CGM" /></div>
+          <div class="partner-logo"><img src="images/partners/cosco.png" alt="COSCO Shipping" /></div>
+          <div class="partner-logo"><img src="images/partners/evergreen.png" alt="Evergreen" /></div>
+          <div class="partner-logo"><img src="images/partners/yang-ming.png" alt="Yang Ming" /></div>
+          <div class="partner-logo"><img src="images/partners/arkas.png" alt="Arkas" /></div>
+          <div class="partner-logo"><img src="images/partners/one.png" alt="Ocean Network Express" /></div>
+          <div class="partner-logo"><img src="images/partners/zim.png" alt="ZIM" /></div>
+          <div class="partner-logo"><img src="images/partners/schmitz.png" alt="Schmitz Cargobull" /></div>
+          <!-- Same 10, repeated — this second copy is what makes the loop
+               seamless (see comment above the section). Marked
+               aria-hidden + no alt text since it's a visual duplicate,
+               not new content, for screen readers. -->
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/maersk.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/msc.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/cma-cgm.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/cosco.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/evergreen.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/yang-ming.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/arkas.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/one.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/zim.png" alt="" /></div>
+          <div class="partner-logo" aria-hidden="true"><img src="images/partners/schmitz.png" alt="" /></div>
         </div>
       </div>
     </section>

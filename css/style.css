@@ -727,13 +727,14 @@ a:hover {
 }
 
 /* ---------- Partners ----------
-   Per Lasha, inspired by weforward.ge's partner-logo strip. Sits on the
-   same navy grid canvas as the rest of the page, but each logo gets its
-   own white card — most of these brand marks are drawn for a white
-   background and their colors (navy, red, pink, green...) would either
-   clash with or disappear into the navy canvas without one. Grayscale +
-   dimmed by default, full color on hover, is a common "trusted by" touch
-   and gives the strip a little life without being distracting. */
+   Per Lasha, inspired by weforward.ge's partner strip, but as a moving
+   carousel of separate boxes rather than one static row, and logos shown
+   in full color from the start (no grayscale/hover-to-color step like the
+   first version). Sits on the same navy grid canvas as the rest of the
+   page, but each logo gets its own white card — most of these brand
+   marks are drawn for a white background and their colors (navy, red,
+   pink, green...) would either clash with or disappear into the navy
+   canvas without one. */
 
 .partners {
   padding-top: 88px;
@@ -747,14 +748,52 @@ a:hover {
   color: var(--white);
 }
 
-.partners-grid {
+/* The clipping viewport for the marquee. Deliberately NOT inside
+   .container — it needs to run edge to edge (full viewport width) for
+   the scrolling strip to look continuous, unlike the rest of the section
+   which stays inside the centered 1400px .container. The mask-image
+   fades both edges to transparent so logo boxes fade out/in at the sides
+   instead of being sliced off by a hard edge. */
+.partners-marquee {
   margin-top: 44px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+}
+
+/* Holds the 10 logo boxes twice (see the HTML comment on the Partners
+   section for why) laid out in one long row via width: max-content, then
+   scrolled left by exactly half its own width — since both halves are
+   identical, that's the point where it's showing the same thing it
+   started with, so the loop repeats invisibly. */
+.partners-track {
+  display: flex;
   gap: 20px;
+  width: max-content;
+  animation: partners-scroll 34s linear infinite;
+}
+
+/* Pausing on hover/focus lets a visitor actually read a logo they stop
+   on, instead of it sliding away mid-glance. */
+.partners-marquee:hover .partners-track,
+.partners-marquee:focus-within .partners-track {
+  animation-play-state: paused;
+}
+
+@keyframes partners-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Exactly half of .partners-track's total width, since it holds the
+       logo list twice — see the comment above. */
+    transform: translateX(-50%);
+  }
 }
 
 .partner-logo {
+  flex-shrink: 0;
+  width: 180px;
   background: var(--white);
   border-radius: 14px;
   height: 92px;
@@ -763,11 +802,6 @@ a:hover {
   justify-content: center;
   padding: 18px 22px;
   box-shadow: 0 10px 24px oklch(15% 0.05 258 / 0.28);
-  transition: transform 0.25s ease;
-}
-
-.partner-logo:hover {
-  transform: translateY(-4px);
 }
 
 .partner-logo img {
@@ -776,14 +810,16 @@ a:hover {
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.55;
-  transition: filter 0.25s ease, opacity 0.25s ease;
 }
 
-.partner-logo:hover img {
-  filter: grayscale(0%);
-  opacity: 1;
+/* Respect the OS-level "reduce motion" setting — the logos still show
+   (as one full static row, since the track just holds still), nothing
+   scrolls for anyone who's asked their system to avoid this kind of
+   continuous motion. */
+@media (prefers-reduced-motion: reduce) {
+  .partners-track {
+    animation: none;
+  }
 }
 
 /* ---------- Contact ---------- */
@@ -968,8 +1004,21 @@ a:hover {
     padding: 28px 24px;
   }
 
-  .partners-grid {
-    grid-template-columns: repeat(2, 1fr);
+  /* Smaller boxes + a shorter loop distance so the animation's speed
+     (still 34s per lap) doesn't feel sluggish on a narrower strip. */
+  .partner-logo {
+    width: 130px;
+    height: 76px;
+    padding: 12px 16px;
+  }
+
+  .partner-logo img {
+    max-height: 30px;
+  }
+
+  .partners-marquee {
+    mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
   }
 
   .main-nav {
