@@ -32,14 +32,13 @@ html {
 }
 
 /* Corporate-navy grid pattern, used as the page's base canvas everywhere
-   nothing else covers it (behind Services/Routes/Contact, the header,
-   and the gap between Hero and About). Two thin repeating lines (one
-   vertical, one horizontal) at low opacity on the navy base — subtle
-   graph-paper texture rather than a loud pattern. Per Lasha's request:
-   this replaces the old light --bg color and the heavy blur hack that
-   used to sit between Hero and About (see .hero/.about-hero/
-   .section-divider below for how the photos now fade into this canvas
-   instead). */
+   nothing else covers it (behind Services/Contact, the header, and the
+   gap between Hero and About). Two thin repeating lines (one vertical,
+   one horizontal) at low opacity on the navy base — subtle graph-paper
+   texture rather than a loud pattern. Per Lasha's request: this replaces
+   the old light --bg color and the heavy blur hack that used to sit
+   between Hero and About (see .hero/.about-hero/.section-divider below
+   for how the photos now fade into this canvas instead). */
 body {
   margin: 0;
   font-family: 'Work Sans', system-ui, sans-serif;
@@ -466,7 +465,7 @@ a:hover {
 }
 
 /* Generic placeholder box — used wherever a real photo is still pending
-   (e.g. inside the services/routes sections later on). */
+   (e.g. inside the services section later on). */
 .image-placeholder {
   width: 100%;
   height: 100%;
@@ -601,101 +600,9 @@ a:hover {
   line-height: 1.6;
   /* Was var(--muted), a dark gray meant for the old white card — lightened
      to match the same muted-light tone used elsewhere on dark backgrounds
-     (.section-subtext, .contact-copy p). */
+     (.contact-copy p). */
   color: oklch(78% 0.02 260);
   margin-top: 16px;
-}
-
-/* ---------- Routes ---------- */
-
-.routes {
-  /* Own light background removed per Lasha — the dark grid canvas (set
-     on body) now shows through here too, same as Services. Only the
-     .route-diagram card underneath stays white. */
-  padding: 88px 0;
-}
-
-.routes h2 {
-  font-size: 32px;
-  margin-top: 14px;
-  max-width: 40ch;
-  color: var(--white);
-}
-
-.section-subtext {
-  font-size: 16px;
-  /* Was var(--muted), a dark gray meant for a light background — lightened
-     for legibility on the new dark grid canvas. */
-  color: oklch(78% 0.02 260);
-  margin-top: 12px;
-  max-width: 52ch;
-}
-
-.route-diagram {
-  margin-top: 56px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 48px 40px;
-  box-shadow: 0 16px 36px oklch(10% 0.06 258 / 0.28);
-}
-
-.route-line {
-  width: 100%;
-  height: 90px;
-  display: block;
-}
-
-.route-line-bg {
-  stroke: var(--line);
-  stroke-width: 3;
-}
-
-.route-line-fg {
-  stroke: var(--blue);
-  stroke-width: 3;
-  stroke-dasharray: 10 8;
-}
-
-.route-dot {
-  fill: var(--blue);
-}
-
-.route-dot-accent {
-  fill: var(--cyan);
-}
-
-.route-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4px;
-}
-
-.route-label {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.route-label-center {
-  text-align: center;
-}
-
-.route-label-right {
-  text-align: right;
-}
-
-.route-city {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-  color: var(--ink);
-}
-
-.route-desc {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 2px;
 }
 
 /* ---------- Contact ---------- */

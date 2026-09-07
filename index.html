@@ -135,9 +135,10 @@
     <!-- ========== SERVICES ==========
          All 8 services Lasha sent, one card each, same box style
          (icon-in-circle + title on one row, description below) throughout.
-         Icon+title row: per Lasha's request, the icon now sits in a circle
-         to the left of the title on the same line, instead of stacked
-         above it — approved via preview before implementing. -->
+         The old small "What We Do" eyebrow + separate "Built for cargo..."
+         h2 were replaced with a single h2 (this reuses the existing
+         .services h2 style, so it's automatically the same size/weight as
+         the site's other section headings). -->
     <section class="services" id="services">
       <div class="container">
         <h2>What We Do</h2>
@@ -238,42 +239,6 @@
             </div>
             <p>Full customs clearance and documentation, handled end to end — at ports, land borders, and everywhere your cargo crosses.</p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== ROUTES ========== -->
-    <section class="routes" id="routes">
-      <div class="container">
-        <p class="eyebrow eyebrow-light">Coverage</p>
-        <h2>One lane, both directions</h2>
-        <p class="section-subtext">
-          Our reefer fleet runs the same corridor both ways — no empty legs,
-          no delays waiting for a return load.
-        </p>
-
-        <div class="route-diagram">
-          <svg class="route-line" viewBox="0 0 900 90" preserveAspectRatio="none" aria-hidden="true">
-            <line x1="40" y1="45" x2="860" y2="45" class="route-line-bg" />
-            <line x1="40" y1="45" x2="860" y2="45" class="route-line-fg" />
-            <circle cx="40" cy="45" r="9" class="route-dot" />
-            <circle cx="450" cy="45" r="9" class="route-dot route-dot-accent" />
-            <circle cx="860" cy="45" r="9" class="route-dot" />
-          </svg>
-          <div class="route-labels">
-            <div class="route-label">
-              <span class="route-city">Europe</span>
-              <span class="route-desc">Origin / destination</span>
-            </div>
-            <div class="route-label route-label-center">
-              <span class="route-city">Georgia</span>
-              <span class="route-desc">Transit hub</span>
-            </div>
-            <div class="route-label route-label-right">
-              <span class="route-city">Central Asia</span>
-              <span class="route-desc">Origin / destination</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
