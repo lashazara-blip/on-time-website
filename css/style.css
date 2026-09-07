@@ -31,24 +31,27 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Corporate-navy grid pattern, used as the page's base canvas everywhere
-   nothing else covers it (behind Services/Calculator/Contact, the
-   header, and the gap between Hero and About). Two thin repeating lines
-   (one vertical, one horizontal) at low opacity on the navy base —
-   subtle graph-paper texture rather than a loud pattern. Per Lasha's request:
-   this replaces the old light --bg color and the heavy blur hack that
-   used to sit between Hero and About (see .hero/.about-hero/
-   .section-divider below for how the photos now fade into this canvas
-   instead). */
+/* Flat navy canvas, per a design suggestion Lasha brought from a
+   classmate: the grid-pattern texture used to run edge-to-edge behind
+   every section (Services/Calculator/Contact/Partners/Footer, the
+   header, and the Hero↔About gap) — with that much of the page covered
+   in visible graph-paper lines, it stopped reading as an accent and just
+   became noise/clutter competing with the content. The grid itself is
+   kept, but confined to the places it was already doing real work as a
+   deliberate texture: the .section-divider seam between Hero and About
+   (still its own rule, below), and the two card components that were
+   always styled as their own little "panels" regardless of what's
+   behind them (.service-card, .calculator-card — both keep their own
+   finer-scale grid, unchanged). Everywhere else — including this body
+   base, which is what Services/Calculator/Partners/Contact/Footer all
+   sit directly on — is now a smooth, flat navy so those sections get
+   visual rest between the textured accents instead of the pattern
+   running continuously top to bottom. */
 body {
   margin: 0;
   font-family: 'Work Sans', system-ui, sans-serif;
   color: var(--ink);
   background-color: var(--navy);
-  background-image:
-    linear-gradient(oklch(48% 0.07 258 / 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(48% 0.07 258 / 0.35) 1px, transparent 1px);
-  background-size: 48px 48px;
 }
 
 /* Sticky header is 76px tall — without this, jumping to an #anchor lands
@@ -1373,19 +1376,27 @@ a:hover {
    blur) for looking too heavy/rough. This is the replacement approach,
    per Lasha's most recent request: no visible bar/stripe element at all.
    Instead:
-     1. The grid-pattern canvas (see body, above) runs underneath the
-        entire page, including this gap.
+     1. This element now carries its own copy of the grid-pattern texture
+        directly (used to just rely on the body canvas showing through —
+        see the comment on body, above, for why that canvas is flat now).
+        This is the one spot on the page that keeps that top-level grid
+        as a deliberate accent, per Lasha.
      2. .hero and .about-hero each get a mask-image that fades their own
         photo to transparent right at the edge that touches this gap
-        (see below), so the grid canvas shows through and the photos
-        feather into it instead of ending on a hard line.
+        (see below), so the grid shows through and the photos feather
+        into it instead of ending on a hard line.
    This element is now just a plain spacer that reveals a strip of that
-   grid canvas between the two feathered photos — no bar, no blur, no
+   grid texture between the two feathered photos — no bar, no blur, no
    box-shadow. Kept short (20px, was 56px) per Lasha — the fades on
    .hero/.about-hero already do the visual blending, so this only needs
    to be a thin seam, not a wide gap. */
 .section-divider {
   height: 20px;
+  background-color: var(--navy);
+  background-image:
+    linear-gradient(oklch(48% 0.07 258 / 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(48% 0.07 258 / 0.35) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 /* ---------- About section ----------
