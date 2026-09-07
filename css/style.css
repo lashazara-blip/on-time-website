@@ -466,7 +466,7 @@ a:hover {
 }
 
 /* Generic placeholder box — used wherever a real photo is still pending
-   (e.g. inside the services section later on). */
+   (e.g. inside the services/routes sections later on). */
 .image-placeholder {
   width: 100%;
   height: 100%;
@@ -726,6 +726,66 @@ a:hover {
   color: oklch(78% 0.02 260);
 }
 
+/* ---------- Partners ----------
+   Per Lasha, inspired by weforward.ge's partner-logo strip. Sits on the
+   same navy grid canvas as the rest of the page, but each logo gets its
+   own white card — most of these brand marks are drawn for a white
+   background and their colors (navy, red, pink, green...) would either
+   clash with or disappear into the navy canvas without one. Grayscale +
+   dimmed by default, full color on hover, is a common "trusted by" touch
+   and gives the strip a little life without being distracting. */
+
+.partners {
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+.partners h2 {
+  font-size: 32px;
+  margin-top: 14px;
+  max-width: 44ch;
+  color: var(--white);
+}
+
+.partners-grid {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+}
+
+.partner-logo {
+  background: var(--white);
+  border-radius: 14px;
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 22px;
+  box-shadow: 0 10px 24px oklch(15% 0.05 258 / 0.28);
+  transition: transform 0.25s ease;
+}
+
+.partner-logo:hover {
+  transform: translateY(-4px);
+}
+
+.partner-logo img {
+  max-width: 100%;
+  max-height: 40px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.55;
+  transition: filter 0.25s ease, opacity 0.25s ease;
+}
+
+.partner-logo:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
 /* ---------- Contact ---------- */
 
 .contact {
@@ -906,6 +966,10 @@ a:hover {
 
   .calculator-card {
     padding: 28px 24px;
+  }
+
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .main-nav {
