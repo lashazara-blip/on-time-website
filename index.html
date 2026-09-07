@@ -425,7 +425,14 @@
       </div>
     </section>
 
-    <!-- ========== CONTACT / CTA ========== -->
+    <!-- ========== CONTACT / CTA ==========
+         Per Lasha: added a live Google Maps embed (no API key needed —
+         the plain maps.google.com/maps?...&output=embed form) pinned to
+         the real office address, sitting in its own card to the right
+         of the copy. The old bordered "address column" is gone; the
+         address + a "Get directions" link (opens Google Maps with
+         driving directions pre-filled) now live directly under the
+         WhatsApp button instead. -->
     <section class="contact" id="contact">
       <div class="container contact-box">
         <div class="contact-copy">
@@ -434,13 +441,32 @@
           <a class="btn btn-light" href="https://wa.me/995555040608" target="_blank" rel="noopener">
             +995 555 040 608
           </a>
+
+          <div class="contact-address">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 22s7-7.58 7-12.5A7 7 0 0 0 5 9.5C5 14.42 12 22 12 22z" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+            <span>
+              4 Vladimer Ugrekhelidze St<br />
+              Tbilisi 0186, Georgia
+              <a
+                class="contact-directions"
+                href="https://www.google.com/maps/dir/?api=1&destination=4+Vladimer+Ugrekhelidze+St%2C+Tbilisi+0186%2C+Georgia"
+                target="_blank"
+                rel="noopener"
+              >Get directions →</a>
+            </span>
+          </div>
         </div>
-        <div class="contact-address">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 22s7-7.58 7-12.5A7 7 0 0 0 5 9.5C5 14.42 12 22 12 22z" stroke="currentColor" stroke-width="1.6"/>
-            <circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6"/>
-          </svg>
-          <span>p. Kavtaradze 20d<br />Georgia</span>
+
+        <div class="contact-map">
+          <iframe
+            title="On-Time Logistics Company on the map"
+            src="https://maps.google.com/maps?q=4%20Vladimer%20Ugrekhelidze%20St%2C%20Tbilisi%200186%2C%20Georgia&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </section>
