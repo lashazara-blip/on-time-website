@@ -343,15 +343,20 @@ a:hover {
   position: relative;
   min-height: 560px;
   display: flex;
-  /* Bottom-left anchored per Lasha's markup: copy + stats now sit in the
-     bottom-left corner of the open (tree/road) area instead of the
-     vertical middle. */
+  /* Bottom-anchored, but raised off the true bottom edge and pulled
+     further toward the left edge per Lasha — with the card now boxed
+     (see .hero-copy), it was sitting too close to the truck and too
+     close to the bottom of the frame. This flex container hugs its one
+     normal-flow child (.hero-copy) exactly, so padding-top/padding-bottom
+     directly control the card's on-screen position: less top padding
+     raises it, more bottom padding pushes it further from the bottom
+     edge/dots. */
   align-items: flex-end;
-  padding-top: 32px;
-  padding-bottom: 56px;
+  padding-top: 20px;
+  padding-bottom: 100px;
   /* Fixed left inset (not the shared centered .container) so the text
      always hugs the true left edge, on any screen width. */
-  padding-left: clamp(24px, 4vw, 80px);
+  padding-left: clamp(20px, 2.5vw, 56px);
   /* Slides move via transform: translateX() (see .hero-slide below) and
      must never spill outside the hero box while off-screen. */
   overflow: hidden;
