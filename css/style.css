@@ -382,7 +382,11 @@ a:hover {
 
 .hero {
   position: relative;
-  min-height: 560px;
+  /* +7% over the original 560px, per Lasha — now that About is gone, he
+     wanted the slideshow itself a bit taller so the photos read more
+     fully rather than feeling cropped. Trying this; easy to dial back to
+     560px if it doesn't look right. */
+  min-height: 600px;
   display: flex;
   /* Bottom-anchored, but raised off the true bottom edge and pulled
      further toward the left edge per Lasha — with the card now boxed
@@ -1746,7 +1750,7 @@ a:hover {
 
 @media (max-width: 860px) {
   .hero {
-    min-height: 560px;
+    min-height: 600px;
   }
 
   .hero-copy {

@@ -41,14 +41,16 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
 // ---------- Quick-nav dock active-section highlight ----------
 // Per Lasha: the floating bottom-center dock should light up whichever
 // section is currently on screen, not just react to clicks. Watches
-// #about/#services/#calculator/#contact with an IntersectionObserver and
+// #services/#calculator/#contact with an IntersectionObserver and
 // toggles .is-active on the matching dock icon; falls back to the "home"
-// icon near the very top of the page, before #about comes into view.
+// icon near the very top of the page, before #services comes into view.
+// (The About section/nav link/dock icon were removed per Lasha — the
+// text was redundant with the Hero copy above it.)
 (function () {
   const links = Array.from(document.querySelectorAll('.quick-nav-link'));
   if (!links.length) return;
 
-  const sectionIds = ['about', 'services', 'calculator', 'contact'];
+  const sectionIds = ['services', 'calculator', 'contact'];
   const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
   if (!sections.length) return;
 

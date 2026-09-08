@@ -34,7 +34,6 @@
 
       <div class="header-right">
         <nav class="main-nav" aria-label="Primary">
-          <a href="#about">About Us</a>
           <a href="#services">Services</a>
           <a href="#calculator">Calculator</a>
           <!-- Contacts will live here / in #contact below once the
@@ -139,30 +138,13 @@
 
     <!-- No visible bar/blur here anymore (three earlier attempts — gold
          bar, navy bar, backdrop-filter blur — were all too heavy/rough
-         per Lasha). Hero and About now each fade their own photo to
-         transparent at this edge (mask-image, see style.css), so this
-         gap just reveals a strip of the site-wide grid-pattern canvas
-         between them — a soft, natural transition instead of a stripe. -->
+         per Lasha). Hero fades its own photo to transparent at this edge
+         (mask-image, see style.css), so this gap just reveals a strip of
+         the site-wide grid-pattern canvas below it — a soft, natural
+         transition into Services instead of a stripe. (The About section
+         used to sit here too — removed per Lasha, its text was redundant
+         with the Hero copy above.) -->
     <div class="section-divider" aria-hidden="true"></div>
-
-    <!-- ========== ABOUT ==========
-         Moved here from the old standalone about.html per Lasha — it's a
-         one-page site now, so this section just sits between Hero and
-         Services (same order as the nav: About Us / Services / Contact).
-         Same photo (about-fleet.jpg) and copy as before; "Who We Are" +
-         the eyebrow line are still a first-pass suggestion, easy to
-         change or drop. -->
-    <section class="about-hero" id="about">
-      <div class="about-copy">
-        <h1>Who We Are</h1>
-        <p>
-          On-Time Logistics Company operates a fleet of 30 refrigerated
-          trucks, providing fast, secure, and temperature-controlled cargo
-          transportation between Europe, Georgia, and Central Asia — in
-          both directions.
-        </p>
-      </div>
-    </section>
 
     <!-- ========== SERVICES ==========
          All 8 services Lasha sent, one card each, same box style
@@ -652,8 +634,8 @@
   <!-- ========== FLOATING QUICK-NAV DOCK ==========
        Per Lasha's weforward.ge reference: a pill-shaped icon dock fixed
        to the bottom-center of the viewport, always available while
-       scrolling. Mirrors the header nav (About/Services/Calculator/
-       Contact) plus a "Home" jump-to-top, icon only. The current
+       scrolling. Mirrors the header nav (Services/Calculator/Contact)
+       plus a "Home" jump-to-top, icon only. The current
        section lights up as you scroll (see js/script.js,
        IntersectionObserver-driven) — centered horizontally so it never
        overlaps the WhatsApp/email buttons in the bottom-right corner. -->
@@ -662,13 +644,6 @@
       <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M3 11.5 12 4l9 7.5" />
         <path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9" />
-      </svg>
-    </a>
-    <a href="#about" class="quick-nav-link" data-section="about" aria-label="About Us">
-      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 11v5.5" />
-        <circle cx="12" cy="8" r="0.6" fill="currentColor" stroke="none" />
       </svg>
     </a>
     <a href="#services" class="quick-nav-link" data-section="services" aria-label="Services">
