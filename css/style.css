@@ -257,21 +257,48 @@ a:hover {
 .main-nav {
   display: flex;
   align-items: center;
-  /* Back to a roomier gap now that it's just 3 items (About Us/Services/
-     Contact) instead of 5. */
-  gap: 36px;
+  /* Slightly tighter now that each link carries its own box (padding
+     already adds visual separation, so the links don't need as much raw
+     gap between them as plain text links did). */
+  gap: 12px;
   font-size: 13.5px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
+/* Per Lasha: nav links now match the site's "boxed" language everywhere
+   else (Hero/About/Services cards) — thin, translucent boxes with a
+   soft shadow, same family as .nav-search/.lang-switch below so the
+   whole right side of the header reads as one consistent system. Lifts
+   slightly on hover as the one piece of feedback (these do navigate,
+   unlike the two inert controls below, which stay static — see their
+   comment). */
 .main-nav a {
+  display: inline-flex;
+  align-items: center;
   color: oklch(88% 0.02 260);
+  padding: 9px 16px;
+  background: oklch(100% 0 0 / 0.04);
+  border: 1px solid oklch(100% 0 0 / 0.14);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
+  transition: transform 0.25s ease, background-color 0.25s ease,
+    border-color 0.25s ease, box-shadow 0.25s ease, color 0.2s ease;
 }
 
 .main-nav a:hover {
   color: var(--white);
+  transform: translateY(-3px);
+  background: oklch(100% 0 0 / 0.09);
+  border-color: oklch(100% 0 0 / 0.26);
+  box-shadow: 0 10px 22px oklch(10% 0.05 258 / 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-nav a:hover {
+    transform: none;
+  }
 }
 
 .main-nav a.nav-disabled {
@@ -281,26 +308,34 @@ a:hover {
 
 .main-nav a.nav-disabled:hover {
   color: oklch(55% 0.03 260);
+  transform: none;
+  background: oklch(100% 0 0 / 0.04);
+  border-color: oklch(100% 0 0 / 0.14);
+  box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
 }
 
 /* ---------- Header utility: search box + GE/EN ----------
    Both are VISUAL ONLY for now, per Lasha — "for show", not wired up
-   yet (no search backend, no Georgian version of the site). Styled to
-   look inert (dimmer, default cursor) rather than like working controls,
-   same idea as .nav-disabled. */
+   yet (no search backend, no Georgian version of the site). Now boxed in
+   the same thin/translucent/soft-shadow recipe as .main-nav a above, for
+   a consistent header, but deliberately NOT given the hover-lift — they
+   still don't do anything yet, and lifting on hover would suggest
+   otherwise. Same idea as .nav-disabled. */
 .header-utility {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 14px;
 }
 
 .nav-search {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 14px;
-  border: 1px solid oklch(45% 0.04 258);
-  border-radius: 999px;
+  padding: 9px 16px;
+  background: oklch(100% 0 0 / 0.04);
+  border: 1px solid oklch(100% 0 0 / 0.14);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
   color: oklch(65% 0.02 260);
   font-size: 12.5px;
   cursor: default;
@@ -310,6 +345,11 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 9px 16px;
+  background: oklch(100% 0 0 / 0.04);
+  border: 1px solid oklch(100% 0 0 / 0.14);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
   font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.04em;
