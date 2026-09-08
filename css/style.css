@@ -1062,7 +1062,15 @@ a:hover {
      in proportion as the card widens. */
   grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
   gap: 44px;
-  align-items: start;
+  /* Per Lasha: was "start", which left .calculator-form sitting at its
+     own (shorter) natural height while .calculator-summary — a bordered
+     card that got taller once the trust-points list was added — stretched
+     further down, so the two columns visibly ended at different heights.
+     "stretch" (the grid default) makes both columns the same height;
+     .calculator-form's own align-content below then pins its Calculate/
+     Reset row to the bottom of that now-taller box, so both columns
+     finish flush with each other. */
+  align-items: stretch;
   /* Now that the eyebrow/heading/subtext sit inside the same box (see
      .calculator-card), same spacing as .services-grid's margin-top under
      "What We Do". */
@@ -1073,6 +1081,12 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
+  /* Keeps the field rows pinned to the top at their normal size and lets
+     any extra height (from the stretch above) collect as one gap right
+     before .calc-actions, which margin-top: auto then claims — pushing
+     the Calculate/Reset row down to align with the bottom of
+     .calculator-summary instead of leaving dead space beneath it. */
+  align-content: start;
 }
 
 .calc-field {
@@ -1117,7 +1131,14 @@ a:hover {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 20px;
-  margin-top: 4px;
+  /* auto claims whatever extra height .calculator-form ends up with once
+     .calculator-grid stretches it to match .calculator-summary — pushing
+     this row down flush with the bottom instead of leaving a gap under
+     it. Harmless at/below the 1100px breakpoint, where .calculator-grid
+     drops to a single column and .calculator-form no longer shares a row
+     with .calculator-summary to stretch against, so there's no extra
+     height to claim and this just resolves to its normal position. */
+  margin-top: auto;
 }
 
 .btn-primary svg {
