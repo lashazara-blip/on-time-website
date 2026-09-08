@@ -34,21 +34,24 @@ html {
 /* Corporate-navy grid pattern, used as the page's base canvas everywhere
    nothing else covers it (behind Services/Calculator/Contact, the
    header, and the gap between Hero and About). Two thin repeating lines
-   (one vertical, one horizontal) at low opacity on the navy base —
-   subtle graph-paper texture rather than a loud pattern. Per Lasha:
-   restored site-wide after a brief experiment confining it to just the
-   header/divider/cards read as "the site is broken" rather than calmer
-   — the grid belongs everywhere, showing through behind the photos
-   wherever they fade to transparent (see .hero/.about-hero/
-   .section-divider below). */
+   (one vertical, one horizontal) on the navy base — subtle graph-paper
+   texture rather than a loud pattern. Per Lasha: restored site-wide
+   after a brief experiment confining it to just the header/divider/
+   cards read as "the site is broken" rather than calmer — the grid
+   belongs everywhere, showing through behind the photos wherever they
+   fade to transparent (see .hero/.about-hero/.section-divider below).
+   Line color is Lasha's own hex pick (#0B2A53), solid rather than the
+   translucent oklch tint this used to be — same pattern in .site-header
+   just below, kept identical so the header and page grid tile
+   seamlessly into one another. */
 body {
   margin: 0;
   font-family: 'Work Sans', system-ui, sans-serif;
   color: var(--ink);
   background-color: var(--navy);
   background-image:
-    linear-gradient(oklch(48% 0.07 258 / 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(48% 0.07 258 / 0.35) 1px, transparent 1px);
+    linear-gradient(#0B2A53 1px, transparent 1px),
+    linear-gradient(90deg, #0B2A53 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -184,8 +187,8 @@ a:hover {
      instead of a hard-edged solid bar sitting on top of the photo. */
   background-color: var(--navy);
   background-image:
-    linear-gradient(oklch(48% 0.07 258 / 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(48% 0.07 258 / 0.35) 1px, transparent 1px);
+    linear-gradient(#0B2A53 1px, transparent 1px),
+    linear-gradient(90deg, #0B2A53 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
