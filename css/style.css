@@ -194,6 +194,13 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   height: 76px;
+  /* Was the shared, centered .container (max-width 1400px, margin: 0
+     auto) — per Lasha, that left a visible gap before the logo on wide
+     screens instead of hugging the true left edge. Same left/right inset
+     as the rest of the page now, so the logo and the nav/search/GE|EN
+     group line up with Hero/Services/Calculator/Contact's edges too. */
+  padding-left: clamp(20px, 2.5vw, 56px);
+  padding-right: clamp(20px, 2.5vw, 56px);
 }
 
 /* Groups nav + search + language switch together on the right, so
