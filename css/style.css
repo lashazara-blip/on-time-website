@@ -382,11 +382,31 @@ a:hover {
 
 .hero {
   position: relative;
-  /* +7% over the original 560px, per Lasha — now that About is gone, he
-     wanted the slideshow itself a bit taller so the photos read more
-     fully rather than feeling cropped. Trying this; easy to dial back to
-     560px if it doesn't look right. */
+  /* Per Lasha: on wide screens (his own 24" monitor included) the fixed
+     600px height was noticeably shorter than the photos' native 2.33:1
+     shape, so background-size:cover was cropping a good chunk off the
+     top/bottom — tires and asphalt were getting cut off. aspect-ratio
+     ties the box's height to its width in the SAME ratio as the actual
+     photo files (all four are exactly 1568x672), so at most screen
+     widths the full photo shows with no vertical cropping at all — no
+     more, no less than the image actually has.
+     min-height keeps mobile/narrow screens at the same 600px they had
+     before (below ~1400px wide, aspect-ratio alone would make the hero
+     too short for the text card) — unchanged there, so this only ever
+     helps, never hurts.
+     max-height stops it from growing indefinitely on ultra-wide
+     monitors, where matching the ratio exactly would make Hero
+     enormous (browsers clamp the aspect-ratio height against these two
+     automatically). */
+  /* Explicit width:100% — without it, Chromium's aspect-ratio + max-height
+     combination can solve width FROM the clamped height instead of the
+     other way around once max-height engages (seen on ultra-wide test
+     screens: the hero visibly stopped short of the right edge instead of
+     spanning it). Pinning width removes that ambiguity. */
+  width: 100%;
+  aspect-ratio: 1568 / 672;
   min-height: 600px;
+  max-height: 820px;
   display: flex;
   /* Bottom-anchored, but raised off the true bottom edge and pulled
      further toward the left edge per Lasha — with the card now boxed
