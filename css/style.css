@@ -1303,6 +1303,9 @@ a:hover {
 }
 
 .contact-copy h2 {
+  font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
   font-size: 30px;
   color: var(--white);
 }
