@@ -619,8 +619,38 @@ a:hover {
 /* ---------- Services ---------- */
 
 .services {
-  padding-top: 88px;
-  padding-bottom: 88px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  /* Same left inset as .hero/.about-hero (not the shared centered
+     .container) so .services-box lines up on exactly the same left edge
+     as .hero-copy/.about-copy when scrolling — per Lasha, "What We Do"
+     was visibly offset from the boxes above it. Mirrored on the right so
+     .services-box reads as a centered-ish panel rather than one hugging
+     only the left edge. */
+  padding-left: clamp(20px, 2.5vw, 56px);
+  padding-right: clamp(20px, 2.5vw, 56px);
+}
+
+/* One big transparent card wrapping the heading + the whole services
+   grid, per Lasha — explicitly the same plain frosted-glass recipe as
+   .hero-copy/.about-copy (NOT the finer grid-textured look the individual
+   .service-card items below use — he was clear this outer box should
+   have no texture of its own, "უბრალოდ გამჭვირვალე ბოქსი"). */
+.services-box {
+  position: relative;
+  /* Capped so the auto-fit grid below always settles on the same 4-column
+     layout, instead of stretching to 5+ thin columns (with an orphaned
+     short last row) on very wide screens — Lasha's own monitor is
+     ultra-wide, so this matters. Left-anchored like Hero/About rather
+     than centered, so it doesn't drift off their shared left edge. */
+  max-width: 1400px;
+  background: oklch(15% 0.05 258 / 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid oklch(100% 0 0 / 0.1);
+  border-radius: 22px;
+  padding: 48px clamp(24px, 4vw, 56px) 56px;
+  box-shadow: 0 18px 40px oklch(10% 0.05 258 / 0.35);
 }
 
 .services h2 {
@@ -630,7 +660,8 @@ a:hover {
   font-size: 32px;
   /* No eyebrow above it anymore ("What We Do" IS the heading now, per
      Lasha) — was 14px to clear the eyebrow line above; 0 now that it's
-     the first element in the section. */
+     the first element in the section (now the first element inside
+     .services-box). */
   margin-top: 0;
   max-width: 56ch;
   /* Section no longer has a light background (dark grid canvas now sits
@@ -643,11 +674,15 @@ a:hover {
   display: grid;
   /* Was a fixed 3-column grid, which left an orphan single card in the
      last row once there were 7 services. auto-fit + minmax lets the
-     browser fit as many ~260px-minimum cards per row as the container
+     browser fit as many ~270px-minimum cards per row as the container
      allows (4 on a normal desktop width) and wrap the rest evenly,
-     instead of a fixed count that doesn't divide evenly into 7. */
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+     instead of a fixed count that doesn't divide evenly into 7. Slightly
+     wider minimum + bigger gap than before so the 8 cards, now inside
+     their own outer box, have room to breathe and the whole section
+     reads as filling roughly one screen on scroll, per Lasha — the
+     individual .service-card styling itself is untouched. */
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 28px;
   margin-top: 44px;
 }
 
@@ -670,7 +705,7 @@ a:hover {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid oklch(55% 0.08 258 / 0.35);
   border-radius: 16px;
-  padding: 30px;
+  padding: 34px 30px;
   box-shadow: 0 16px 36px oklch(10% 0.06 258 / 0.28);
   transform: perspective(800px) rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg));
   transition: transform 0.4s ease, border-color 0.3s ease;
@@ -1598,6 +1633,11 @@ a:hover {
 
   .hero-stats {
     display: none;
+  }
+
+  .services-box {
+    padding: 32px 22px 40px;
+    border-radius: 16px;
   }
 
   .services-grid {
