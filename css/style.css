@@ -2068,11 +2068,47 @@ a:hover {
 }
 
 @media (max-width: 860px) {
+  /* Per Lasha: the overlay layout (photo behind, text card floating on
+     top, box forced to a fixed 600px so the card had room to sit) meant
+     background-size:cover had to crop the photo hard to fill that tall,
+     narrow box — at a 390px-wide phone the box was 600px tall but the
+     photo's own shape (1568:672) is only ~167px tall at that width, so
+     cover chopped off most of the frame to fill the rest.
+     Below this breakpoint the hero stops being an overlay: .hero-media
+     becomes a normal in-flow block sized to the photo's EXACT aspect
+     ratio (so cover never needs to crop anything — the box and the
+     image are the same shape, same as how the desktop aspect-ratio
+     trick avoids cropping there too), and .hero-copy drops below it as
+     its own block, same as the boxed cards everywhere else on the
+     page. The photo shows complete, same as on desktop — it's just
+     stacked above the text now instead of sitting behind it. */
   .hero {
-    min-height: 600px;
+    display: block;
+    aspect-ratio: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .hero-media {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 1568 / 672;
+    /* Much shorter band than the old fixed 600px box, so the desktop
+       48px/56px fade would eat away most of it — scaled down to suit. */
+    mask-image: linear-gradient(to bottom, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
+  }
+
+  .hero-dots {
+    bottom: 10px;
   }
 
   .hero-copy {
+    max-width: none;
+    margin: 18px 16px 28px;
     padding: 22px 22px;
     border-radius: 14px;
   }

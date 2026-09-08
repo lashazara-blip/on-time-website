@@ -109,6 +109,22 @@
         <div class="hero-slide" style="background-image:url('images/hero-slide-3.jpg')"></div>
         <div class="hero-slide" style="background-image:url('images/hero-slide-4.jpg')"></div>
         <div class="hero-gradient"></div>
+
+        <!-- Dots live inside .hero-media (not as a sibling of .hero-copy)
+             so their position:absolute is always relative to the PHOTO's
+             own box. On desktop .hero-media fills the exact same box as
+             .hero, so this is visually identical to before. On mobile
+             (see the @media (max-width: 860px) block in style.css),
+             .hero-media becomes its own in-flow block sized to the
+             photo's real aspect ratio — the dots now sit correctly on
+             the photo itself instead of drifting down to the bottom of
+             the whole (now much taller) hero section. -->
+        <div class="hero-dots" aria-label="Hero photo slides">
+          <button type="button" class="hero-dot is-active" aria-label="Go to slide 1" aria-current="true"></button>
+          <button type="button" class="hero-dot" aria-label="Go to slide 2" aria-current="false"></button>
+          <button type="button" class="hero-dot" aria-label="Go to slide 3" aria-current="false"></button>
+          <button type="button" class="hero-dot" aria-label="Go to slide 4" aria-current="false"></button>
+        </div>
       </div>
 
       <div class="hero-copy">
@@ -146,13 +162,6 @@
             <span class="hero-stat-label">Temperature<br />Controlled</span>
           </div>
         </div>
-      </div>
-
-      <div class="hero-dots" aria-label="Hero photo slides">
-        <button type="button" class="hero-dot is-active" aria-label="Go to slide 1" aria-current="true"></button>
-        <button type="button" class="hero-dot" aria-label="Go to slide 2" aria-current="false"></button>
-        <button type="button" class="hero-dot" aria-label="Go to slide 3" aria-current="false"></button>
-        <button type="button" class="hero-dot" aria-label="Go to slide 4" aria-current="false"></button>
       </div>
     </section>
 
