@@ -766,20 +766,19 @@ a:hover {
 }
 
 /* Cards were solid white; per Lasha, switched back to the site's navy
-   palette — semi-transparent (glass) with backdrop-filter blur, plus a
-   faint copy of the site-wide grid pattern (see body, above) at a finer
-   scale (22px vs. 48px) so it reads as texture inside the card rather
-   than a continuation of the page grid. The transform/transition here
-   is the base state for the cursor-tilt effect below (js/script.js sets
-   --rx/--ry on mousemove) — perspective() + the two rotate axes give the
-   "tilts slightly as the cursor moves over it" effect Lasha asked for. */
+   palette — semi-transparent (glass) with backdrop-filter blur. (Briefly
+   carried a faint grid-texture background-image at a finer scale than
+   the site-wide grid pattern — per Lasha, removed again: plain blue,
+   no pattern.) The transform/transition here is the base state for the
+   cursor-tilt effect below (js/script.js sets --rx/--ry on mousemove) —
+   perspective() + the two rotate axes give the "tilts slightly as the
+   cursor moves over it" effect Lasha asked for. */
 .service-card {
   position: relative;
+  /* Per Lasha: dropped the faint grid-texture background-image these
+     cards used to carry (a finer copy of the site-wide grid pattern) —
+     just plain blue now, no pattern. */
   background-color: oklch(30% 0.07 258 / 0.55);
-  background-image:
-    linear-gradient(oklch(70% 0.05 210 / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(70% 0.05 210 / 0.08) 1px, transparent 1px);
-  background-size: 22px 22px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid oklch(55% 0.08 258 / 0.35);
@@ -942,11 +941,9 @@ a:hover {
      .service-card below, just without its cursor-tilt transform/JS hook,
      since that wasn't asked for here. */
   position: relative;
+  /* Per Lasha: dropped the faint grid-texture background-image (see
+     .service-card above, same recipe originally) — just plain blue. */
   background-color: oklch(30% 0.07 258 / 0.55);
-  background-image:
-    linear-gradient(oklch(70% 0.05 210 / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(70% 0.05 210 / 0.08) 1px, transparent 1px);
-  background-size: 22px 22px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid oklch(55% 0.08 258 / 0.35);
