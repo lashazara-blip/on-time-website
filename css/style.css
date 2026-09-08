@@ -1211,6 +1211,41 @@ a:hover {
   color: oklch(88% 0.02 260);
 }
 
+/* New per Lasha: 3 quick reassurance points, filling the empty space the
+   summary card used to leave below the placeholder text (the form column
+   is taller than the placeholder alone). Hidden together with
+   #calculatorPlaceholder once results are shown — see js/script.js. */
+.calculator-summary-trust {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Same fix as .calculator-results[hidden] below: the display:flex above
+   sits at the same cascade specificity as the browser's built-in
+   [hidden]{display:none} and would otherwise win, defeating
+   trustPoints.hidden in js/script.js. Restated explicitly so the
+   attribute always wins. */
+.calculator-summary-trust[hidden] {
+  display: none;
+}
+
+.calculator-summary-trust li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: oklch(80% 0.02 260);
+}
+
+.calculator-summary-trust svg {
+  flex-shrink: 0;
+  color: var(--cyan);
+}
+
 /* Revealed by js/script.js after the form is submitted (hidden by
    default via the HTML [hidden] attribute; the placeholder paragraph
    above takes its place until then). */
@@ -1298,8 +1333,59 @@ a:hover {
    canvas without one. */
 
 .partners {
+  position: relative;
+  overflow: hidden;
   padding-top: 88px;
   padding-bottom: 88px;
+}
+
+/* New per Lasha: faint wireframe-globe background behind the "Trusted by
+   the World's Leading Carriers" intro, giving that headline a visual to
+   back it up. z-index: -1 (not the more obvious 0) because .partners is
+   position: relative — that alone makes it a stacking context, and
+   without a negative z-index a position:absolute child paints ABOVE
+   normal-flow siblings regardless of DOM order, which would put this on
+   top of .partners-intro's text instead of behind it. */
+.partners-globe {
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  transform: translateY(-50%);
+  width: min(760px, 64vw);
+  height: auto;
+  opacity: 0.14;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.partners-globe circle:not(.partners-globe-node),
+.partners-globe ellipse,
+.partners-globe line {
+  fill: none;
+  stroke: oklch(78% 0.06 210);
+  stroke-width: 1;
+}
+
+.partners-globe-route {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 5;
+}
+
+.partners-globe-node {
+  fill: var(--cyan);
+}
+
+@media (max-width: 860px) {
+  /* Narrow viewports stack the intro text above a full-width marquee
+     with little room to spare — the globe would either crowd the text
+     or need shrinking to the point of being pointless, so it's simplest
+     to just skip it here, same as a few other decorative-only elements
+     already do at this breakpoint. */
+  .partners-globe {
+    display: none;
+  }
 }
 
 /* Left/right inset for the heading text only — NOT on .partners itself,

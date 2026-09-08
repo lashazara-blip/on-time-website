@@ -317,6 +317,9 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   // Placeholder copy in the summary card — shown until the first Calculate,
   // swapped for the numbers, and brought back on Reset.
   const placeholder = document.getElementById('calculatorPlaceholder');
+  // The 3 reassurance points under the placeholder (new per Lasha, filling
+  // space that used to sit empty) — hidden/shown in lockstep with it.
+  const trustPoints = document.getElementById('calculatorTrustPoints');
 
   packingTypeSelect.addEventListener('change', () => {
     const selected = packingTypeSelect.selectedOptions[0];
@@ -346,12 +349,14 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
 
     resultsBox.hidden = false;
     if (placeholder) placeholder.hidden = true;
+    if (trustPoints) trustPoints.hidden = true;
   });
 
   resetBtn.addEventListener('click', () => {
     form.reset();
     resultsBox.hidden = true;
     if (placeholder) placeholder.hidden = false;
+    if (trustPoints) trustPoints.hidden = false;
   });
 })();
 

@@ -418,6 +418,37 @@
                 your cargo's volume and weight will appear here.
               </p>
 
+              <!-- New per Lasha: this panel left a lot of empty space
+                   below the placeholder text before Calculate is pressed
+                   (the form column is taller than the placeholder). Fills
+                   it with 3 quick reassurance points instead of dead
+                   space. Hidden together with #calculatorPlaceholder once
+                   results are shown (see js/script.js) — no room or need
+                   for it once real numbers are on screen. -->
+              <ul class="calculator-summary-trust" id="calculatorTrustPoints">
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.6" />
+                    <path d="m8 12.5 2.5 2.5 5.5-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Free consultation, no obligation
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.6" />
+                    <path d="m8 12.5 2.5 2.5 5.5-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Reply within 1 hour
+                </li>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="1.6" />
+                    <path d="m8 12.5 2.5 2.5 5.5-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  24/7 dispatch support
+                </li>
+              </ul>
+
               <div class="calculator-results" id="calculatorResults" hidden>
                 <div class="calc-result">
                   <span class="calc-result-icon" aria-hidden="true">
@@ -492,6 +523,32 @@
          chat), just swap these two PNGs for better ones at the same
          filenames. -->
     <section class="partners" id="partners">
+      <!-- New per Lasha: "Trusted by the World's Leading Carriers" had no
+           visual to back up the "global" claim — just the logo strip. A
+           faint wireframe-globe + route-line graphic behind the intro
+           text gives that headline something to stand on, without adding
+           a whole new section. Purely decorative (aria-hidden), very low
+           opacity, clipped by .partners' own overflow:hidden so it never
+           pushes the section wider or interferes with the marquee below. -->
+      <svg class="partners-globe" viewBox="0 0 800 400" aria-hidden="true" focusable="false">
+        <circle cx="400" cy="200" r="170" />
+        <ellipse cx="400" cy="200" rx="147.2" ry="170" />
+        <ellipse cx="400" cy="200" rx="85" ry="170" />
+        <line x1="245.9" y1="128.2" x2="554.1" y2="128.2" />
+        <line x1="245.9" y1="271.8" x2="554.1" y2="271.8" />
+        <line x1="290.7" y1="69.8" x2="509.3" y2="69.8" />
+        <line x1="290.7" y1="330.2" x2="509.3" y2="330.2" />
+        <path class="partners-globe-route" d="M310,160 Q355,120 400,180" />
+        <path class="partners-globe-route" d="M400,180 Q430,140 460,170" />
+        <path class="partners-globe-route" d="M460,170 Q495,150 530,190" />
+        <path class="partners-globe-route" d="M400,180 Q390,220 380,250" />
+        <circle class="partners-globe-node" cx="310" cy="160" r="4.5" />
+        <circle class="partners-globe-node" cx="400" cy="180" r="4.5" />
+        <circle class="partners-globe-node" cx="460" cy="170" r="4.5" />
+        <circle class="partners-globe-node" cx="530" cy="190" r="4.5" />
+        <circle class="partners-globe-node" cx="380" cy="250" r="4.5" />
+      </svg>
+
       <div class="partners-intro reveal">
         <p class="eyebrow eyebrow-light">Global Network</p>
         <h2>Trusted by the World's Leading Carriers</h2>
