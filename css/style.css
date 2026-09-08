@@ -1354,27 +1354,29 @@ a:hover {
    canvas without one. */
 
 .partners {
-  position: relative;
-  overflow: hidden;
   padding-top: 88px;
   padding-bottom: 88px;
 }
 
 /* New per Lasha: faint wireframe-globe background behind the "Trusted by
    the World's Leading Carriers" intro, giving that headline a visual to
-   back it up. z-index: -1 (not the more obvious 0) because .partners is
-   position: relative — that alone makes it a stacking context, and
-   without a negative z-index a position:absolute child paints ABOVE
-   normal-flow siblings regardless of DOM order, which would put this on
-   top of .partners-intro's text instead of behind it. */
+   back it up. Lives inside .partners-intro (not .partners) now that the
+   intro is boxed — see .partners-intro below — so it's clipped to the
+   box's own rounded corners and sits behind the box's own (semi-
+   transparent) fill rather than the whole section. z-index: -1 (not the
+   more obvious 0) because .partners-intro is position: relative — that
+   alone makes it a stacking context, and without a negative z-index a
+   position:absolute child paints ABOVE normal-flow siblings regardless
+   of DOM order, which would put this on top of the eyebrow/heading/
+   subtext instead of behind them. */
 .partners-globe {
   position: absolute;
   top: 50%;
-  right: -8%;
+  right: -6%;
   transform: translateY(-50%);
-  width: min(760px, 64vw);
+  width: min(680px, 58vw);
   height: auto;
-  opacity: 0.14;
+  opacity: 0.16;
   z-index: -1;
   pointer-events: none;
 }
@@ -1409,14 +1411,28 @@ a:hover {
   }
 }
 
-/* Left/right inset for the heading text only — NOT on .partners itself,
-   since .partners-marquee (below) deliberately needs to stay edge to
-   edge for the scrolling strip to look continuous. Same clamp value as
-   Hero/Services/Calculator so "Trusted by the World's Leading Carriers"
-   lines up on the same left edge as everything above it, per Lasha. */
+/* Per Lasha: boxed in the same plain translucent recipe as .services-box/
+   .calculator-card/.contact-box, so "Trusted by the World's Leading
+   Carriers" reads as one more of the site's consistent boxed sections
+   instead of bare text. Uses margin (not padding) for its left/right
+   inset — NOT on .partners itself, since .partners-marquee (below) still
+   needs to stay edge to edge for the scrolling strip to look continuous
+   — so the BOX lines up on the same left/right edges as every other
+   section's box, with its own padding below handling the text inset
+   from there. position: relative + overflow: hidden contain
+   .partners-globe (see above) within the box's rounded corners. */
 .partners-intro {
-  padding-left: clamp(20px, 2.5vw, 56px);
-  padding-right: clamp(20px, 2.5vw, 56px);
+  position: relative;
+  overflow: hidden;
+  margin-left: clamp(20px, 2.5vw, 56px);
+  margin-right: clamp(20px, 2.5vw, 56px);
+  background: oklch(15% 0.05 258 / 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid oklch(100% 0 0 / 0.1);
+  border-radius: 22px;
+  padding: 40px clamp(24px, 4vw, 56px);
+  box-shadow: 0 18px 40px oklch(10% 0.05 258 / 0.35);
 }
 
 .partners h2 {
@@ -2089,6 +2105,11 @@ a:hover {
   .calculator-summary {
     max-width: none;
     padding: 22px 20px;
+  }
+
+  .partners-intro {
+    padding: 28px 22px;
+    border-radius: 16px;
   }
 
   .floating-contacts {

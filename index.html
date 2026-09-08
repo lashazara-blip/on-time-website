@@ -523,33 +523,40 @@
          chat), just swap these two PNGs for better ones at the same
          filenames. -->
     <section class="partners" id="partners">
-      <!-- New per Lasha: "Trusted by the World's Leading Carriers" had no
-           visual to back up the "global" claim — just the logo strip. A
-           faint wireframe-globe + route-line graphic behind the intro
-           text gives that headline something to stand on, without adding
-           a whole new section. Purely decorative (aria-hidden), very low
-           opacity, clipped by .partners' own overflow:hidden so it never
-           pushes the section wider or interferes with the marquee below. -->
-      <svg class="partners-globe" viewBox="0 0 800 400" aria-hidden="true" focusable="false">
-        <circle cx="400" cy="200" r="170" />
-        <ellipse cx="400" cy="200" rx="147.2" ry="170" />
-        <ellipse cx="400" cy="200" rx="85" ry="170" />
-        <line x1="245.9" y1="128.2" x2="554.1" y2="128.2" />
-        <line x1="245.9" y1="271.8" x2="554.1" y2="271.8" />
-        <line x1="290.7" y1="69.8" x2="509.3" y2="69.8" />
-        <line x1="290.7" y1="330.2" x2="509.3" y2="330.2" />
-        <path class="partners-globe-route" d="M310,160 Q355,120 400,180" />
-        <path class="partners-globe-route" d="M400,180 Q430,140 460,170" />
-        <path class="partners-globe-route" d="M460,170 Q495,150 530,190" />
-        <path class="partners-globe-route" d="M400,180 Q390,220 380,250" />
-        <circle class="partners-globe-node" cx="310" cy="160" r="4.5" />
-        <circle class="partners-globe-node" cx="400" cy="180" r="4.5" />
-        <circle class="partners-globe-node" cx="460" cy="170" r="4.5" />
-        <circle class="partners-globe-node" cx="530" cy="190" r="4.5" />
-        <circle class="partners-globe-node" cx="380" cy="250" r="4.5" />
-      </svg>
-
+      <!-- Per Lasha: boxed in the same style as Services/How It Works/
+           Calculator/Contact, so this reads as one more of the site's
+           consistent boxed sections instead of bare text. The wireframe
+           globe graphic (see below) moved inside this box along with it —
+           it used to sit behind the whole section; now it's scoped to,
+           and clipped by, the box itself. -->
       <div class="partners-intro reveal">
+        <!-- New per Lasha: "Trusted by the World's Leading Carriers" had
+             no visual to back up the "global" claim — just the logo strip
+             further down. A faint wireframe-globe + route-line graphic
+             behind this text gives that headline something to stand on,
+             without adding a whole new section. Purely decorative
+             (aria-hidden), very low opacity, clipped by this box's own
+             overflow:hidden so it never pokes out past the rounded
+             corners or interferes with the marquee below. -->
+        <svg class="partners-globe" viewBox="0 0 800 400" aria-hidden="true" focusable="false">
+          <circle cx="400" cy="200" r="170" />
+          <ellipse cx="400" cy="200" rx="147.2" ry="170" />
+          <ellipse cx="400" cy="200" rx="85" ry="170" />
+          <line x1="245.9" y1="128.2" x2="554.1" y2="128.2" />
+          <line x1="245.9" y1="271.8" x2="554.1" y2="271.8" />
+          <line x1="290.7" y1="69.8" x2="509.3" y2="69.8" />
+          <line x1="290.7" y1="330.2" x2="509.3" y2="330.2" />
+          <path class="partners-globe-route" d="M310,160 Q355,120 400,180" />
+          <path class="partners-globe-route" d="M400,180 Q430,140 460,170" />
+          <path class="partners-globe-route" d="M460,170 Q495,150 530,190" />
+          <path class="partners-globe-route" d="M400,180 Q390,220 380,250" />
+          <circle class="partners-globe-node" cx="310" cy="160" r="4.5" />
+          <circle class="partners-globe-node" cx="400" cy="180" r="4.5" />
+          <circle class="partners-globe-node" cx="460" cy="170" r="4.5" />
+          <circle class="partners-globe-node" cx="530" cy="190" r="4.5" />
+          <circle class="partners-globe-node" cx="380" cy="250" r="4.5" />
+        </svg>
+
         <p class="eyebrow eyebrow-light">Global Network</p>
         <h2>Trusted by the World's Leading Carriers</h2>
         <p class="section-subtext">
