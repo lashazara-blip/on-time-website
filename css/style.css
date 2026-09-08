@@ -1662,7 +1662,12 @@ a:hover {
 
 .about-copy {
   position: relative;
-  max-width: 640px;
+  /* Matched to .hero-copy's max-width (was 640px) per Lasha — at medium
+     viewport widths 640 stopped meaningfully capping the box while
+     Hero's 420 still did, so the two boxes drifted to visibly different
+     sizes scrolling from one to the other. Same cap now, same padding/
+     radius already shared below, so they read as one consistent size. */
+  max-width: 420px;
   /* Same translucent-card treatment as .hero-copy on the Hero above, per
      Lasha — the eyebrow + heading + paragraph now sit in their own
      frosted box over the photo instead of bare text, and get the same
