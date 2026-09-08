@@ -115,6 +115,34 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   );
 })();
 
+// ---------- Quick-nav dock hidden behind the hero ----------
+// Per Lasha: the dock and the hero photo slideshow's own dots
+// (.hero-dots) both sit at "bottom: 20px" — one relative to the
+// viewport, one relative to the hero — so on shorter/laptop viewports,
+// where the hero fills most of the screen at page load, they visually
+// landed right on top of each other. Fix: hide the dock entirely while
+// .hero-dots is on screen, and fade it in the instant .hero-dots scrolls
+// out of view — by then the dock is nowhere near it. This is a
+// visibility fix, not decorative motion, so it still runs under
+// prefers-reduced-motion (style.css just drops the fade/slide transition
+// in that case, not the show/hide itself).
+(function () {
+  const dock = document.querySelector('.quick-nav');
+  const heroDots = document.querySelector('.hero-dots');
+  if (!dock || !heroDots) return;
+
+  const dockVisibilityObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        dock.classList.toggle('is-hidden', entry.isIntersecting);
+      });
+    },
+    { threshold: 0 }
+  );
+
+  dockVisibilityObserver.observe(heroDots);
+})();
+
 // ---------- Hero photo carousel ----------
 // Per Lasha, inspired by weforward.ge's hero: the truck photo is now an
 // auto-advancing slideshow, sliding right to left, with one white dot
