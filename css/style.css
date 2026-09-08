@@ -638,12 +638,12 @@ a:hover {
    have no texture of its own, "უბრალოდ გამჭვირვალე ბოქსი"). */
 .services-box {
   position: relative;
-  /* Capped so the auto-fit grid below always settles on the same 4-column
-     layout, instead of stretching to 5+ thin columns (with an orphaned
-     short last row) on very wide screens — Lasha's own monitor is
-     ultra-wide, so this matters. Left-anchored like Hero/About rather
-     than centered, so it doesn't drift off their shared left edge. */
-  max-width: 1400px;
+  /* Full width edge-to-edge (no max-width cap), per Lasha — the box now
+     fills exactly from the left inset to the right inset set on
+     .services below, same as Hero/About's photo layer, instead of
+     capping out and leaving a blank strip on wide/ultra-wide screens.
+     See .services-grid below for how the card grid avoids an awkward
+     5th/6th column now that there's more width to fill. */
   background: oklch(15% 0.05 258 / 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -672,18 +672,26 @@ a:hover {
 
 .services-grid {
   display: grid;
-  /* Was a fixed 3-column grid, which left an orphan single card in the
-     last row once there were 7 services. auto-fit + minmax lets the
-     browser fit as many ~270px-minimum cards per row as the container
-     allows (4 on a normal desktop width) and wrap the rest evenly,
-     instead of a fixed count that doesn't divide evenly into 7. Slightly
-     wider minimum + bigger gap than before so the 8 cards, now inside
-     their own outer box, have room to breathe and the whole section
-     reads as filling roughly one screen on scroll, per Lasha — the
-     individual .service-card styling itself is untouched. */
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  /* Fixed column count, not auto-fit — now that .services-box is full
+     width edge-to-edge, auto-fit would keep adding columns as the screen
+     gets wider and orphan a short last row (5/6/7 don't divide 8 evenly).
+     4 is the base/desktop count; the two breakpoints below (see
+     Responsive section) only ever switch to 2, 1, or 8 — all divisors of
+     8 — so the 8 cards always land in full, even rows. Individual
+     .service-card styling itself is untouched. */
+  grid-template-columns: repeat(4, 1fr);
   gap: 28px;
   margin-top: 44px;
+}
+
+/* Ultra-wide monitors (Lasha's own setup included): with .services-box
+   now spanning the full width, 4 columns would leave each card quite
+   short and the row wide — one single row of all 8 cards uses that
+   extra width instead of leaving it blank. */
+@media (min-width: 2200px) {
+  .services-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
 }
 
 /* Cards were solid white; per Lasha, switched back to the site's navy
@@ -781,6 +789,19 @@ a:hover {
 .calculator {
   padding-top: 88px;
   padding-bottom: 88px;
+  /* Same left/right inset as .hero/.services below, per Lasha — was the
+     centered, capped .container before, which is why this section sat in
+     the middle of the screen instead of lining up with the sections
+     above and below it. */
+  padding-left: clamp(20px, 2.5vw, 56px);
+  padding-right: clamp(20px, 2.5vw, 56px);
+}
+
+/* Replaces the old .container wrapper — plain full-width block, no
+   max-width cap, so .calculator-card fills edge-to-edge like
+   .services-box does. */
+.calculator-inner {
+  width: 100%;
 }
 
 .calculator h2 {
@@ -824,7 +845,12 @@ a:hover {
    large dead gap above the buttons on wide screens). */
 .calculator-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
+  /* Was a fixed 300px summary column, which left all the extra width
+     from going full-bleed sitting only in the form fields (input boxes
+     stretching very wide on a large screen while the summary stayed
+     small and fixed). A 2:1 fr split keeps both parts growing together
+     in proportion as the card widens. */
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
   gap: 44px;
   align-items: start;
 }
@@ -1062,6 +1088,16 @@ a:hover {
   padding-bottom: 88px;
 }
 
+/* Left/right inset for the heading text only — NOT on .partners itself,
+   since .partners-marquee (below) deliberately needs to stay edge to
+   edge for the scrolling strip to look continuous. Same clamp value as
+   Hero/Services/Calculator so "Trusted by the World's Leading Carriers"
+   lines up on the same left edge as everything above it, per Lasha. */
+.partners-intro {
+  padding-left: clamp(20px, 2.5vw, 56px);
+  padding-right: clamp(20px, 2.5vw, 56px);
+}
+
 .partners h2 {
   font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
   font-weight: 700;
@@ -1154,6 +1190,10 @@ a:hover {
 .contact {
   padding-top: 88px;
   padding-bottom: 88px;
+  /* Same left/right inset as the rest of the page now, per Lasha — was
+     the centered, capped .container before. */
+  padding-left: clamp(20px, 2.5vw, 56px);
+  padding-right: clamp(20px, 2.5vw, 56px);
 }
 
 .contact-box {
@@ -1618,6 +1658,12 @@ a:hover {
 
   .calculator-summary {
     max-width: 420px;
+  }
+
+  /* Tablet range: 2 columns (still a divisor of 8, so the last row of
+     the services grid is always full — see .services-grid above). */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
