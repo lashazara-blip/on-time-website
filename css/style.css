@@ -286,7 +286,14 @@ a:hover {
   align-items: center;
   color: oklch(88% 0.02 260);
   padding: 9px 16px;
-  background: oklch(100% 0 0 / 0.04);
+  /* Per Lasha: the old near-transparent fill (4% white) let the header's
+     grid-pattern lines show straight through the boxes — darkened to a
+     solid-reading navy (plus a blur, same recipe as the page's other
+     translucent cards) so the boxes read as opaque pills, not windows
+     onto the grid behind them. */
+  background: oklch(22% 0.05 258 / 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid oklch(100% 0 0 / 0.14);
   border-radius: 10px;
   box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
@@ -297,7 +304,7 @@ a:hover {
 .main-nav a:hover {
   color: var(--white);
   transform: translateY(-3px);
-  background: oklch(100% 0 0 / 0.09);
+  background: oklch(28% 0.06 258 / 0.88);
   border-color: oklch(100% 0 0 / 0.26);
   box-shadow: 0 10px 22px oklch(10% 0.05 258 / 0.4);
 }
@@ -316,7 +323,7 @@ a:hover {
 .main-nav a.nav-disabled:hover {
   color: oklch(55% 0.03 260);
   transform: none;
-  background: oklch(100% 0 0 / 0.04);
+  background: oklch(22% 0.05 258 / 0.8);
   border-color: oklch(100% 0 0 / 0.14);
   box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
 }
@@ -339,7 +346,11 @@ a:hover {
   align-items: center;
   gap: 8px;
   padding: 9px 16px;
-  background: oklch(100% 0 0 / 0.04);
+  /* Darkened + blurred, same reasoning as .main-nav a above — the old
+     4%-white fill let the header's grid lines show straight through. */
+  background: oklch(22% 0.05 258 / 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid oklch(100% 0 0 / 0.14);
   border-radius: 10px;
   box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
@@ -353,7 +364,9 @@ a:hover {
   align-items: center;
   gap: 8px;
   padding: 9px 16px;
-  background: oklch(100% 0 0 / 0.04);
+  background: oklch(22% 0.05 258 / 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid oklch(100% 0 0 / 0.14);
   border-radius: 10px;
   box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
