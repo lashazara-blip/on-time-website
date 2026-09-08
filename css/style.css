@@ -461,6 +461,18 @@ a:hover {
   position: absolute;
   inset: 0;
   z-index: 0;
+}
+
+/* Wraps ONLY the photo (slides + darkening gradient) — the top/bottom
+   mask-image fade below is scoped to this layer alone, not to the whole
+   of .hero-media, specifically so it never touches .hero-dots (a sibling
+   of this wrapper, not a child of it — see index.html). Dots briefly
+   lived directly inside the masked layer and got faded to invisible
+   along with the photo, since bottom:20px falls inside the mask's last
+   56px transparent zone. */
+.hero-photo-layer {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   /* Two-sided fade, per Lasha: feathers in from transparent over the
      first 48px (right under the sticky header, which shares this same
@@ -2117,8 +2129,13 @@ a:hover {
     inset: auto;
     width: 100%;
     aspect-ratio: 1568 / 672;
+  }
+
+  .hero-photo-layer {
     /* Much shorter band than the old fixed 600px box, so the desktop
-       48px/56px fade would eat away most of it — scaled down to suit. */
+       48px/56px fade would eat away most of it — scaled down to suit.
+       (Scoped to this inner photo-only layer, not .hero-media, so it
+       never fades .hero-dots — see the comment on .hero-photo-layer.) */
     mask-image: linear-gradient(to bottom, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 14px, black calc(100% - 14px), transparent 100%);
   }

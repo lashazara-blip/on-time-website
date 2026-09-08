@@ -104,11 +104,22 @@
          automatically, no script changes needed. -->
     <section class="hero">
       <div class="hero-media" aria-hidden="true">
-        <div class="hero-slide is-active" style="background-image:url('images/hero-slide-1.jpg')"></div>
-        <div class="hero-slide" style="background-image:url('images/hero-slide-2.jpg')"></div>
-        <div class="hero-slide" style="background-image:url('images/hero-slide-3.jpg')"></div>
-        <div class="hero-slide" style="background-image:url('images/hero-slide-4.jpg')"></div>
-        <div class="hero-gradient"></div>
+        <!-- .hero-photo-layer wraps ONLY the photo (slides + darkening
+             gradient) — this is what carries the top/bottom mask-image
+             fade (see style.css), so the fade never touches .hero-dots
+             below. (Dots briefly lived as a direct sibling of these
+             layers inside .hero-media without this wrapper — the mask
+             was fading them out too, since bottom:20px falls inside its
+             last-56px transparent zone. Splitting the mask onto its own
+             inner layer fixes that while keeping the dots positioned
+             relative to the photo box, which the mobile layout needs.) -->
+        <div class="hero-photo-layer">
+          <div class="hero-slide is-active" style="background-image:url('images/hero-slide-1.jpg')"></div>
+          <div class="hero-slide" style="background-image:url('images/hero-slide-2.jpg')"></div>
+          <div class="hero-slide" style="background-image:url('images/hero-slide-3.jpg')"></div>
+          <div class="hero-slide" style="background-image:url('images/hero-slide-4.jpg')"></div>
+          <div class="hero-gradient"></div>
+        </div>
 
         <!-- Dots live inside .hero-media (not as a sibling of .hero-copy)
              so their position:absolute is always relative to the PHOTO's
