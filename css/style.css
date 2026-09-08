@@ -896,18 +896,23 @@ a:hover {
 }
 
 .calculator-card {
-  margin-top: 44px;
-  background-color: oklch(30% 0.07 258 / 0.55);
-  background-image:
-    linear-gradient(oklch(70% 0.05 210 / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(70% 0.05 210 / 0.08) 1px, transparent 1px);
-  background-size: 22px 22px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid oklch(55% 0.08 258 / 0.35);
+  /* Per Lasha: the eyebrow/heading/subtext used to sit outside this box —
+     now they're the box's first children too (see index.html), matching
+     how .services-box holds "What We Do" and its grid together. No
+     margin-top needed any more (that used to separate the box from the
+     heading above it); .calculator's own padding-top handles the
+     section's top spacing now, same as .services. */
+  /* Matched to .services-box's plain frosted recipe per Lasha ("this box
+     is ideal") — was the finer grid-textured card look (same recipe the
+     individual .service-card items still use); now the outer container
+     is the same dark-transparent blue everywhere, no texture of its own. */
+  background: oklch(15% 0.05 258 / 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid oklch(100% 0 0 / 0.1);
   border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 16px 36px oklch(10% 0.06 258 / 0.28);
+  box-shadow: 0 18px 40px oklch(10% 0.05 258 / 0.35);
 }
 
 /* Redesigned per Lasha — split into a working form on the left and a
@@ -924,11 +929,15 @@ a:hover {
   grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
   gap: 44px;
   align-items: start;
+  /* Now that the eyebrow/heading/subtext sit inside the same box (see
+     .calculator-card), same spacing as .services-grid's margin-top under
+     "What We Do". */
+  margin-top: 44px;
 }
 
 .calculator-form {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -1268,13 +1277,15 @@ a:hover {
 }
 
 .contact-box {
-  /* Was var(--ink) — almost indistinguishable from the new page background
-     var(--navy), so the card used to visually disappear into the grid
-     canvas. var(--navy-light) plus a soft border/shadow gives it its own
-     card presence again. */
-  background: var(--navy-light);
-  border: 1px solid oklch(45% 0.08 258 / 0.5);
-  box-shadow: 0 24px 56px oklch(10% 0.06 258 / 0.4);
+  /* Matched to .services-box/.calculator-card's plain frosted recipe per
+     Lasha ("this box is ideal") — was a solid var(--navy-light) fill;
+     now the same dark-transparent blue + blur as the rest of the site's
+     outer boxes. */
+  background: oklch(15% 0.05 258 / 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid oklch(100% 0 0 / 0.1);
+  box-shadow: 0 18px 40px oklch(10% 0.05 258 / 0.35);
   border-radius: 24px;
   padding: 48px;
   display: grid;
