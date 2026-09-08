@@ -38,6 +38,35 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   });
 }
 
+// ---------- Scroll-reveal ----------
+// New per Lasha: give the page a bit more life as you scroll — the big
+// section boxes (Services, How It Works, Calculator, Contact, Partners
+// intro) fade and rise into place the first time they enter the viewport,
+// instead of just appearing. Marked up in the HTML with a plain .reveal
+// class (see style.css for the opacity/transform values); this just
+// toggles .is-visible once per element via IntersectionObserver, then
+// stops watching it, so it never re-hides on scrolling back up. Under
+// prefers-reduced-motion the CSS itself shows everything at full opacity
+// already, so this is harmless (if pointless) to still run in that case.
+(function () {
+  const revealEls = document.querySelectorAll('.reveal');
+  if (!revealEls.length) return;
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+  );
+
+  revealEls.forEach((el) => revealObserver.observe(el));
+})();
+
 // ---------- Quick-nav dock active-section highlight ----------
 // Per Lasha: the floating bottom-center dock should light up whichever
 // section is currently on screen, not just react to clicks. Watches
