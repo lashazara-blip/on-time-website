@@ -1081,10 +1081,13 @@ a:hover {
      Reset row to the bottom of that now-taller box, so both columns
      finish flush with each other. */
   align-items: stretch;
-  /* Now that the eyebrow/heading/subtext sit inside the same box (see
-     .calculator-card), same spacing as .services-grid's margin-top under
-     "What We Do". */
-  margin-top: 44px;
+  /* Per Lasha: the eyebrow/heading/subtext moved from sitting above this
+     grid to being the first row inside .calculator-form itself, so that
+     .calculator-summary (stretched to match the left column's full
+     height) starts level with that text instead of just with the form
+     fields below it — see .calculator-form-intro. No margin-top needed
+     here any more; .calculator-card's own padding handles the top
+     spacing now. */
 }
 
 .calculator-form {
@@ -1097,6 +1100,14 @@ a:hover {
      the Calculate/Reset row down to align with the bottom of
      .calculator-summary instead of leaving dead space beneath it. */
   align-content: start;
+}
+
+.calculator-form-intro {
+  grid-column: 1 / -1;
+  /* Adds to .calculator-form's own 20px row gap so the total space
+     before the first field row matches the old 44px gap this text used
+     to sit above (back when it lived outside the grid). */
+  margin-bottom: 24px;
 }
 
 .calc-field {

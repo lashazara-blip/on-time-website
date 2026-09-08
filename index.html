@@ -346,15 +346,26 @@
     <section class="calculator" id="calculator">
       <div class="calculator-inner">
         <div class="calculator-card reveal">
-          <p class="eyebrow eyebrow-light">Plan Your Shipment</p>
-          <h2>Cargo Volume Calculator</h2>
-          <p class="section-subtext">
-            Work out the cubic volume and total weight of your shipment in
-            seconds — the numbers you'll need when you request a quote.
-          </p>
-
           <div class="calculator-grid">
             <form class="calculator-form" id="cargoCalculatorForm">
+              <!-- Per Lasha: the eyebrow/heading/subtext moved in here
+                   (from sitting above the whole two-column grid) so the
+                   Shipment Summary box on the right — which stretches to
+                   match the left column's full height (see
+                   .calculator-grid's align-items: stretch) — now starts
+                   level with THIS text, not just with the form fields
+                   below it. grid-column: 1 / -1 on the wrapper spans it
+                   across all 4 of .calculator-form's columns. -->
+              <div class="calculator-form-intro">
+                <p class="eyebrow eyebrow-light">Plan Your Shipment</p>
+                <h2>Cargo Volume Calculator</h2>
+                <p class="section-subtext">
+                  Work out the cubic volume and total weight of your shipment
+                  in seconds — the numbers you'll need when you request a
+                  quote.
+                </p>
+              </div>
+
               <div class="calc-field calc-field--wide">
                 <label for="calcPackingType">Packing Type</label>
                 <select id="calcPackingType">
