@@ -519,6 +519,71 @@
               >Get directions →</a>
             </span>
           </div>
+
+          <!-- MOCKUP per Lasha — visual only for now, not wired to a
+               backend yet. WhatsApp button above is untouched/unchanged.
+               Redesigned (per Lasha) to not read as a copy of a
+               competitor's reference layout: fields are grouped
+               Name+Company / Email+Phone (not a generic First+Last row),
+               there's a Shipment Route field specific to freight
+               quoting, the intro is a small eyebrow line rather than a
+               second big heading duplicating "Ready to move your
+               cargo?", and the button reads "Request a Quote" — the
+               actual thing a visitor using this form wants — instead of
+               a generic "Send Message". Submissions will go straight to
+               email (Formspree or similar, once approved) rather than
+               opening the visitor's own email client. -->
+          <p class="contact-form-eyebrow">Or email us your shipment details</p>
+          <form class="contact-form" id="contactForm">
+            <div class="contact-form-row">
+              <div class="contact-form-field">
+                <label for="contactName">Full Name</label>
+                <input type="text" id="contactName" name="name" autocomplete="name" />
+              </div>
+              <div class="contact-form-field">
+                <label for="contactCompany">Company</label>
+                <input type="text" id="contactCompany" name="company" autocomplete="organization" />
+              </div>
+            </div>
+            <div class="contact-form-row">
+              <div class="contact-form-field">
+                <label for="contactEmail">Email</label>
+                <input type="email" id="contactEmail" name="email" autocomplete="email" required />
+              </div>
+              <div class="contact-form-field">
+                <label for="contactPhone">Phone Number</label>
+                <input type="tel" id="contactPhone" name="phone" autocomplete="tel" />
+              </div>
+            </div>
+            <div class="contact-form-row">
+              <div class="contact-form-field">
+                <label for="contactShipmentType">Shipment Type</label>
+                <select id="contactShipmentType" name="shipmentType">
+                  <option value="">Select one</option>
+                  <option value="fcl">Full Container Load (FCL)</option>
+                  <option value="lcl">Less than Container Load (LCL)</option>
+                  <option value="ftl">Full Truckload (FTL)</option>
+                  <option value="ltl">Less than Truckload (LTL)</option>
+                  <option value="refrigerated">Refrigerated / Temperature-Controlled</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="contact-form-field">
+                <label for="contactRoute">Shipment Route</label>
+                <input type="text" id="contactRoute" name="route" placeholder="e.g. Shanghai → Poti → Tbilisi" />
+              </div>
+            </div>
+            <div class="contact-form-field">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" rows="3" placeholder="Cargo type, volume, timing…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary contact-form-submit">
+              Request a Quote
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </form>
         </div>
 
         <div class="contact-map">

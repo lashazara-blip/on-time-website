@@ -294,3 +294,17 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     if (placeholder) placeholder.hidden = false;
   });
 })();
+
+// Contact form — MOCKUP per Lasha, visual only for now. Not wired to a
+// backend yet (no Formspree endpoint approved/added), so this just stops
+// the browser's default GET-submit-to-this-page behavior (which would
+// otherwise reload the page with the field values dumped into the URL).
+// Once Lasha approves a form backend, this becomes a real fetch() POST.
+(function () {
+  const contactForm = document.getElementById('contactForm');
+  if (!contactForm) return;
+
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+  });
+})();

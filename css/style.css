@@ -1176,6 +1176,85 @@ a:hover {
   line-height: 1.6;
 }
 
+/* MOCKUP per Lasha — visual-only draft of an email-quote form below the
+   address block, for people who'd rather fill in a form than message on
+   WhatsApp (which stays exactly where/how it was). Inputs reuse the same
+   recipe as .calc-field in the Calculator section, so the two forms on
+   the site feel like one system rather than two different styles. A
+   small eyebrow label introduces it instead of a second big heading, so
+   it reads as part of the same "Ready to move your cargo?" block rather
+   than a bolted-on separate section. */
+.contact-form-eyebrow {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid oklch(35% 0.03 260);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.contact-form {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contact-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-form-field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: oklch(78% 0.02 260);
+}
+
+.contact-form-field input,
+.contact-form-field select,
+.contact-form-field textarea {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 15px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid oklch(55% 0.08 258 / 0.4);
+  background-color: oklch(24% 0.07 258 / 0.6);
+  color: var(--white);
+  resize: vertical;
+}
+
+.contact-form-field input:focus,
+.contact-form-field select:focus,
+.contact-form-field textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+
+.contact-form-submit {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.contact-form-submit svg {
+  transition: transform 0.2s ease;
+}
+
+.contact-form-submit:hover svg {
+  transform: translateX(3px);
+}
+
 .contact-address svg {
   flex-shrink: 0;
   margin-top: 2px;
@@ -1641,5 +1720,9 @@ a:hover {
 
   .contact-map {
     min-height: 220px;
+  }
+
+  .contact-form-row {
+    grid-template-columns: 1fr;
   }
 }
