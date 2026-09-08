@@ -700,11 +700,13 @@
   <!-- ========== FLOATING QUICK-NAV DOCK ==========
        Per Lasha's weforward.ge reference: a pill-shaped icon dock fixed
        to the bottom-center of the viewport, always available while
-       scrolling. Mirrors the header nav (Services/Calculator/Contact)
-       plus a "Home" jump-to-top, icon only. The current
-       section lights up as you scroll (see js/script.js,
-       IntersectionObserver-driven) — centered horizontally so it never
-       overlaps the WhatsApp/email buttons in the bottom-right corner. -->
+       scrolling. Icon-only jump links to Home + every main section
+       (Services/How It Works/Calculator/Contact) — "How It Works" is a
+       dock-only entry, not in the header nav, added per Lasha once that
+       section existed. The current section lights up as you scroll (see
+       js/script.js, IntersectionObserver-driven) — centered horizontally
+       so it never overlaps the WhatsApp/email buttons in the
+       bottom-right corner. -->
   <nav class="quick-nav" aria-label="Quick section navigation">
     <a href="#" class="quick-nav-link is-active" data-section="home" aria-label="Home">
       <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -718,6 +720,16 @@
         <rect x="13" y="3.5" width="7.5" height="7.5" rx="1.5" />
         <rect x="3.5" y="13" width="7.5" height="7.5" rx="1.5" />
         <rect x="13" y="13" width="7.5" height="7.5" rx="1.5" />
+      </svg>
+    </a>
+    <a href="#process" class="quick-nav-link" data-section="process" aria-label="How It Works">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 6h11" />
+        <path d="M9 12h11" />
+        <path d="M9 18h11" />
+        <path d="m4 6 1 1 2-2" />
+        <path d="m4 12 1 1 2-2" />
+        <path d="m4 18 1 1 2-2" />
       </svg>
     </a>
     <a href="#calculator" class="quick-nav-link" data-section="calculator" aria-label="Calculator">
