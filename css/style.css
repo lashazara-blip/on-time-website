@@ -1919,11 +1919,6 @@ a:hover {
   transform: translateX(3px);
 }
 
-.contact-form-note {
-  font-size: 13px;
-  color: oklch(65% 0.02 260);
-}
-
 /* Feedback shown after a real submit attempt to the Formspree endpoint
    (see js/script.js) — success in the site's cyan accent, error in a
    soft warm red, both quiet text rather than a loud banner since this
