@@ -1856,14 +1856,18 @@ a:hover {
   transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }
 
+/* Per Lasha: this checked state (plus the map card's cyan accents
+   below) use his exact rgba(11,200,233,1) pick — same reasoning as
+   .btn-cyan above — rather than the sitewide (dimmer) var(--cyan), for
+   a consistently bright accent across this whole redesigned section. */
 .shipment-type-pill input:checked + span {
-  border-color: var(--cyan);
-  color: var(--cyan);
-  background-color: oklch(58% 0.14 210 / 0.16);
+  border-color: #0bc8e9;
+  color: #0bc8e9;
+  background-color: rgba(11, 200, 233, 0.16);
 }
 
 .shipment-type-pill input:focus-visible + span {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid #0bc8e9;
   outline-offset: 2px;
 }
 
@@ -1945,7 +1949,7 @@ a:hover {
 
 .contact-directions {
   display: inline-block;
-  color: var(--cyan);
+  color: #0bc8e9;
   font-weight: 600;
   font-size: 13px;
   text-decoration: none;
@@ -1990,13 +1994,13 @@ a:hover {
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid oklch(55% 0.08 258 / 0.4);
-  color: var(--cyan);
+  color: #0bc8e9;
   font-size: 13px;
   font-weight: 600;
 }
 
 .contact-map-open:hover {
-  border-color: var(--cyan);
+  border-color: #0bc8e9;
 }
 
 /* Classic "teardrop" pin via a square rotated 45° with 3 rounded
@@ -2016,7 +2020,7 @@ a:hover {
   position: absolute;
   inset: -22px;
   border-radius: 50%;
-  background: radial-gradient(circle, oklch(58% 0.14 210 / 0.28) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(11, 200, 233, 0.28) 0%, transparent 70%);
 }
 
 .contact-map-pin-shape {
@@ -2024,8 +2028,8 @@ a:hover {
   inset: 0;
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
-  background: var(--cyan);
-  box-shadow: 0 10px 24px oklch(58% 0.14 210 / 0.45);
+  background: #0bc8e9;
+  box-shadow: 0 10px 24px rgba(11, 200, 233, 0.45);
 }
 
 .contact-map-pin-label {
@@ -2104,7 +2108,7 @@ a:hover {
 }
 
 .contact-map-status.is-open {
-  color: var(--cyan);
+  color: #0bc8e9;
 }
 
 .contact-map-status.is-closed {
