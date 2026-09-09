@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lashazara-blip.github.io/on-time-website/sitemap.xml

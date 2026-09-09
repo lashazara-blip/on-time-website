@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Single-page site — everything (Services, How It Works, Calculator,
+  Contact) lives under one URL as in-page anchors, not separate crawlable
+  pages, so there's only one <url> entry here. Update <loc> to
+  https://on-time.ge/ (dropping the sitemap.xml Sitemap: line in
+  robots.txt to match) once the custom domain is connected — a sitemap
+  pointing at a different domain than the one it's served from is
+  ignored by search engines.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://lashazara-blip.github.io/on-time-website/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
