@@ -412,16 +412,47 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   });
 })();
 
-// Contact form — MOCKUP per Lasha, visual only for now. Not wired to a
-// backend yet (no Formspree endpoint approved/added), so this just stops
-// the browser's default GET-submit-to-this-page behavior (which would
-// otherwise reload the page with the field values dumped into the URL).
-// Once Lasha approves a form backend, this becomes a real fetch() POST.
+// Contact form — wired to Lasha's Formspree endpoint (see the form's
+// "action" in index.html). Submits in the background via fetch() instead
+// of a normal HTML form POST so the page never navigates away/reloads —
+// the visitor just sees a "thanks" message appear in place, right under
+// the button they pressed.
 (function () {
   const contactForm = document.getElementById('contactForm');
-  if (!contactForm) return;
+  const submitBtn = contactForm ? contactForm.querySelector('.contact-form-submit') : null;
+  const successMsg = document.getElementById('contactFormSuccess');
+  const errorMsg = document.getElementById('contactFormError');
+  if (!contactForm || !submitBtn) return;
+
+  const submitLabel = submitBtn.innerHTML;
 
   contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    if (successMsg) successMsg.hidden = true;
+    if (errorMsg) errorMsg.hidden = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    fetch(contactForm.action, {
+      method: 'POST',
+      body: new FormData(contactForm),
+      headers: { Accept: 'application/json' },
+    })
+      .then((response) => {
+        if (response.ok) {
+          contactForm.reset();
+          if (successMsg) successMsg.hidden = false;
+        } else if (errorMsg) {
+          errorMsg.hidden = false;
+        }
+      })
+      .catch(() => {
+        if (errorMsg) errorMsg.hidden = false;
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = submitLabel;
+      });
   });
 })();

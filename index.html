@@ -675,7 +675,10 @@
                email (Formspree or similar, once approved) rather than
                opening the visitor's own email client. -->
           <p class="contact-form-eyebrow">Or email us your shipment details</p>
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form" id="contactForm" action="https://formspree.io/f/mzebkwyr" method="POST">
+            <!-- Sets the subject line on the email Formspree delivers —
+                 a Formspree-specific field, not shown to the visitor. -->
+            <input type="hidden" name="_subject" value="New quote request — On-Time Logistics website" />
             <div class="contact-form-row">
               <div class="contact-form-field">
                 <label for="contactName">Full Name</label>
@@ -724,6 +727,17 @@
                 <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </button>
+
+            <!-- Success/error feedback after a real submit attempt (see
+                 js/script.js) — hidden until the form is actually
+                 submitted, toggled between the two states by JS. -->
+            <p class="contact-form-status contact-form-status--success" id="contactFormSuccess" role="status" hidden>
+              Thanks — your request is in. We'll get back to you within the hour.
+            </p>
+            <p class="contact-form-status contact-form-status--error" id="contactFormError" role="alert" hidden>
+              Something went wrong sending this — please try again, or reach us directly on
+              <a href="https://wa.me/995555040608" target="_blank" rel="noopener">WhatsApp</a>.
+            </p>
           </form>
         </div>
 

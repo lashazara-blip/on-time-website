@@ -1708,6 +1708,29 @@ a:hover {
   transform: translateX(3px);
 }
 
+/* Feedback shown after a real submit attempt to the Formspree endpoint
+   (see js/script.js) — success in the site's cyan accent, error in a
+   soft warm red, both quiet text rather than a loud banner since this
+   sits right under a button the visitor just pressed. */
+.contact-form-status {
+  margin-top: 4px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.contact-form-status--success {
+  color: var(--cyan);
+}
+
+.contact-form-status--error {
+  color: oklch(72% 0.15 30);
+}
+
+.contact-form-status--error a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .contact-address svg {
   flex-shrink: 0;
   margin-top: 2px;
