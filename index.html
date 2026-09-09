@@ -399,27 +399,54 @@
           </a>
         </div>
 
+        <!-- Per Lasha's reference screenshot: a connected 01-04 "track" of
+             circled numbers sits above the 4 step cards, aligned to each
+             card via the same grid-template-columns/gap as .process-grid
+             below (so the circles land exactly above each card's left
+             edge). Purely decorative/visual — the real step order is
+             still conveyed by DOM order + each card's heading — so it's
+             aria-hidden and the numbers were dropped from inside the
+             cards to avoid saying "01" twice. -->
+        <div class="process-track" aria-hidden="true">
+          <div class="process-track-step">
+            <span class="process-circle">01</span>
+            <span class="process-line"></span>
+          </div>
+          <div class="process-track-step">
+            <span class="process-circle">02</span>
+            <span class="process-line"></span>
+          </div>
+          <div class="process-track-step">
+            <span class="process-circle">03</span>
+            <span class="process-line"></span>
+          </div>
+          <div class="process-track-step">
+            <span class="process-circle">04</span>
+            <span class="process-line"></span>
+          </div>
+        </div>
+
         <div class="process-grid">
           <div class="process-step">
-            <span class="process-step-number">01</span>
+            <span class="process-step-badge">Same Day</span>
             <h3>Request a Quote</h3>
             <p>Send your cargo details on WhatsApp, by email, or with the calculator below — we confirm your rate, route, and timing.</p>
           </div>
 
           <div class="process-step">
-            <span class="process-step-number">02</span>
+            <span class="process-step-badge">1&ndash;2 Days</span>
             <h3>Booking &amp; Pickup</h3>
             <p>Once confirmed, we book your space and arrange pickup or consolidation at origin — China, Europe, or anywhere in between.</p>
           </div>
 
           <div class="process-step">
-            <span class="process-step-number">03</span>
+            <span class="process-step-badge">Live Tracking</span>
             <h3>Customs &amp; Transit</h3>
             <p>Your cargo clears customs and moves door to door on our own fleet and trusted carriers, with 24/7 dispatch keeping it on schedule.</p>
           </div>
 
           <div class="process-step">
-            <span class="process-step-number">04</span>
+            <span class="process-step-badge">On the Promised Date</span>
             <h3>Delivery</h3>
             <p>Your shipment arrives on time, exactly where it needs to be — with tracking and support the whole way.</p>
           </div>

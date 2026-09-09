@@ -984,11 +984,49 @@ a:hover {
   flex-shrink: 0;
 }
 
+/* Connected 01-04 number track above the cards — see the HTML comment
+   above .process-track. Shares .process-grid's exact column/gap recipe
+   so the circles line up above each card. */
+.process-track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.process-track-step {
+  display: flex;
+  align-items: center;
+}
+
+.process-circle {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--cyan);
+  background: oklch(58% 0.14 210 / 0.14);
+  border: 1px solid oklch(58% 0.14 210 / 0.45);
+}
+
+.process-line {
+  flex: 1 1 auto;
+  height: 1px;
+  margin-left: 14px;
+  background: linear-gradient(to right, oklch(58% 0.14 210 / 0.45), oklch(58% 0.14 210 / 0.05));
+}
+
 .process-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 28px;
-  margin-top: 40px;
+  margin-top: 18px;
 }
 
 .process-step {
@@ -1014,17 +1052,21 @@ a:hover {
   border-color: oklch(65% 0.1 210 / 0.55);
 }
 
-.process-step-number {
-  display: block;
-  font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
+.process-step-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: oklch(58% 0.14 210 / 0.14);
+  color: var(--cyan);
+  font-size: 11px;
   font-weight: 700;
-  font-size: 28px;
-  color: oklch(80% 0.1 210);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .process-step h3 {
-  font-size: 17px;
-  margin-top: 10px;
+  font-size: 19px;
+  margin-top: 14px;
   line-height: 1.3;
   color: var(--white);
 }
@@ -1037,9 +1079,19 @@ a:hover {
 }
 
 @media (max-width: 1100px) {
+  /* The connected track only makes sense as a straight 4-in-a-row line
+     above a 4-column grid — once .process-grid wraps to 2 or 1 columns
+     below, four circles across the top would no longer sit above their
+     matching card. Each card still carries its own timing badge, so the
+     "same day / 1-2 days / ..." info isn't lost, just the connector. */
+  .process-track {
+    display: none;
+  }
+
   .process-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     row-gap: 32px;
+    margin-top: 40px;
   }
 }
 
