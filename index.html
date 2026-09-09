@@ -640,103 +640,86 @@
     </section>
 
     <!-- ========== PARTNERS ==========
-         Per Lasha, inspired by weforward.ge's partner strip — but as a
-         moving carousel of separate boxes (not one static row), and logos
-         shown in full color from the start (no grayscale/hover-to-color
-         step like the first version). Pure CSS marquee: .partners-track
-         holds all 12 logo boxes TWICE back to back (same list repeated),
-         then scrolls left forever via @keyframes partners-scroll — since
-         the two halves are identical, the instant it finishes scrolling
-         past the first half it's showing the exact same thing again, so
-         the loop point is invisible. .partners-marquee (the outer clip)
-         fades both edges to transparent (mask-image) so boxes don't pop
-         in/out abruptly at the sides, and pauses the animation on
-         hover/focus so a visitor can actually read a logo they stop on.
-         All 12 of Lasha's companies are here now — MAN and Hapag-Lloyd
-         were flattened onto a plain white background (not kept
-         transparent) since that's an exact match for .partner-logo's own
-         white card background anyway, and it also sidesteps the
-         clipart-site checkerboard artifact both source files had. Their
-         source images still carry a very faint "cleanpng" watermark
-         ghost at full resolution (visible if you open images/partners/
-         man.png or hapag-lloyd.png directly and zoom in), but it's not
-         noticeable at the ~40px display height used here — if Lasha ever
-         gets cleaner official/Wikipedia source files for these two (see
-         chat), just swap these two PNGs for better ones at the same
-         filenames. -->
+         Redesigned per Lasha's reference video: instead of copy-on-top +
+         one full-width logo row below, this is now a single side-by-side
+         box — copy + a new stat trio on the left, TWO stacked logo rows
+         scrolling in OPPOSITE directions on the right (top row left,
+         bottom row right — same "opposite marquees" effect as the video).
+         The 12 companies are split 6/6 across the two rows. Each row is
+         still the same seamless-loop trick as before (its 6 logos listed
+         twice back to back, scrolled exactly half its own width), just
+         with .partners-track-reverse playing that same animation in
+         reverse for the bottom row instead of a second keyframe. The
+         wireframe globe graphic is dropped here — two rows of real
+         carrier logos now do more to back up "global network" than the
+         faint decorative globe did, and it isn't in Lasha's reference.
+         MOCKUP NOTE: the 12+ / 40+ / 98% stat trio is placeholder copy
+         carried over from Lasha's reference video, NOT verified real
+         numbers for on-time.ge — needs his confirmation/correction before
+         this goes live (flagged again in chat). -->
     <section class="partners" id="partners">
-      <!-- Per Lasha: boxed in the same style as Services/How It Works/
-           Calculator/Contact, so this reads as one more of the site's
-           consistent boxed sections instead of bare text. The wireframe
-           globe graphic (see below) moved inside this box along with it —
-           it used to sit behind the whole section; now it's scoped to,
-           and clipped by, the box itself. -->
-      <div class="partners-intro reveal">
-        <!-- New per Lasha: "Trusted by the World's Leading Carriers" had
-             no visual to back up the "global" claim — just the logo strip
-             further down. A faint wireframe-globe + route-line graphic
-             behind this text gives that headline something to stand on,
-             without adding a whole new section. Purely decorative
-             (aria-hidden), very low opacity, clipped by this box's own
-             overflow:hidden so it never pokes out past the rounded
-             corners or interferes with the marquee below. -->
-        <svg class="partners-globe" viewBox="0 0 800 400" aria-hidden="true" focusable="false">
-          <circle cx="400" cy="200" r="170" />
-          <ellipse cx="400" cy="200" rx="147.2" ry="170" />
-          <ellipse cx="400" cy="200" rx="85" ry="170" />
-          <line x1="245.9" y1="128.2" x2="554.1" y2="128.2" />
-          <line x1="245.9" y1="271.8" x2="554.1" y2="271.8" />
-          <line x1="290.7" y1="69.8" x2="509.3" y2="69.8" />
-          <line x1="290.7" y1="330.2" x2="509.3" y2="330.2" />
-          <path class="partners-globe-route" d="M310,160 Q355,120 400,180" />
-          <path class="partners-globe-route" d="M400,180 Q430,140 460,170" />
-          <path class="partners-globe-route" d="M460,170 Q495,150 530,190" />
-          <path class="partners-globe-route" d="M400,180 Q390,220 380,250" />
-          <circle class="partners-globe-node" cx="310" cy="160" r="4.5" />
-          <circle class="partners-globe-node" cx="400" cy="180" r="4.5" />
-          <circle class="partners-globe-node" cx="460" cy="170" r="4.5" />
-          <circle class="partners-globe-node" cx="530" cy="190" r="4.5" />
-          <circle class="partners-globe-node" cx="380" cy="250" r="4.5" />
-        </svg>
+      <div class="partners-box reveal">
+        <div class="partners-copy">
+          <p class="eyebrow eyebrow-light">Global Network</p>
+          <h2>Trusted by the World's Leading Carriers</h2>
+          <p class="section-subtext">
+            We work daily alongside the world's largest shipping lines and
+            equipment manufacturers to keep cargo moving on schedule.
+          </p>
 
-        <p class="eyebrow eyebrow-light">Global Network</p>
-        <h2>Trusted by the World's Leading Carriers</h2>
-        <p class="section-subtext">
-          We work daily alongside the world's largest shipping lines and
-          equipment manufacturers to keep cargo moving on schedule.
-        </p>
-      </div>
+          <div class="partners-stats">
+            <div class="partners-stat">
+              <span class="partners-stat-value">12+</span>
+              <span class="partners-stat-label">Shipping Lines</span>
+            </div>
+            <div class="partners-stat">
+              <span class="partners-stat-value">40+</span>
+              <span class="partners-stat-label">Ports Served</span>
+            </div>
+            <div class="partners-stat">
+              <span class="partners-stat-value">98%</span>
+              <span class="partners-stat-label">On-Time Delivery</span>
+            </div>
+          </div>
+        </div>
 
-      <div class="partners-marquee">
-        <div class="partners-track">
-          <div class="partner-logo"><img src="images/partners/maersk.png" alt="Maersk" /></div>
-          <div class="partner-logo"><img src="images/partners/msc.png" alt="MSC" /></div>
-          <div class="partner-logo"><img src="images/partners/cma-cgm.png" alt="CMA CGM" /></div>
-          <div class="partner-logo"><img src="images/partners/cosco.png" alt="COSCO Shipping" /></div>
-          <div class="partner-logo"><img src="images/partners/evergreen.png" alt="Evergreen" /></div>
-          <div class="partner-logo"><img src="images/partners/yang-ming.png" alt="Yang Ming" /></div>
-          <div class="partner-logo"><img src="images/partners/arkas.png" alt="Arkas" /></div>
-          <div class="partner-logo"><img src="images/partners/one.png" alt="Ocean Network Express" /></div>
-          <div class="partner-logo"><img src="images/partners/zim.png" alt="ZIM" /></div>
-          <div class="partner-logo"><img src="images/partners/schmitz.png" alt="Schmitz Cargobull" /></div>
-          <div class="partner-logo"><img src="images/partners/man.png" alt="MAN" /></div>
-          <div class="partner-logo"><img src="images/partners/hapag-lloyd.png" alt="Hapag-Lloyd" /></div>
-          <!-- Same 12, repeated — this second copy is what makes the loop
-               seamless (see comment above the section). Marked
-               aria-hidden + no alt text since it's a visual duplicate,
-               not new content, for screen readers. -->
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/maersk.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/msc.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/cma-cgm.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/cosco.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/evergreen.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/yang-ming.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/arkas.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/one.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/zim.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/schmitz.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/man.png" alt="" /></div>
-          <div class="partner-logo" aria-hidden="true"><img src="images/partners/hapag-lloyd.png" alt="" /></div>
+        <div class="partners-marquee-wrap">
+          <div class="partners-row">
+            <div class="partners-track">
+              <div class="partner-logo"><img src="images/partners/maersk.png" alt="Maersk" /></div>
+              <div class="partner-logo"><img src="images/partners/msc.png" alt="MSC" /></div>
+              <div class="partner-logo"><img src="images/partners/cma-cgm.png" alt="CMA CGM" /></div>
+              <div class="partner-logo"><img src="images/partners/cosco.png" alt="COSCO Shipping" /></div>
+              <div class="partner-logo"><img src="images/partners/evergreen.png" alt="Evergreen" /></div>
+              <div class="partner-logo"><img src="images/partners/yang-ming.png" alt="Yang Ming" /></div>
+              <!-- Same 6, repeated — seamless-loop trick, see section
+                   comment. aria-hidden + empty alt since it's a visual
+                   duplicate, not new content. -->
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/maersk.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/msc.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/cma-cgm.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/cosco.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/evergreen.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/yang-ming.png" alt="" /></div>
+            </div>
+          </div>
+
+          <div class="partners-row">
+            <div class="partners-track partners-track-reverse">
+              <div class="partner-logo"><img src="images/partners/arkas.png" alt="Arkas" /></div>
+              <div class="partner-logo"><img src="images/partners/one.png" alt="Ocean Network Express" /></div>
+              <div class="partner-logo"><img src="images/partners/zim.png" alt="ZIM" /></div>
+              <div class="partner-logo"><img src="images/partners/schmitz.png" alt="Schmitz Cargobull" /></div>
+              <div class="partner-logo"><img src="images/partners/man.png" alt="MAN" /></div>
+              <div class="partner-logo"><img src="images/partners/hapag-lloyd.png" alt="Hapag-Lloyd" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/arkas.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/one.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/zim.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/schmitz.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/man.png" alt="" /></div>
+              <div class="partner-logo" aria-hidden="true"><img src="images/partners/hapag-lloyd.png" alt="" /></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

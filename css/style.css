@@ -1107,7 +1107,7 @@ a:hover {
 
 /* ---------- Scroll-reveal ----------
    New per Lasha — section boxes (.services-box, .process-box,
-   .calculator-card, .contact-box, .partners-intro) fade and rise into
+   .calculator-card, .contact-box, .partners-box) fade and rise into
    place the first time they scroll into view, instead of just appearing.
    The class is added directly in the HTML; js/script.js toggles
    .is-visible via IntersectionObserver, once per element. Skipped
@@ -1484,72 +1484,19 @@ a:hover {
   padding-bottom: 88px;
 }
 
-/* New per Lasha: faint wireframe-globe background behind the "Trusted by
-   the World's Leading Carriers" intro, giving that headline a visual to
-   back it up. Lives inside .partners-intro (not .partners) now that the
-   intro is boxed — see .partners-intro below — so it's clipped to the
-   box's own rounded corners and sits behind the box's own (semi-
-   transparent) fill rather than the whole section. z-index: -1 (not the
-   more obvious 0) because .partners-intro is position: relative — that
-   alone makes it a stacking context, and without a negative z-index a
-   position:absolute child paints ABOVE normal-flow siblings regardless
-   of DOM order, which would put this on top of the eyebrow/heading/
-   subtext instead of behind them. */
-.partners-globe {
-  position: absolute;
-  top: 50%;
-  right: -6%;
-  transform: translateY(-50%);
-  width: min(680px, 58vw);
-  height: auto;
-  opacity: 0.16;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.partners-globe circle:not(.partners-globe-node),
-.partners-globe ellipse,
-.partners-globe line {
-  fill: none;
-  stroke: oklch(78% 0.06 210);
-  stroke-width: 1;
-}
-
-.partners-globe-route {
-  fill: none;
-  stroke: var(--cyan);
-  stroke-width: 1.5;
-  stroke-dasharray: 4 5;
-}
-
-.partners-globe-node {
-  fill: var(--cyan);
-}
-
-@media (max-width: 860px) {
-  /* Narrow viewports stack the intro text above a full-width marquee
-     with little room to spare — the globe would either crowd the text
-     or need shrinking to the point of being pointless, so it's simplest
-     to just skip it here, same as a few other decorative-only elements
-     already do at this breakpoint. */
-  .partners-globe {
-    display: none;
-  }
-}
-
-/* Per Lasha: boxed in the same plain translucent recipe as .services-box/
-   .calculator-card/.contact-box, so "Trusted by the World's Leading
-   Carriers" reads as one more of the site's consistent boxed sections
-   instead of bare text. Uses margin (not padding) for its left/right
-   inset — NOT on .partners itself, since .partners-marquee (below) still
-   needs to stay edge to edge for the scrolling strip to look continuous
-   — so the BOX lines up on the same left/right edges as every other
-   section's box, with its own padding below handling the text inset
-   from there. position: relative + overflow: hidden contain
-   .partners-globe (see above) within the box's rounded corners. */
-.partners-intro {
-  position: relative;
-  overflow: hidden;
+/* Per Lasha's reference video: one side-by-side box — copy+stats on the
+   left, two opposite-scrolling logo rows on the right — replacing the
+   old copy-on-top / single full-width row layout. Same plain translucent
+   box recipe as .services-box/.calculator-card/.contact-box so it still
+   reads as one more of the site's consistent boxed sections. Uses margin
+   (not padding) for its left/right inset so it lines up on the same
+   edges as every other section's box, while each .partners-row inside
+   still runs its own logos edge to edge within that box for the
+   scrolling strip to look continuous. */
+.partners-box {
+  display: flex;
+  align-items: center;
+  gap: 48px;
   margin-left: clamp(20px, 2.5vw, 56px);
   margin-right: clamp(20px, 2.5vw, 56px);
   background: oklch(15% 0.05 258 / 0.5);
@@ -1559,6 +1506,11 @@ a:hover {
   border-radius: 22px;
   padding: 40px clamp(24px, 4vw, 56px);
   box-shadow: 0 18px 40px oklch(10% 0.05 258 / 0.35);
+}
+
+.partners-copy {
+  flex: 0 0 auto;
+  max-width: 400px;
 }
 
 .partners h2 {
@@ -1571,38 +1523,81 @@ a:hover {
   color: var(--white);
 }
 
-/* The clipping viewport for the marquee. Deliberately NOT inside
-   .container — it needs to run edge to edge (full viewport width) for
-   the scrolling strip to look continuous, unlike the rest of the section
-   which stays inside the centered 1400px .container. The mask-image
-   fades both edges to transparent so logo boxes fade out/in at the sides
-   instead of being sliced off by a hard edge. */
-.partners-marquee {
-  margin-top: 44px;
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%);
+/* New per Lasha's reference: a small stat trio under the copy (12+
+   Shipping Lines / 40+ Ports Served / 98% On-Time Delivery) — same
+   number-over-label pattern as the hero's own stat trio, just smaller,
+   since this box is narrower. MOCKUP NOTE: these three values are
+   placeholder copy carried over from the reference video, not confirmed
+   real numbers yet — see the HTML comment above this section. */
+.partners-stats {
+  display: flex;
+  gap: 28px;
+  margin-top: 28px;
 }
 
-/* Holds the 12 logo boxes twice (see the HTML comment on the Partners
-   section for why) laid out in one long row via width: max-content, then
-   scrolled left by exactly half its own width — since both halves are
-   identical, that's the point where it's showing the same thing it
-   started with, so the loop repeats invisibly. */
+.partners-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.partners-stat-value {
+  font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--cyan);
+}
+
+.partners-stat-label {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: oklch(78% 0.02 260);
+}
+
+.partners-marquee-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* The clipping viewport for one logo row. mask-image fades both edges to
+   transparent so logo boxes fade out/in at the sides instead of being
+   sliced off by a hard edge — including the left edge where this row
+   meets .partners-copy. */
+.partners-row {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 48px, black calc(100% - 48px), transparent 100%);
+}
+
+/* Holds one row's 6 logo boxes twice (see the HTML comment on the
+   Partners section for why) laid out in one long row via width:
+   max-content, then scrolled left by exactly half its own width — since
+   both halves are identical, that's the point where it's showing the
+   same thing it started with, so the loop repeats invisibly. */
 .partners-track {
   display: flex;
   gap: 20px;
   width: max-content;
-  /* 34s → 40s now that there are 12 logos instead of 10, so each box
-     still gets roughly the same time on screen (speed stays consistent
-     rather than the whole loop feeling rushed). */
-  animation: partners-scroll 40s linear infinite;
+  animation: partners-scroll 28s linear infinite;
+}
+
+/* Bottom row: same seamless-loop animation, just played back to front —
+   -50% to 0 instead of 0 to -50% — which reads as scrolling right
+   instead of left, so the two rows move in opposite directions like the
+   reference video, without needing a second keyframe. */
+.partners-track-reverse {
+  animation-direction: reverse;
 }
 
 /* Pausing on hover/focus lets a visitor actually read a logo they stop
    on, instead of it sliding away mid-glance. */
-.partners-marquee:hover .partners-track,
-.partners-marquee:focus-within .partners-track {
+.partners-marquee-wrap:hover .partners-track,
+.partners-marquee-wrap:focus-within .partners-track {
   animation-play-state: paused;
 }
 
@@ -1639,12 +1634,27 @@ a:hover {
 }
 
 /* Respect the OS-level "reduce motion" setting — the logos still show
-   (as one full static row, since the track just holds still), nothing
-   scrolls for anyone who's asked their system to avoid this kind of
-   continuous motion. */
+   (as one full static row each, since the track just holds still),
+   nothing scrolls for anyone who's asked their system to avoid this kind
+   of continuous motion. */
 @media (prefers-reduced-motion: reduce) {
   .partners-track {
     animation: none;
+  }
+}
+
+@media (max-width: 860px) {
+  /* Narrow viewports stack copy above the two logo rows instead of
+     side by side — there isn't room for a fixed-width copy column next
+     to two scrolling rows once the box goes this narrow. */
+  .partners-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+  }
+
+  .partners-copy {
+    max-width: none;
   }
 }
 
@@ -2372,7 +2382,7 @@ a:hover {
     padding: 22px 20px;
   }
 
-  .partners-intro {
+  .partners-box {
     padding: 28px 22px;
     border-radius: 16px;
   }
@@ -2427,7 +2437,7 @@ a:hover {
   }
 
   /* Smaller boxes + a shorter loop distance so the animation's speed
-     (still 40s per lap) doesn't feel sluggish on a narrower strip. */
+     (still 28s per lap) doesn't feel sluggish on a narrower strip. */
   .partner-logo {
     width: 130px;
     height: 76px;
@@ -2438,9 +2448,13 @@ a:hover {
     max-height: 30px;
   }
 
-  .partners-marquee {
+  .partners-row {
     mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+  }
+
+  .partners-stats {
+    gap: 20px;
   }
 
   .main-nav {
