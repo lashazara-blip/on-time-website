@@ -279,11 +279,10 @@ a:hover {
 
 /* Per Lasha: nav links now match the site's "boxed" language everywhere
    else (Hero/About/Services cards) — thin, translucent boxes with a
-   soft shadow, same family as .nav-search/.lang-switch below so the
-   whole right side of the header reads as one consistent system. Lifts
-   slightly on hover as the one piece of feedback (these do navigate,
-   unlike the two inert controls below, which stay static — see their
-   comment). */
+   soft shadow, same family as .nav-search below so the whole right side
+   of the header reads as one consistent system. Lifts slightly on hover
+   as the one piece of feedback (these do navigate, unlike .nav-search,
+   which stays static — see its own comment). */
 .main-nav a {
   display: inline-flex;
   align-items: center;
@@ -331,13 +330,14 @@ a:hover {
   box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
 }
 
-/* ---------- Header utility: search box + GE/EN ----------
-   Both are VISUAL ONLY for now, per Lasha — "for show", not wired up
-   yet (no search backend, no Georgian version of the site). Now boxed in
-   the same thin/translucent/soft-shadow recipe as .main-nav a above, for
-   a consistent header, but deliberately NOT given the hover-lift — they
-   still don't do anything yet, and lifting on hover would suggest
-   otherwise. Same idea as .nav-disabled. */
+/* ---------- Header utility: search box ----------
+   VISUAL ONLY for now, per Lasha — "for show", no search backend wired
+   up yet. Boxed in the same thin/translucent/soft-shadow recipe as
+   .main-nav a above, for a consistent header, but deliberately NOT given
+   the hover-lift — it doesn't do anything yet, and lifting on hover
+   would suggest otherwise. Same idea as .nav-disabled.
+   (The GE/EN language toggle that used to sit next to this was removed
+   per Lasha — see index.html's header-utility for why.) */
 .header-utility {
   display: flex;
   align-items: center;
@@ -360,36 +360,6 @@ a:hover {
   color: oklch(65% 0.02 260);
   font-size: 12.5px;
   cursor: default;
-}
-
-.lang-switch {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 16px;
-  background: oklch(22% 0.05 258 / 0.8);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid oklch(100% 0 0 / 0.14);
-  border-radius: 10px;
-  box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
-  font-size: 12.5px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: default;
-}
-
-.lang-current {
-  color: oklch(65% 0.02 260);
-}
-
-.lang-current:last-child {
-  /* "EN" reads as the active language since the site is English-only. */
-  color: var(--white);
-}
-
-.lang-divider {
-  color: oklch(45% 0.03 260);
 }
 
 /* ---------- Hero ----------
@@ -781,6 +751,19 @@ a:hover {
   grid-template-columns: repeat(4, 1fr);
   gap: 28px;
   margin-top: 44px;
+  /* Extra breathing room after the LAST row, on top of .services-box's
+     own bottom padding and .services' own section padding — per Lasha:
+     the fixed .quick-nav dock sits ~80px above the very bottom of the
+     viewport, and without this the last row's cards had barely any
+     runway before Process began, so a normal scroll gesture could
+     "settle" with that row's text still trapped behind the dock,
+     needing an extra deliberate scroll to read it. This gives scroll
+     momentum enough empty space to carry past the dock's band before
+     the section visually ends. Desktop only (see the mobile override
+     below) — mobile's dock is smaller and Lasha specifically asked for
+     TIGHTER section spacing there for a continuous-scroll feel, so this
+     shouldn't fight that fix. */
+  margin-bottom: 40px;
 }
 
 /* Ultra-wide monitors (Lasha's own setup included): with .services-box
@@ -2208,6 +2191,14 @@ a:hover {
   .services-box {
     padding: 32px 22px 40px;
     border-radius: 16px;
+  }
+
+  /* Cancels the desktop-only extra runway added to .services-grid above
+     — mobile stacks all 8 cards single-column (very tall already) and
+     just had its section gaps tightened for a continuous-scroll feel,
+     so this shouldn't add height back. */
+  .services-grid {
+    margin-bottom: 0;
   }
 
   .services-grid {
