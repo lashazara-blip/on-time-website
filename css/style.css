@@ -687,8 +687,13 @@ a:hover {
 /* ---------- Services ---------- */
 
 .services {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  /* Per Lasha: trimmed ~18% off this section's own top/bottom padding
+     (100px -> 82px, same reduction across .calculator/.process/
+     .partners/.contact below) — the gap between two boxed sections is
+     the sum of both their paddings, so a big desktop screen was leaving
+     noticeably more dead space between boxes than felt right. */
+  padding-top: 82px;
+  padding-bottom: 82px;
   /* Same left inset as .hero/.about-hero (not the shared centered
      .container) so .services-box lines up on exactly the same left edge
      as .hero-copy/.about-copy when scrolling — per Lasha, "What We Do"
@@ -897,8 +902,11 @@ a:hover {
    no price output (see the HTML comment on the section for why). */
 
 .calculator {
-  padding-top: 88px;
-  padding-bottom: 88px;
+  /* Per Lasha: ~18% less top/bottom padding (88px -> 72px), same as
+     .services/.process/.partners/.contact — see the comment on
+     .services above. */
+  padding-top: 72px;
+  padding-bottom: 72px;
   /* Same left/right inset as .hero/.services below, per Lasha — was the
      centered, capped .container before, which is why this section sat in
      the middle of the screen instead of lining up with the sections
@@ -941,8 +949,10 @@ a:hover {
    with a 4-up row of plain numbered steps instead of icon cards, so it
    reads as a quick, distinct beat rather than a repeat of Services. */
 .process {
-  padding-top: 88px;
-  padding-bottom: 88px;
+  /* Per Lasha: ~18% less top/bottom padding (88px -> 72px) — see the
+     comment on .services above. */
+  padding-top: 72px;
+  padding-bottom: 72px;
   padding-left: clamp(20px, 2.5vw, 56px);
   padding-right: clamp(20px, 2.5vw, 56px);
 }
@@ -1480,8 +1490,10 @@ a:hover {
    canvas without one. */
 
 .partners {
-  padding-top: 88px;
-  padding-bottom: 88px;
+  /* Per Lasha: ~18% less top/bottom padding (88px -> 72px) — see the
+     comment on .services above. */
+  padding-top: 72px;
+  padding-bottom: 72px;
 }
 
 /* Per Lasha's reference video: one side-by-side box — copy+stats on the
@@ -1661,8 +1673,10 @@ a:hover {
 /* ---------- Contact ---------- */
 
 .contact {
-  padding-top: 88px;
-  padding-bottom: 88px;
+  /* Per Lasha: ~18% less top/bottom padding (88px -> 72px) — see the
+     comment on .services above. */
+  padding-top: 72px;
+  padding-bottom: 72px;
   /* Same left/right inset as the rest of the page now, per Lasha — was
      the centered, capped .container before. */
   padding-left: clamp(20px, 2.5vw, 56px);
@@ -2292,37 +2306,38 @@ a:hover {
     display: none;
   }
 
-  /* Per Lasha: on mobile, every section's own 88-100px top/bottom
-     padding (tuned for how spacious that feels on a wide desktop
-     screen) stacks with the next section's matching padding into a
-     176-200px dead gap between one box's bottom edge and the next
-     box's top edge — on a 390px-wide phone that reads as the page
-     being broken into disconnected screens instead of one continuous
-     scroll. Roughly halved here so sections still breathe but the
-     scroll feels like one page. */
+  /* Per Lasha: on mobile, every section's own top/bottom padding (tuned
+     for how spacious that feels on a wide desktop screen) stacks with
+     the next section's matching padding into a dead gap between one
+     box's bottom edge and the next box's top edge — on a 390px-wide
+     phone that reads as the page being broken into disconnected screens
+     instead of one continuous scroll. Roughly halved from desktop here
+     so sections still breathe but the scroll feels like one page; each
+     trimmed another ~18% (was 48px) alongside the desktop reduction
+     above, same reasoning. */
   .services {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .process {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .calculator {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .partners {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .contact {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .services-box {
