@@ -456,3 +456,38 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
       });
   });
 })();
+
+// ---------- Office hours status (Contact section map card) ----------
+// Per Lasha: the map card's "Open now" / "Closed" indicator is computed
+// live from the real current time in Tbilisi (Mon–Fri 09:00–18:00,
+// closed weekends) rather than hardcoded — Intl.DateTimeFormat with an
+// explicit timeZone reads the correct local hour/weekday in Tbilisi no
+// matter what timezone the visitor's own device is set to, so this is
+// right for everyone, not just people physically in Georgia. The status
+// element starts `hidden` in the HTML precisely so a slow or blocked
+// script just shows nothing instead of a stale/wrong default.
+(function () {
+  const statusEl = document.getElementById('officeStatus');
+  const textEl = document.getElementById('officeStatusText');
+  if (!statusEl || !textEl) return;
+
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Tbilisi',
+    weekday: 'short',
+    hour: 'numeric',
+    hour12: false,
+  }).formatToParts(new Date());
+
+  const weekday = parts.find((p) => p.type === 'weekday').value;
+  // Some engines report midnight as "24" rather than "0" with
+  // hour12: false — % 24 normalizes either to the same 0-23 range.
+  const hour = parseInt(parts.find((p) => p.type === 'hour').value, 10) % 24;
+
+  const isWeekday = weekday !== 'Sat' && weekday !== 'Sun';
+  const isOpen = isWeekday && hour >= 9 && hour < 18;
+
+  statusEl.classList.toggle('is-open', isOpen);
+  statusEl.classList.toggle('is-closed', !isOpen);
+  textEl.textContent = isOpen ? 'Open now' : 'Closed';
+  statusEl.hidden = false;
+})();

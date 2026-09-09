@@ -727,102 +727,113 @@
     </section>
 
     <!-- ========== CONTACT / CTA ==========
-         Per Lasha: added a live Google Maps embed (no API key needed —
-         the plain maps.google.com/maps?...&output=embed form) pinned to
-         the real office address, sitting in its own card to the right
-         of the copy. The old bordered "address column" is gone; the
-         address + a "Get directions" link (opens Google Maps with
-         driving directions pre-filled) now live directly under the
-         WhatsApp button instead. -->
+         Redesigned per Lasha's reference screenshots: two big WhatsApp/
+         Email buttons up top (WhatsApp primary/wide, Email secondary),
+         then a divider, then a shorter quote-request form — Full Name +
+         Email or WhatsApp (one combined field, not separate Email/Phone),
+         Route, a pill-style Shipment Type picker (was a <select>
+         dropdown), and an optional Cargo Details textarea. Kept our own
+         subtext copy rather than the reference's ("Send route and cargo
+         details…") since it wasn't dictated in chat — easy to swap if
+         Lasha wants that exact wording. The right-side live Google Maps
+         iframe is gone too, replaced with a stylized dark map "card" (the
+         site's own grid-pattern background, an HQ pin, an "Open in
+         Maps ↗" link, and a bottom info card with address/directions/
+         hours) so this panel matches the site's dark palette instead of
+         a bright embedded map — pan/zoom is traded for "Open in Maps"/
+         "Directions" links to the real Google Maps. Hours are fixed at
+         Mon–Fri 09:00–18:00 per Lasha (closed weekends, so no Saturday
+         line); the "Open now"/"Closed" status next to them is computed
+         live from the real Tbilisi time by js/script.js, not hardcoded. -->
     <section class="contact" id="contact">
       <div class="contact-box reveal">
         <div class="contact-copy">
           <h2>Ready to move your cargo?</h2>
           <p>Message us on WhatsApp or by email for a quote — we'll confirm your rate, route, and timing.</p>
 
-          <div class="contact-address">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 22s7-7.58 7-12.5A7 7 0 0 0 5 9.5C5 14.42 12 22 12 22z" stroke="currentColor" stroke-width="1.6"/>
-              <circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6"/>
-            </svg>
-            <span>
-              4 Vladimer Ugrekhelidze St<br />
-              Tbilisi 0186, Georgia
-              <a
-                class="contact-directions"
-                href="https://www.google.com/maps/dir/?api=1&destination=4+Vladimer+Ugrekhelidze+St%2C+Tbilisi+0186%2C+Georgia"
-                target="_blank"
-                rel="noopener"
-              >Get directions →</a>
-            </span>
+          <div class="contact-cta-row">
+            <a
+              class="btn btn-cyan contact-cta-whatsapp"
+              href="https://wa.me/995555040608?text=Hello%2C%20I%27d%20like%20a%20shipping%20quote"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.05 2zm5.8 14.02c-.24.68-1.4 1.32-1.94 1.36-.5.04-1.02.24-3.43-.72-2.9-1.15-4.79-4.06-4.94-4.25-.15-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2.01.9 2.16.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2 1.11.99 2.05 1.3 2.34 1.45.29.15.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.64.77 1.92.91.28.14.47.21.54.33.07.12.07.68-.17 1.36z" />
+              </svg>
+              WhatsApp — replies in 15 min
+            </a>
+            <a class="btn btn-outline contact-cta-email" href="mailto:sale@on-time.ge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+                <path d="m3 6.5 9 6.5 9-6.5" />
+              </svg>
+              Email
+            </a>
           </div>
 
-          <!-- MOCKUP per Lasha — visual only for now, not wired to a
-               backend yet. WhatsApp button above is untouched/unchanged.
-               Redesigned (per Lasha) to not read as a copy of a
-               competitor's reference layout: fields are grouped
-               Name+Company / Email+Phone (not a generic First+Last row),
-               there's a Shipment Route field specific to freight
-               quoting, the intro is a small eyebrow line rather than a
-               second big heading duplicating "Ready to move your
-               cargo?", and the button reads "Request a Quote" — the
-               actual thing a visitor using this form wants — instead of
-               a generic "Send Message". Submissions will go straight to
-               email (Formspree or similar, once approved) rather than
-               opening the visitor's own email client. -->
-          <p class="contact-form-eyebrow">Or email us your shipment details</p>
+          <p class="contact-divider">or fill the short form</p>
+
           <form class="contact-form" id="contactForm" action="https://formspree.io/f/mzebkwyr" method="POST">
             <!-- Sets the subject line on the email Formspree delivers —
                  a Formspree-specific field, not shown to the visitor. -->
             <input type="hidden" name="_subject" value="New quote request — On-Time Logistics website" />
             <div class="contact-form-row">
               <div class="contact-form-field">
-                <label for="contactName">Full Name</label>
-                <input type="text" id="contactName" name="name" autocomplete="name" />
+                <label for="contactName">Full name</label>
+                <input type="text" id="contactName" name="name" autocomplete="name" placeholder="Your name" />
               </div>
               <div class="contact-form-field">
-                <label for="contactCompany">Company</label>
-                <input type="text" id="contactCompany" name="company" autocomplete="organization" />
-              </div>
-            </div>
-            <div class="contact-form-row">
-              <div class="contact-form-field">
-                <label for="contactEmail">Email</label>
-                <input type="email" id="contactEmail" name="email" autocomplete="email" required />
-              </div>
-              <div class="contact-form-field">
-                <label for="contactPhone">Phone Number</label>
-                <input type="tel" id="contactPhone" name="phone" autocomplete="tel" />
-              </div>
-            </div>
-            <div class="contact-form-row">
-              <div class="contact-form-field">
-                <label for="contactShipmentType">Shipment Type</label>
-                <select id="contactShipmentType" name="shipmentType">
-                  <option value="">Select one</option>
-                  <option value="fcl">Full Container Load (FCL)</option>
-                  <option value="lcl">Less than Container Load (LCL)</option>
-                  <option value="ftl">Full Truckload (FTL)</option>
-                  <option value="ltl">Less than Truckload (LTL)</option>
-                  <option value="refrigerated">Refrigerated / Temperature-Controlled</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div class="contact-form-field">
-                <label for="contactRoute">Shipment Route</label>
-                <input type="text" id="contactRoute" name="route" placeholder="e.g. Shanghai → Poti → Tbilisi" />
+                <label for="contactReply">Email or WhatsApp</label>
+                <input type="text" id="contactReply" name="reply" autocomplete="email" placeholder="So we can reply" required />
               </div>
             </div>
             <div class="contact-form-field">
-              <label for="contactMessage">Message</label>
-              <textarea id="contactMessage" name="message" rows="3" placeholder="Cargo type, volume, timing…"></textarea>
+              <label for="contactRoute">Route</label>
+              <input type="text" id="contactRoute" name="route" placeholder="Shanghai → Poti → Tbilisi" />
             </div>
-            <button type="submit" class="btn btn-primary contact-form-submit">
-              Request a Quote
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
+            <div class="contact-form-field">
+              <label id="shipmentTypeLabel">Shipment type</label>
+              <div class="shipment-type-group" role="radiogroup" aria-labelledby="shipmentTypeLabel">
+                <label class="shipment-type-pill">
+                  <input type="radio" name="shipmentType" value="FCL" />
+                  <span>FCL</span>
+                </label>
+                <label class="shipment-type-pill">
+                  <input type="radio" name="shipmentType" value="LCL" />
+                  <span>LCL</span>
+                </label>
+                <label class="shipment-type-pill">
+                  <input type="radio" name="shipmentType" value="FTL" />
+                  <span>FTL</span>
+                </label>
+                <label class="shipment-type-pill">
+                  <input type="radio" name="shipmentType" value="LTL" />
+                  <span>LTL</span>
+                </label>
+                <label class="shipment-type-pill">
+                  <input type="radio" name="shipmentType" value="Reefer" />
+                  <span>Reefer</span>
+                </label>
+                <label class="shipment-type-pill">
+                  <input type="radio" name="shipmentType" value="Customs only" />
+                  <span>Customs only</span>
+                </label>
+              </div>
+            </div>
+            <div class="contact-form-field">
+              <label for="contactMessage">Cargo details <span class="contact-form-field-optional">— optional</span></label>
+              <textarea id="contactMessage" name="message" rows="3" placeholder="Weight, volume, timing, special handling"></textarea>
+            </div>
+            <div class="contact-form-submit-row">
+              <button type="submit" class="btn btn-cyan contact-form-submit">
+                Request a quote
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <span class="contact-form-note">Goes straight to dispatch. No newsletters.</span>
+            </div>
 
             <!-- Success/error feedback after a real submit attempt (see
                  js/script.js) — hidden until the form is actually
@@ -838,12 +849,50 @@
         </div>
 
         <div class="contact-map">
-          <iframe
-            title="On-Time Logistics Company on the map"
-            src="https://maps.google.com/maps?q=4%20Vladimer%20Ugrekhelidze%20St%2C%20Tbilisi%200186%2C%20Georgia&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+          <a
+            class="contact-map-open"
+            href="https://www.google.com/maps/search/?api=1&query=4+Vladimer+Ugrekhelidze+St%2C+Tbilisi+0186%2C+Georgia"
+            target="_blank"
+            rel="noopener"
+          >
+            Open in Maps
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+
+          <div class="contact-map-pin" aria-hidden="true">
+            <span class="contact-map-pin-glow"></span>
+            <span class="contact-map-pin-shape"></span>
+            <span class="contact-map-pin-label">HQ</span>
+          </div>
+
+          <div class="contact-map-card">
+            <div class="contact-map-card-head">
+              <span class="contact-map-card-label">Head Office</span>
+              <a
+                class="contact-directions"
+                href="https://www.google.com/maps/dir/?api=1&destination=4+Vladimer+Ugrekhelidze+St%2C+Tbilisi+0186%2C+Georgia"
+                target="_blank"
+                rel="noopener"
+              >Directions →</a>
+            </div>
+            <p class="contact-map-card-address">
+              4 Vladimer Ugrekhelidze St<br />
+              Tbilisi 0186, Georgia
+            </p>
+            <div class="contact-map-card-hours">
+              <span>Mon–Fri 09:00–18:00</span>
+              <!-- Filled in by js/script.js from the real current time in
+                   Tbilisi — see the comment there. Hidden until JS sets
+                   it so a slow/blocked script never shows a wrong
+                   default instead of just nothing. -->
+              <span class="contact-map-status" id="officeStatus" hidden>
+                <span class="contact-map-status-dot" aria-hidden="true"></span>
+                <span id="officeStatusText"></span>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
