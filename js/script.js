@@ -115,32 +115,84 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   );
 })();
 
-// ---------- Quick-nav dock hidden behind the hero ----------
+// ---------- Quick-nav dock avoids the hero's own dots ----------
 // Per Lasha: the dock and the hero photo slideshow's own dots
 // (.hero-dots) both sit at "bottom: 20px" — one relative to the
 // viewport, one relative to the hero — so on shorter/laptop viewports,
-// where the hero fills most of the screen at page load, they visually
-// landed right on top of each other. Fix: hide the dock entirely while
-// .hero-dots is on screen, and fade it in the instant .hero-dots scrolls
-// out of view — by then the dock is nowhere near it. This is a
-// visibility fix, not decorative motion, so it still runs under
-// prefers-reduced-motion (style.css just drops the fade/slide transition
-// in that case, not the show/hide itself).
+// right at page load, they visually landed right on top of each other.
+// This used to hide the dock entirely while .hero-dots was on screen —
+// per Lasha, the dock should always stay visible instead. Fix: while
+// .hero-dots is anywhere on screen, measure its real position on every
+// scroll/resize and push the dock up (via an inline "bottom" style)
+// just far enough to clear it; the moment that's no longer needed (dock
+// scrolled past the hero, or a tall viewport where there was never a
+// conflict), the inline style is removed and the dock settles back to
+// its normal fixed offset from style.css.
 (function () {
   const dock = document.querySelector('.quick-nav');
   const heroDots = document.querySelector('.hero-dots');
   if (!dock || !heroDots) return;
 
-  const dockVisibilityObserver = new IntersectionObserver(
+  const GAP = 14; // minimum breathing room to keep between the dock and the dots
+
+  let raised = false;
+  let ticking = false;
+
+  // Reads .quick-nav's own resting "bottom" straight from style.css
+  // (momentarily clearing any inline override to ask) rather than
+  // hardcoding 20px/14px here — stays correct even if that value ever
+  // changes at some breakpoint, and this only ever runs a few times a
+  // frame at most.
+  function readDefaultBottom() {
+    const prev = dock.style.bottom;
+    dock.style.bottom = '';
+    const value = parseFloat(getComputedStyle(dock).bottom) || 0;
+    dock.style.bottom = prev;
+    return value;
+  }
+
+  function update() {
+    ticking = false;
+    if (!raised) return;
+    const dotsRect = heroDots.getBoundingClientRect();
+    const dotsTopFromBottom = window.innerHeight - dotsRect.top;
+    const dotsBottomFromBottom = window.innerHeight - dotsRect.bottom;
+    const base = readDefaultBottom();
+    const dockHeight = dock.offsetHeight;
+    // Only step in when the dock's own normal spot would actually come
+    // within GAP of the dots — most of the time (dots are visible but
+    // sitting well above the dock's resting spot, e.g. any reasonably
+    // tall window) this leaves the dock exactly where it always is.
+    const gapAtRest = dotsBottomFromBottom - (base + dockHeight);
+    dock.style.bottom = gapAtRest < GAP ? dotsTopFromBottom + GAP + 'px' : '';
+  }
+
+  function requestUpdate() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  const dockPositionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        dock.classList.toggle('is-hidden', entry.isIntersecting);
+        raised = entry.isIntersecting;
+        if (raised) {
+          window.addEventListener('scroll', requestUpdate, { passive: true });
+          window.addEventListener('resize', requestUpdate);
+          requestUpdate();
+        } else {
+          window.removeEventListener('scroll', requestUpdate);
+          window.removeEventListener('resize', requestUpdate);
+          dock.style.bottom = '';
+        }
       });
     },
     { threshold: 0 }
   );
 
-  dockVisibilityObserver.observe(heroDots);
+  dockPositionObserver.observe(heroDots);
 })();
 
 // ---------- Hero photo carousel ----------

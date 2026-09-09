@@ -1873,21 +1873,12 @@ a:hover {
   border-radius: 999px;
   padding: 8px;
   box-shadow: 0 14px 32px oklch(10% 0.06 258 / 0.4);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Per Lasha: this dock and .hero-dots (the hero photo slideshow's own
-   dots) both sit at "bottom: 20px" — one relative to the viewport, one
-   relative to the hero — so on shorter/laptop viewports, where the hero
-   fills most of the screen at page load, they visually landed right on
-   top of each other. js/script.js toggles this class on/off via an
-   IntersectionObserver watching .hero-dots: hidden while the hero's own
-   dots are on screen, faded in the instant they scroll out of view (by
-   which point the dock is nowhere near them). */
-.quick-nav.is-hidden {
-  opacity: 0;
-  transform: translate(-50%, 12px);
-  pointer-events: none;
+  /* "bottom" is animated too now — js/script.js nudges this dock UP
+     (by setting an inline style.bottom) while the hero's own slideshow
+     dots (.hero-dots) are on screen and would otherwise sit under it,
+     instead of the dock disappearing (see the comment in script.js —
+     per Lasha, it should always stay visible). */
+  transition: opacity 0.3s ease, transform 0.3s ease, bottom 0.3s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
