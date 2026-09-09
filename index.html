@@ -100,14 +100,18 @@
          one per photo, JS-driven — see js/script.js) plus the constant
          darkening gradient (.hero-gradient) on top of all of them for
          text legibility; .hero-copy and .hero-dots float above that.
-         All 4 slides are real photos now, each cropped to the same
+         All 5 slides are real photos now, each cropped to the same
          ~1568x672 / 2.33:1 frame and lightly graded (contrast/saturation)
          to sit in the same cool blue/navy palette as the others:
          hero-slide-1.jpg is the original branded truck photo,
          hero-slide-2.jpg a cargo ship (Lasha's pick, Pexels),
          hero-slide-3.jpg a port/gantry-crane scene at dusk (Lasha's
-         pick), hero-slide-4.jpg a warehouse loading dock (Lasha's pick).
-         To add or remove a slide later: add/remove one .hero-slide div
+         pick), hero-slide-5.jpg an airplane over stacked shipping
+         containers (Lasha's pick, added to match the new Air Shipments
+         service card — shown 4th in the slideshow even though the file
+         is named hero-slide-5.jpg; markup order is what matters), and
+         hero-slide-4.jpg a warehouse loading dock (Lasha's pick), now
+         shown last. To add or remove a slide later: add/remove one .hero-slide div
          + one .hero-dot button (same order) — js/script.js counts them
          automatically, no script changes needed. -->
     <section class="hero">
@@ -125,6 +129,7 @@
           <div class="hero-slide is-active" style="background-image:url('images/hero-slide-1.jpg')"></div>
           <div class="hero-slide" style="background-image:url('images/hero-slide-2.jpg')"></div>
           <div class="hero-slide" style="background-image:url('images/hero-slide-3.jpg')"></div>
+          <div class="hero-slide" style="background-image:url('images/hero-slide-5.jpg')"></div>
           <div class="hero-slide" style="background-image:url('images/hero-slide-4.jpg')"></div>
           <div class="hero-gradient"></div>
         </div>
@@ -143,6 +148,7 @@
           <button type="button" class="hero-dot" aria-label="Go to slide 2" aria-current="false"></button>
           <button type="button" class="hero-dot" aria-label="Go to slide 3" aria-current="false"></button>
           <button type="button" class="hero-dot" aria-label="Go to slide 4" aria-current="false"></button>
+          <button type="button" class="hero-dot" aria-label="Go to slide 5" aria-current="false"></button>
         </div>
       </div>
 
