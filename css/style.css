@@ -146,6 +146,21 @@ a:hover {
   color: var(--ink);
 }
 
+/* Same pill shape as .btn-accent, but in the site's cyan accent — for
+   the .services-cta "Talk to a specialist" button, so that CTA doesn't
+   read as yet another gold button competing with the ones elsewhere. */
+.btn-cyan {
+  background: var(--cyan);
+  color: var(--ink);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.btn-cyan:hover {
+  background: oklch(64% 0.14 210);
+  color: var(--ink);
+}
+
 .btn-link {
   font-weight: 600;
   font-size: 15px;
@@ -764,6 +779,31 @@ a:hover {
      TIGHTER section spacing there for a continuous-scroll feel, so this
      shouldn't fight that fix. */
   margin-bottom: 40px;
+}
+
+/* Closing CTA strip under the 8 service cards, per Lasha — a soft cyan-
+   tinted band (not a plain card, so it reads as a distinct "final word"
+   rather than a 9th grid item) with a pill button, same shape language
+   as .btn-accent's gold pill but in the site's cyan accent instead of
+   gold, so it doesn't compete with the gold CTAs used elsewhere. */
+.services-cta {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 26px 32px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, oklch(40% 0.09 210 / 0.35), oklch(24% 0.05 258 / 0.2));
+  border: 1px solid oklch(58% 0.14 210 / 0.3);
+}
+
+.services-cta p {
+  margin: 0;
+  color: var(--white);
+  font-size: 17px;
+  font-weight: 500;
 }
 
 /* Ultra-wide monitors (Lasha's own setup included): with .services-box
@@ -2232,6 +2272,18 @@ a:hover {
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .services-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 24px;
+    padding: 22px;
+  }
+
+  .services-cta .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .calculator-card {
