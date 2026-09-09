@@ -204,7 +204,7 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
 // the slide it replaces animates off to the left. Every other slide
 // just sits off-screen to the right, reset there WITHOUT a transition
 // (see the `instant` flag below) so it never visibly sweeps across the
-// screen on its way back into the waiting position. Advances every 6s,
+// screen on its way back into the waiting position. Advances every 5s,
 // pauses while the mouse is over the hero, and — like the partners
 // marquee — doesn't autoplay at all under prefers-reduced-motion (dots
 // stay clickable either way).
@@ -217,7 +217,7 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
   if (slides.length < 2) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const ADVANCE_MS = 6000;
+  const ADVANCE_MS = 5000;
 
   let current = Math.max(slides.findIndex((slide) => slide.classList.contains('is-active')), 0);
   let timer = null;
