@@ -964,6 +964,23 @@ a:hover {
   color: var(--white);
 }
 
+/* Wraps the eyebrow/heading/subtext against the new "Start Now" button,
+   per Lasha — same idea as .services-cta: a WhatsApp shortcut for anyone
+   who already knows they want to ship and doesn't need to read all 4
+   steps first. align-items: center (not flex-start) so the button sits
+   roughly level with the subtext, not pinned to the very top next to
+   the eyebrow. */
+.process-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.process-start-btn {
+  flex-shrink: 0;
+}
+
 .process-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2246,6 +2263,17 @@ a:hover {
   .services-box {
     padding: 32px 22px 40px;
     border-radius: 16px;
+  }
+
+  .process-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .process-start-btn {
+    width: 100%;
+    justify-content: center;
   }
 
   /* Cancels the desktop-only extra runway added to .services-grid above
