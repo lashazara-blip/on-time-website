@@ -742,8 +742,10 @@
          iframe — now with a CSS filter (invert + hue-rotate, see
          .contact-map iframe in style.css) so it sits in the site's dark
          palette instead of showing as a bright light-mode rectangle. The
-         "Open in Maps ↗" link and the bottom info card still overlay on
-         top of it. Hours are fixed at Mon–Fri 09:00–18:00 per Lasha
+         bottom info card still overlays on top of it (its own "Directions
+         →" link covers opening the map elsewhere — the separate "Open in
+         Maps" overlay button was removed as redundant). Hours are fixed
+         at Mon–Fri 09:00–18:00 per Lasha
          (closed weekends, so no Saturday line); the "Open now"/"Closed"
          status next to them is computed live from the real Tbilisi time
          by js/script.js (green while open, red once closed), not
@@ -857,18 +859,6 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
-
-          <a
-            class="contact-map-open"
-            href="https://www.google.com/maps/search/?api=1&query=4+Vladimer+Ugrekhelidze+St%2C+Tbilisi+0186%2C+Georgia"
-            target="_blank"
-            rel="noopener"
-          >
-            Open in Maps
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
 
           <div class="contact-map-card">
             <div class="contact-map-card-head">

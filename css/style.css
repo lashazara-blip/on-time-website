@@ -99,6 +99,13 @@ a:hover {
   padding: 14px 26px;
   border-radius: 10px;
   white-space: nowrap;
+  /* Some of these are <a> tags, some are <button type="submit">. Without
+     this, <button> keeps the browser's default 1px border, which made the
+     button-based CTAs (Calculate, Request a quote) show a visible ring
+     that the anchor-based ones (Start Now) never had. .btn-outline and
+     .btn-outline-gold set their own border further down and still win. */
+  border: none;
+  cursor: pointer;
 }
 
 .btn-primary {
@@ -1966,9 +1973,11 @@ a:hover {
    bright rectangle. It's an approximation (a few colors — e.g. Google's
    own red pin — come out shifted, not identical to their original hue)
    but reads far better here than an unfiltered light-mode map. The
-   .contact-map-open button and the info card below still overlay on
-   top; the decorative HQ pin from the stylized version is gone since
-   the real map now carries its own real marker at the real location. */
+   info card below still overlays on top; the decorative HQ pin from the
+   stylized version is gone since the real map now carries its own real
+   marker at the real location. (The separate "Open in Maps" overlay
+   button that used to sit top-left was removed as redundant — the map
+   itself already opens Google Maps.) */
 .contact-map {
   position: relative;
   min-height: 280px;
@@ -1986,28 +1995,6 @@ a:hover {
   height: 100%;
   border: 0;
   filter: invert(90%) hue-rotate(180deg) contrast(90%);
-}
-
-.contact-map-open {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: oklch(20% 0.05 258 / 0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid oklch(55% 0.08 258 / 0.4);
-  color: #0bc8e9;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.contact-map-open:hover {
-  border-color: #0bc8e9;
 }
 
 .contact-map-card {
