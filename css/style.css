@@ -1112,6 +1112,11 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  /* Same fix as .contact-form-field, same reason — see the comment
+     there. Guards the Packing Type <select> (its longest option is
+     "Block Pallet (120 × 100 cm)") from forcing this grid item, and
+     everything nested inside it, wider than the viewport on mobile. */
+  min-width: 0;
 }
 
 .calc-field--wide {
@@ -1135,6 +1140,10 @@ a:hover {
   border: 1px solid oklch(55% 0.08 258 / 0.4);
   background-color: oklch(24% 0.07 258 / 0.6);
   color: var(--white);
+  /* Explicit sizing rather than relying on grid "stretch" — see the
+     comment on .contact-form-field input/select/textarea for why. */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .calc-field select:focus,
@@ -1648,6 +1657,18 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  /* Grid/flex items default to a minimum size based on their content's
+     own "natural" width (min-content) — for a <select>, most mobile
+     browsers/in-app webviews (Messenger's included, per Lasha's
+     screenshot) measure that against its LONGEST option text (here,
+     "Refrigerated / Temperature-Controlled"), which is wider than a
+     390px phone screen. Without this, that one field can force its
+     whole grid track — and everything nested inside it — wider than
+     the viewport, so the input/select boxes below bleed out past
+     .contact-box's edges instead of staying inside it. min-width: 0
+     is the standard fix: it lets the field shrink to fit its column
+     instead of demanding room for its widest content. */
+  min-width: 0;
 }
 
 .contact-form-field label {
@@ -1669,6 +1690,14 @@ a:hover {
   background-color: oklch(24% 0.07 258 / 0.6);
   color: var(--white);
   resize: vertical;
+  /* Explicit 100% + border-box (border-box is already the sitewide
+     default — see the top of this file — repeated here so this rule
+     is correct on its own) rather than relying on flex/grid "stretch"
+     to size these: some mobile webviews don't stretch a bare <select>
+     or <input> to its container reliably, which is what let them
+     escape .contact-box's padding in the first place. */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .contact-form-field input:focus,
