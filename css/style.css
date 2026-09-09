@@ -345,36 +345,17 @@ a:hover {
   box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
 }
 
-/* ---------- Header utility: search box ----------
-   VISUAL ONLY for now, per Lasha — "for show", no search backend wired
-   up yet. Boxed in the same thin/translucent/soft-shadow recipe as
-   .main-nav a above, for a consistent header, but deliberately NOT given
-   the hover-lift — it doesn't do anything yet, and lifting on hover
-   would suggest otherwise. Same idea as .nav-disabled.
-   (The GE/EN language toggle that used to sit next to this was removed
-   per Lasha — see index.html's header-utility for why.) */
+/* ---------- Header utility ----------
+   Used to hold the search box (removed per Lasha — visual only, no
+   search backend, just a non-functional box) and, before that, the
+   GE/EN language toggle (also removed — see index.html's
+   header-utility for why). Kept as an empty wrapper in the markup in
+   case something real lands here later; harmless with nothing inside
+   it. */
 .header-utility {
   display: flex;
   align-items: center;
   gap: 14px;
-}
-
-.nav-search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 16px;
-  /* Darkened + blurred, same reasoning as .main-nav a above — the old
-     4%-white fill let the header's grid lines show straight through. */
-  background: oklch(22% 0.05 258 / 0.8);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid oklch(100% 0 0 / 0.14);
-  border-radius: 10px;
-  box-shadow: 0 6px 16px oklch(10% 0.05 258 / 0.3);
-  color: oklch(65% 0.02 260);
-  font-size: 12.5px;
-  cursor: default;
 }
 
 /* ---------- Hero ----------
@@ -795,8 +776,13 @@ a:hover {
   gap: 18px;
   padding: 26px 32px;
   border-radius: 16px;
-  background: linear-gradient(90deg, oklch(40% 0.09 210 / 0.35), oklch(24% 0.05 258 / 0.2));
-  border: 1px solid oklch(58% 0.14 210 / 0.3);
+  /* Matched to .service-card's own plain-blue recipe per Lasha — was a
+     cyan-tinted gradient, read as a different color family from the 8
+     cards above it instead of the same box style with a button inside. */
+  background-color: oklch(30% 0.07 258 / 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid oklch(55% 0.08 258 / 0.35);
 }
 
 .services-cta p {

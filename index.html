@@ -69,14 +69,12 @@
         </nav>
 
         <div class="header-utility">
-          <!-- Visual only for now (per Lasha) — no search backend yet. -->
-          <div class="nav-search" title="მალე დაემატება">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/>
-              <line x1="21" y1="21" x2="16.2" y2="16.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            <span>Search...</span>
-          </div>
+          <!-- Removed per Lasha — same reasoning as the GE/EN toggle
+               below: it was visual only (no search backend), just
+               sitting there as a non-functional box. Re-add once there's
+               an actual search feature to wire it up to. See the removed
+               .nav-search rule, previously right above .lang-switch in
+               style.css, for the recipe. -->
           <!-- Removed per Lasha — a GE/EN toggle that didn't actually do
                anything (site is English-only, no Georgian content yet)
                risked visitors clicking "GE" expecting a Georgian version
