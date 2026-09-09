@@ -526,7 +526,7 @@
               </div>
 
               <div class="calc-actions">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-cyan">
                   Calculate
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -735,16 +735,19 @@
          dropdown), and an optional Cargo Details textarea. Kept our own
          subtext copy rather than the reference's ("Send route and cargo
          details…") since it wasn't dictated in chat — easy to swap if
-         Lasha wants that exact wording. The right-side live Google Maps
-         iframe is gone too, replaced with a stylized dark map "card" (the
-         site's own grid-pattern background, an HQ pin, an "Open in
-         Maps ↗" link, and a bottom info card with address/directions/
-         hours) so this panel matches the site's dark palette instead of
-         a bright embedded map — pan/zoom is traded for "Open in Maps"/
-         "Directions" links to the real Google Maps. Hours are fixed at
-         Mon–Fri 09:00–18:00 per Lasha (closed weekends, so no Saturday
-         line); the "Open now"/"Closed" status next to them is computed
-         live from the real Tbilisi time by js/script.js, not hardcoded. -->
+         Lasha wants that exact wording. The right-side map briefly
+         became a stylized dark "card" (grid background + a decorative
+         HQ pin, no live map) but per Lasha a real map is more
+         user-friendly for visitors, so it's back to a real Google Maps
+         iframe — now with a CSS filter (invert + hue-rotate, see
+         .contact-map iframe in style.css) so it sits in the site's dark
+         palette instead of showing as a bright light-mode rectangle. The
+         "Open in Maps ↗" link and the bottom info card still overlay on
+         top of it. Hours are fixed at Mon–Fri 09:00–18:00 per Lasha
+         (closed weekends, so no Saturday line); the "Open now"/"Closed"
+         status next to them is computed live from the real Tbilisi time
+         by js/script.js (green while open, red once closed), not
+         hardcoded. -->
     <section class="contact" id="contact">
       <div class="contact-box reveal">
         <div class="contact-copy">
@@ -849,6 +852,13 @@
         </div>
 
         <div class="contact-map">
+          <iframe
+            title="On-Time Logistics Company on the map"
+            src="https://maps.google.com/maps?q=4%20Vladimer%20Ugrekhelidze%20St%2C%20Tbilisi%200186%2C%20Georgia&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+
           <a
             class="contact-map-open"
             href="https://www.google.com/maps/search/?api=1&query=4+Vladimer+Ugrekhelidze+St%2C+Tbilisi+0186%2C+Georgia"
@@ -860,12 +870,6 @@
               <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </a>
-
-          <div class="contact-map-pin" aria-hidden="true">
-            <span class="contact-map-pin-glow"></span>
-            <span class="contact-map-pin-shape"></span>
-            <span class="contact-map-pin-label">HQ</span>
-          </div>
 
           <div class="contact-map-card">
             <div class="contact-map-card-head">

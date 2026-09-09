@@ -1959,14 +1959,21 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Stylized map "card" per Lasha's reference, replacing the old live
-   Google Maps iframe — same grid-pattern recipe as the sitewide body
-   background (see body, top of this file), just on a darker base so it
-   reads as its own panel, plus an HQ pin and an info card overlaid on
-   top. Trades pan/zoom for "Open in Maps"/"Directions" links out to the
-   real Google Maps, which is what most visitors actually use a map
-   for — and keeps this panel in the site's own dark palette instead of
-   a bright embedded map. */
+/* Real live Google Maps embed again, per Lasha ("more user-friendly for
+   visitors" than the stylized decorative version this briefly became —
+   see the git history for that version if it's ever wanted back). Same
+   plain maps.google.com/maps?...&output=embed URL as before, no API key
+   needed. The CSS filter below is the standard no-API-key "fake dark
+   mode" trick for an embedded Google Map: inverting the whole image and
+   then rotating hue by 180° flips light roads/background dark while
+   putting most colors roughly back where they started, so the map
+   actually sits in the site's dark palette instead of showing as a
+   bright rectangle. It's an approximation (a few colors — e.g. Google's
+   own red pin — come out shifted, not identical to their original hue)
+   but reads far better here than an unfiltered light-mode map. The
+   .contact-map-open button and the info card below still overlay on
+   top; the decorative HQ pin from the stylized version is gone since
+   the real map now carries its own real marker at the real location. */
 .contact-map {
   position: relative;
   min-height: 280px;
@@ -1975,10 +1982,15 @@ a:hover {
   border: 1px solid oklch(45% 0.08 258 / 0.5);
   box-shadow: 0 14px 32px oklch(10% 0.06 258 / 0.4);
   background-color: oklch(12% 0.045 258);
-  background-image:
-    linear-gradient(oklch(28% 0.06 258 / 0.6) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(28% 0.06 258 / 0.6) 1px, transparent 1px);
-  background-size: 40px 40px;
+}
+
+.contact-map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: invert(90%) hue-rotate(180deg) contrast(90%);
 }
 
 .contact-map-open {
@@ -2001,47 +2013,6 @@ a:hover {
 
 .contact-map-open:hover {
   border-color: #0bc8e9;
-}
-
-/* Classic "teardrop" pin via a square rotated 45° with 3 rounded
-   corners — the un-rounded corner becomes the downward point. The
-   label is a separate, non-rotated sibling positioned over the same
-   spot so "HQ" stays upright instead of rotating with the pin shape. */
-.contact-map-pin {
-  position: absolute;
-  top: 44%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
-}
-
-.contact-map-pin-glow {
-  position: absolute;
-  inset: -22px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(11, 200, 233, 0.28) 0%, transparent 70%);
-}
-
-.contact-map-pin-shape {
-  position: absolute;
-  inset: 0;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-  background: #0bc8e9;
-  box-shadow: 0 10px 24px rgba(11, 200, 233, 0.45);
-}
-
-.contact-map-pin-label {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Oswald', 'Space Grotesk', system-ui, sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--ink);
 }
 
 .contact-map-card {
@@ -2107,12 +2078,15 @@ a:hover {
   background: currentColor;
 }
 
+/* Per Lasha: plain green while open, plain red once closed — clearer at
+   a glance than reusing the site's own cyan/gold accents here, which
+   don't inherently read as "good"/"bad" status colors. */
 .contact-map-status.is-open {
-  color: #0bc8e9;
+  color: #22c55e;
 }
 
 .contact-map-status.is-closed {
-  color: oklch(72% 0.1 40);
+  color: #ef4444;
 }
 
 /* ---------- Footer ---------- */
