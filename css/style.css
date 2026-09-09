@@ -2172,6 +2172,39 @@ a:hover {
     display: none;
   }
 
+  /* Per Lasha: on mobile, every section's own 88-100px top/bottom
+     padding (tuned for how spacious that feels on a wide desktop
+     screen) stacks with the next section's matching padding into a
+     176-200px dead gap between one box's bottom edge and the next
+     box's top edge — on a 390px-wide phone that reads as the page
+     being broken into disconnected screens instead of one continuous
+     scroll. Roughly halved here so sections still breathe but the
+     scroll feels like one page. */
+  .services {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .process {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .calculator {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .partners {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .contact {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
   .services-box {
     padding: 32px 22px 40px;
     border-radius: 16px;
