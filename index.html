@@ -77,13 +77,16 @@
             </svg>
             <span>Search...</span>
           </div>
-          <!-- Visual only for now (per Lasha) — site is English-only, no
-               Georgian version built yet. -->
-          <div class="lang-switch" title="მალე დაემატება">
-            <span class="lang-current">GE</span>
-            <span class="lang-divider" aria-hidden="true">|</span>
-            <span class="lang-current">EN</span>
-          </div>
+          <!-- Removed per Lasha — a GE/EN toggle that didn't actually do
+               anything (site is English-only, no Georgian content yet)
+               risked visitors clicking "GE" expecting a Georgian version
+               and getting nothing. Lasha confirmed a Georgian version IS
+               wanted, just not yet (content needs translating first) —
+               re-add this once that content actually exists. The old
+               markup was a simple boxed "GE | EN" pill matching
+               .nav-search's style (see the removed .lang-switch /
+               .lang-current / .lang-divider rules, previously right
+               below .nav-search in style.css, for the recipe). -->
         </div>
       </div>
     </div>
