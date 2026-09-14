@@ -2502,6 +2502,18 @@ a:hover {
     display: none;
   }
 
+  /* This left-to-right darkening exists only so the overlaid .hero-copy
+     text stays legible against the photo on desktop. Below this
+     breakpoint .hero-copy has already dropped below the photo (see the
+     comment above), so the gradient no longer has anything to darken
+     FOR — left switched on, it just left a dark smudge over the left
+     third of the photo on every phone, for no reason (spotted by
+     Lasha on the new hero-slide-4 photo, where it showed up clearly
+     against the bright sky/building). */
+  .hero-gradient {
+    display: none;
+  }
+
   /* Per Lasha: on mobile, every section's own top/bottom padding (tuned
      for how spacious that feels on a wide desktop screen) stacks with
      the next section's matching padding into a dead gap between one
