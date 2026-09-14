@@ -37,7 +37,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- ?v=2: cache-busting query string. Some cPanel hosts run a server-side
+       cache (e.g. LiteSpeed Cache) keyed by exact URL, so overwriting
+       style.css on disk isn't always enough to bust an already-cached copy
+       for visitors. Bumping this version number forces a fresh fetch.
+       Bump it again (v=3, v=4, ...) any time a future CSS update doesn't
+       seem to show up live even after confirming the file itself is correct. -->
+  <link rel="stylesheet" href="css/style.css?v=2" />
 </head>
 <body>
 
