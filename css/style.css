@@ -53,6 +53,16 @@ body {
     linear-gradient(#0B2A53 1px, transparent 1px),
     linear-gradient(90deg, #0B2A53 1px, transparent 1px);
   background-size: 48px 48px;
+  /* Belt-and-suspenders against horizontal overflow (found and fixed one
+     real cause — a stray absolutely-positioned input stretching to
+     1300+px — but this stops any FUTURE regression like it from ever
+     showing as a scrollable strip of empty background past the edge of
+     the page, instead of it needing to be tracked down again). Also lets
+     a single long, unbreakable word wrap instead of forcing its own
+     overflow — relevant once the Georgian translation goes in, since
+     Georgian compounds run long with no natural break point. */
+  overflow-x: hidden;
+  overflow-wrap: break-word;
 }
 
 /* Sticky header is 76px tall — without this, jumping to an #anchor lands
@@ -827,6 +837,16 @@ a:hover {
    cursor moves over it" effect Lasha asked for. */
 .service-card {
   position: relative;
+  /* Grid items default to min-width: auto, which floors a card's width
+     at its content's min-content size (e.g. the longest unbreakable
+     word in a title like "Container Transport from Poti & Batumi").
+     In the 5-column desktop layout that floor could exceed 1fr's share
+     of the row at some widths, blowing out .services-grid past its
+     container and pushing the WHOLE PAGE into horizontal overflow (a
+     strip of empty background to the right of everything, however far
+     down the page you were). This lets the card shrink and wrap its
+     text normally instead. */
+  min-width: 0;
   /* Per Lasha: dropped the faint grid-texture background-image these
      cards used to carry (a finer copy of the site-wide grid pattern) —
      just plain blue now, no pattern. */
@@ -1839,7 +1859,15 @@ a:hover {
   cursor: pointer;
 }
 
-.shipment-type-pill input {
+/* Qualified with .contact-form-field (this pill's actual ancestor in the
+   markup) rather than just ".shipment-type-pill input", so this beats
+   .contact-form-field input's later, equal-specificity "width: 100%"
+   rule regardless of source order. Without that, the plain-input rule
+   won the cascade and stretched this invisible radio to 100% of its
+   absolutely-positioned containing block — over 1300px wide — which
+   pushed the whole page into horizontal overflow (a big empty strip of
+   background to the right of everything, on every screen size). */
+.contact-form-field .shipment-type-pill input {
   position: absolute;
   width: 1px;
   height: 1px;
